@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:ComplexDataTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:oss_cdt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ns1:lifeCycle="CURRENT" ns1:name="TraceJob__listOfInterfaces" ns1:ns="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:version="2023.2.14">
+  <ns1:modelCreationInfo author="YANG Transformer2">
+    <ns1:derivedModel derivedFrom="/net_yang/urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/_3gpp-common-managed-element%402023-02-14"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>Specifies the interfaces that need to be traced in the given ManagedEntityFunction.The attribute is applicable only for Trace. In case this attribute is not used, it carries a null semantic.</ns1:desc>
+  <ns2:attribute immutable="false" key="false" mandatory="false" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="AMFInterfaces" sensitive="false">
+    <ns1:desc>AMFInterfaces</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/TraceJob__listOfInterfaces__AMFInterfaces/2023.2.14" xsi:type="ns1:enumRefType"/>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="false" key="false" mandatory="false" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="ASInterfaces" sensitive="false">
+    <ns1:desc>ASInterfaces</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/TraceJob__listOfInterfaces__ASInterfaces/2023.2.14" xsi:type="ns1:enumRefType"/>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="false" key="false" mandatory="false" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="AUSFInterfaces" sensitive="false">
+    <ns1:desc>AUSFInterfaces</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/TraceJob__listOfInterfaces__AUSFInterfaces/2023.2.14" xsi:type="ns1:enumRefType"/>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="false" key="false" mandatory="false" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="BGCFInterfaces" sensitive="false">
+    <ns1:desc>BGCFInterfaces</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/TraceJob__listOfInterfaces__BGCFInterfaces/2023.2.14" xsi:type="ns1:enumRefType"/>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="false" key="false" mandatory="false" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="BM-SCInterfaces" sensitive="false">
+    <ns1:desc>BM-SCInterfaces</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/TraceJob__listOfInterfaces__BM-SCInterfaces/2023.2.14" xsi:type="ns1:enumRefType"/>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="false" key="false" mandatory="false" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="E-CSCFInterfaces" sensitive="false">
+    <ns1:desc>E-CSCFInterfaces</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/TraceJob__listOfInterfaces__E-CSCFInterfaces/2023.2.14" xsi:type="ns1:enumRefType"/>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="false" key="false" mandatory="false" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="EIRInterfaces" sensitive="false">
+    <ns1:desc>EIRInterfaces</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/TraceJob__listOfInterfaces__EIRInterfaces/2023.2.14" xsi:type="ns1:enumRefType"/>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="false" key="false" mandatory="false" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="en-gNBInterfaces" sensitive="false">
+    <ns1:desc>en-gNBInterfaces</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/TraceJob__listOfInterfaces__en-gNBInterfaces/2023.2.14" xsi:type="ns1:enumRefType"/>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="false" key="false" mandatory="false" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="eNBInterfaces" sensitive="false">
+    <ns1:desc>eNBInterfaces</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/TraceJob__listOfInterfaces__eNBInterfaces/2023.2.14" xsi:type="ns1:enumRefType"/>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="false" key="false" mandatory="false" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="GGSNInterfaces" sensitive="false">
+    <ns1:desc>GGSNInterfaces</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/TraceJob__listOfInterfaces__GGSNInterfaces/2023.2.14" xsi:type="ns1:enumRefType"/>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="false" key="false" mandatory="false" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="gNB-CU-CPInterfaces" sensitive="false">
+    <ns1:desc>gNB-CU-CPInterfaces</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/TraceJob__listOfInterfaces__gNB-CU-CPInterfaces/2023.2.14" xsi:type="ns1:enumRefType"/>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="false" key="false" mandatory="false" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="gNB-CU-UPInterfaces" sensitive="false">
+    <ns1:desc>gNB-CU-UPInterfaces</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/TraceJob__listOfInterfaces__gNB-CU-UPInterfaces/2023.2.14" xsi:type="ns1:enumRefType"/>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="false" key="false" mandatory="false" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="gNB-DUInterfaces" sensitive="false">
+    <ns1:desc>gNB-DUInterfaces</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/TraceJob__listOfInterfaces__gNB-DUInterfaces/2023.2.14" xsi:type="ns1:enumRefType"/>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="false" key="false" mandatory="false" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="HSSInterfaces" sensitive="false">
+    <ns1:desc>HSSInterfaces</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/TraceJob__listOfInterfaces__HSSInterfaces/2023.2.14" xsi:type="ns1:enumRefType"/>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="false" key="false" mandatory="false" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="I-CSCFInterfaces" sensitive="false">
+    <ns1:desc>I-CSCFInterfaces</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/TraceJob__listOfInterfaces__I-CSCFInterfaces/2023.2.14" xsi:type="ns1:enumRefType"/>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="false" key="false" mandatory="false" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="IBCFInterfaces" sensitive="false">
+    <ns1:desc>IBCFInterfaces</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/TraceJob__listOfInterfaces__IBCFInterfaces/2023.2.14" xsi:type="ns1:enumRefType"/>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="true" key="true" mandatory="true" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="idx" sensitive="false">
+    <ns1:desc>idx</ns1:desc>
+    <ns1:type xsi:type="ns1:longType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="4294967295" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="false" key="false" mandatory="false" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="MGCFInterfaces" sensitive="false">
+    <ns1:desc>MGCFInterfaces</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/TraceJob__listOfInterfaces__MGCFInterfaces/2023.2.14" xsi:type="ns1:enumRefType"/>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="false" key="false" mandatory="false" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="MGWInterfaces" sensitive="false">
+    <ns1:desc>MGWInterfaces</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/TraceJob__listOfInterfaces__MGWInterfaces/2023.2.14" xsi:type="ns1:enumRefType"/>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="false" key="false" mandatory="false" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="MMEInterfaces" sensitive="false">
+    <ns1:desc>MMEInterfaces</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/TraceJob__listOfInterfaces__MMEInterfaces/2023.2.14" xsi:type="ns1:enumRefType"/>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="false" key="false" mandatory="false" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="MRFCInterfaces" sensitive="false">
+    <ns1:desc>MRFCInterfaces</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/TraceJob__listOfInterfaces__MRFCInterfaces/2023.2.14" xsi:type="ns1:enumRefType"/>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="false" key="false" mandatory="false" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="MSCServerInterfaces" sensitive="false">
+    <ns1:desc>MSCServerInterfaces</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/TraceJob__listOfInterfaces__MSCServerInterfaces/2023.2.14" xsi:type="ns1:enumRefType"/>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="false" key="false" mandatory="false" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="NEFInterfaces" sensitive="false">
+    <ns1:desc>NEFInterfaces</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/TraceJob__listOfInterfaces__NEFInterfaces/2023.2.14" xsi:type="ns1:enumRefType"/>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="false" key="false" mandatory="false" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="ng-eNBInterfaces" sensitive="false">
+    <ns1:desc>ng-eNBInterfaces</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/TraceJob__listOfInterfaces__ng-eNBInterfaces/2023.2.14" xsi:type="ns1:enumRefType"/>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="false" key="false" mandatory="false" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="NRFInterfaces" sensitive="false">
+    <ns1:desc>NRFInterfaces</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/TraceJob__listOfInterfaces__NRFInterfaces/2023.2.14" xsi:type="ns1:enumRefType"/>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="false" key="false" mandatory="false" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="NSSFInterfaces" sensitive="false">
+    <ns1:desc>NSSFInterfaces</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/TraceJob__listOfInterfaces__NSSFInterfaces/2023.2.14" xsi:type="ns1:enumRefType"/>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="false" key="false" mandatory="false" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="P-CSCFInterfaces" sensitive="false">
+    <ns1:desc>P-CSCFInterfaces</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/TraceJob__listOfInterfaces__P-CSCFInterfaces/2023.2.14" xsi:type="ns1:enumRefType"/>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="false" key="false" mandatory="false" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="PCFInterfaces" sensitive="false">
+    <ns1:desc>PCFInterfaces</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/TraceJob__listOfInterfaces__PCFInterfaces/2023.2.14" xsi:type="ns1:enumRefType"/>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="false" key="false" mandatory="false" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="PDN_GWInterfaces" sensitive="false">
+    <ns1:desc>PDN_GWInterfaces</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/TraceJob__listOfInterfaces__PDN_GWInterfaces/2023.2.14" xsi:type="ns1:enumRefType"/>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="false" key="false" mandatory="false" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="RNCInterfaces" sensitive="false">
+    <ns1:desc>RNCInterfaces</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/TraceJob__listOfInterfaces__RNCInterfaces/2023.2.14" xsi:type="ns1:enumRefType"/>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="false" key="false" mandatory="false" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="S-CSCFInterfaces" sensitive="false">
+    <ns1:desc>S-CSCFInterfaces</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/TraceJob__listOfInterfaces__S-CSCFInterfaces/2023.2.14" xsi:type="ns1:enumRefType"/>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="false" key="false" mandatory="false" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="SGSNInterfaces" sensitive="false">
+    <ns1:desc>SGSNInterfaces</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/TraceJob__listOfInterfaces__SGSNInterfaces/2023.2.14" xsi:type="ns1:enumRefType"/>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="false" key="false" mandatory="false" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="SGWInterfaces" sensitive="false">
+    <ns1:desc>SGWInterfaces</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/TraceJob__listOfInterfaces__SGWInterfaces/2023.2.14" xsi:type="ns1:enumRefType"/>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="false" key="false" mandatory="false" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="SMFInterfaces" sensitive="false">
+    <ns1:desc>SMFInterfaces</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/TraceJob__listOfInterfaces__SMFInterfaces/2023.2.14" xsi:type="ns1:enumRefType"/>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="false" key="false" mandatory="false" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="SMSFInterfaces" sensitive="false">
+    <ns1:desc>SMSFInterfaces</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/TraceJob__listOfInterfaces__SMSFInterfaces/2023.2.14" xsi:type="ns1:enumRefType"/>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="false" key="false" mandatory="false" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="UDMInterfaces" sensitive="false">
+    <ns1:desc>UDMInterfaces</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/TraceJob__listOfInterfaces__UDMInterfaces/2023.2.14" xsi:type="ns1:enumRefType"/>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="false" key="false" mandatory="false" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="UPFInterfaces" sensitive="false">
+    <ns1:desc>UPFInterfaces</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/TraceJob__listOfInterfaces__UPFInterfaces/2023.2.14" xsi:type="ns1:enumRefType"/>
+    </ns1:type>
+  </ns2:attribute>
+</ns2:ComplexDataTypeDefinition>

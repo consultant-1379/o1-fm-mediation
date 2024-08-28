@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:EnumDataTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:oss_edt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ns1:lifeCycle="CURRENT" ns1:name="NtfSubscriptionControl__scope__scopeType" ns1:ns="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:version="2023.2.14">
+  <ns1:modelCreationInfo author="YANG Transformer2">
+    <ns1:derivedModel derivedFrom="/net_yang/urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/_3gpp-common-managed-element%402023-02-14"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>If the optional scopeLevel parameter is not supported or absent, allowed values of scopeType are BASE_ONLY and BASE_ALL. 
+The value BASE_ONLY indicates only the base object is selected. The value BASE_ALL indicates the base object and all of its subordinate objects (incl. the leaf objects) are selected. 
+If the scopeLevel parameter is supported and present, allowed values of scopeType are BASE_ALL, BASE_ONLY, BASE_NTH_LEVEL and BASE_SUBTREE. 
+The value BASE_NTH_LEVEL indicates all objects on the level, which is specified by the scopeLevel parameter, below the base object are selected. The base object is at scopeLevel zero. The value BASE_SUBTREE indicates the base object and all of its subordinate objects down to and including the objects on the level, which is specified by the scopeLevel parameter, are selected. The base object is at scopeLevel zero.</ns1:desc>
+  <ns2:member name="BASE_ALL" ns1:lifeCycle="CURRENT" value="1">
+    <ns2:desc>BASE_ALL</ns2:desc>
+  </ns2:member>
+  <ns2:member name="BASE_NTH_LEVEL" ns1:lifeCycle="CURRENT" value="2">
+    <ns2:desc>BASE_NTH_LEVEL</ns2:desc>
+  </ns2:member>
+  <ns2:member name="BASE_ONLY" ns1:lifeCycle="CURRENT" value="0">
+    <ns2:desc>BASE_ONLY</ns2:desc>
+  </ns2:member>
+  <ns2:member name="BASE_SUBTREE" ns1:lifeCycle="CURRENT" value="3">
+    <ns2:desc>BASE_SUBTREE</ns2:desc>
+  </ns2:member>
+</ns2:EnumDataTypeDefinition>

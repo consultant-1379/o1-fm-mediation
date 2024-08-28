@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:PrimaryTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:dps_primarytype" xmlns:ns3="urn:com:ericsson:schema:xml:oss:dps_common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" hierarchyType="HIERARCHICAL" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="backup-manager" ns1:ns="urn:rdns:com:ericsson:oammodel:ericsson-brm" ns1:version="4.2.1" readBehavior="FROM_PERSISTENCE" writeBehavior="PERSIST_AND_DELEGATE">
+  <ns1:modelCreationInfo author="YANG Transformer2">
+    <ns1:derivedModel derivedFrom="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-brm/ericsson-brm%402021-06-08"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>Top node for a backup-domain/type.</ns1:desc>
+  <ns2:systemCreated/>
+  <ns2:primaryTypeAttribute immutable="true" key="true" mandatory="true" ns="urn:rdns:com:ericsson:oammodel:ericsson-brm" ns1:lifeCycle="CURRENT" ns1:name="id" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Identity of the backup-manager.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-brm" ns1:lifeCycle="CURRENT" ns1:name="auto-export" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Determines whether a manual backup is to be automatically exported at successful creation. If enabled the manual backup most recently created is exported to the location specified by attribute auto-export-uri after it is successfully created. Note that the automatic export is only triggered if creation of the manual backup was successful. Otherwise, no export operation is triggered, even if this attribute is set to true. Also, note that setting this attribute to enabled has no impact on the manual backups that were already created and stored prior to the new configuration.</ns1:desc>
+    <ns1:type modelUrn="//urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-brm/backup-manager__auto-export/4.2.1" xsi:type="ns1:enumRefType"/>
+    <ns1:default value="disabled" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-brm" ns1:lifeCycle="CURRENT" ns1:name="auto-export-password" readBehavior="FROM_PERSISTENCE" sensitive="true" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Password used when automatically exporting a manual backup. If attribute auto-export is set to true this password is used for authentication when automatically exporting the manual backup. No need to specify this attribute if no password is required for accessing auto-export-uri.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-brm" ns1:lifeCycle="CURRENT" ns1:name="auto-export-uri" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Uri used when automatically exporting a manual backup. If attribute auto-export is set to ENABLED, this uri specifies the location to which the manual backup is automatically exported.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-brm" ns1:lifeCycle="CURRENT" ns1:name="backup-domain" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Backup domain, for example System.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-brm" ns1:lifeCycle="CURRENT" ns1:name="backup-type" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Type of backup, for example System Data or User Data.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType"/>
+  </ns2:primaryTypeAttribute>
+</ns2:PrimaryTypeDefinition>

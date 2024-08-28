@@ -1,0 +1,654 @@
+module ericsson-fm {
+	yang-version "1.1";
+	namespace urn:rdns:com:ericsson:oammodel:ericsson-fm;
+	prefix fme;
+	
+	import ietf-yang-types { prefix yang; }
+	import ericsson-yang-extensions { prefix yexte; }
+	import ericsson-notifications { prefix notife; }
+	import ericsson-yang-types { prefix typese; }
+    import ericsson-alarm-pc-types { prefix fmpce; }
+
+	organization "Ericsson AB";
+	contact "Ericsson first line support via email";
+	description "The EYANG Fault Management model.
+		
+		Copyright (c) 2016 Ericsson AB. All rights reserved.";
+
+	revision "2020-09-17" {
+	  description "Corrected duplicated revision date";
+	  yexte:version "3";
+		yexte:release "1";
+		yexte:correction "1";	    
+	}
+
+	revision "2019-01-16" {
+	  description "Stated that an alarm's source may be a non-modeled object.";
+	  yexte:version "3";
+		yexte:release "1";
+		yexte:correction "0";	    
+	}
+
+	revision "2017-05-15" {
+	    description "changed yexte:not-notifable to notife:notifiable-state-data false
+	       added notfiable-state-data true to the fm container   
+	       changed alarm-pc-types prefix";
+	    yexte:version "3";
+		yexte:release "0";
+		yexte:correction "0";	    
+	}
+
+	revision "2017-01-15" {
+	    description "type for alarm::sequence-number changed to uint32 
+	    	as all sequence number are just 32 bits.";
+	    yexte:version "2";
+		yexte:release "0";
+		yexte:correction "3";	    
+	}
+
+	revision "2017-01-14" {
+	    description "Updated to match with the 
+	    	ERICSSON-ALARM-XPATH-MIB REVISION 201606240000Z
+			The YANG is intended to serve both the CLI/Netconf and the MIB.
+			Issues:
+			- The semantics of the YAM and the MIB must be the same for 
+			individual leaf's datatypes, so the datatypes in the YAM were 
+			adjusted to match that of the MIB.
+			- string length restrictions were aded 4..64, 4..150 and 4..512
+			- The enumeration eri-probable-cause is moved to a new YAM ericsson-alarm-pc-types
+			- The source of the alarm is modified from instance-identifier to 
+			abridged-instance-identifier a.k.a. eriPath.
+			- There are unused parts in the MIB that were not added to the YAM.
+			- There are some parts in the YAM that are missing from the MIB. 
+			These are left in the YAM.
+			- The structure of the YAM and the MIB is not the same as we didn't 
+			want to change the existing structure and there is no need to have 
+			the same structure.
+			- notifications are not the same in the MIM and the YAM, no need for it
+			
+			Names in the module shortened taking away prefixes that mirror 
+			the containment hierarachy e.g. fm-
+			
+			The abridged-instance-identifier is imported from ericsson-yang-types
+			
+			A feature for alert is added
+			";
+		yexte:version "2";
+		yexte:release "0";
+		yexte:correction "2";
+	}
+
+	revision "2016-07-01" {
+		description "Initial version. Based on ECIM_FM 4.1.0";
+		yexte:version "1";
+		yexte:release "0";
+		yexte:correction "0";
+	}
+
+  	feature alert {
+    	description "Indicates that the device supports 
+    		stateless alerts beside alarms";
+  	}
+  	
+  	typedef alarm-source {
+  	  type typese:abridged-instance-identifier {
+		  	length 4..150;	// EriPath in SNMP ; 
+		}
+				
+		description "Reference to the alarming object.
+		  It is strongly recommended that all alarming objects SHOULD be modeled as  
+		  YANG data nodes.
+		  Alarm-sources can be both configured items like a local interface, or 
+		  read-only items like a list of dynamically discovered remote network peers.
+		  
+		  If the alarm-source is not modeled in YANG it MUST still be referenced with 
+		  an abridged-instance-identifier following the same syntax, but pointing 
+		  to a non-defined part of YANG schema tree.";
+  	}
+
+	container fm {
+		description "Fault Management root";
+		yexte:is-system-created;
+		notife:notifiable-state-data true;
+
+		leaf alarm-last-sequence-no {		
+			type uint32;
+			config false;
+			mandatory true;
+			description "The last used sequence number for an alarm state change
+                 notification. The sequence numbers are consecutive. Reading
+                 this leaf, an external system can determine if a
+                 resynchronization operation is needed, such as following a
+                 loss and restore of a communications link.";
+			notife:notifiable-state-data false;
+		}
+
+		leaf alarm-sum-critical {			
+			type uint32;
+			config false;
+			mandatory true;			
+			description "Shows the number of active alarms with perceived severity
+                 'critical'.";
+			notife:notifiable-state-data false;
+		}
+
+		leaf alarm-sum-major {			
+			type uint32;
+			config false;
+			mandatory true;
+			description "Shows the number of active alarms with perceived severity
+                 major.";
+			notife:notifiable-state-data false;
+		}
+
+		leaf alarm-sum-minor {			
+			type uint32;
+			config false;
+			mandatory true;
+			description "Shows the number of active alarms with perceived severity
+                 minor.";
+			notife:notifiable-state-data false;
+		}
+
+		leaf alarm-sum-warning {			
+			type uint32;
+			config false;
+			mandatory true;
+			description "Shows the number of active alarms with perceived severity
+                 warning.";
+			notife:notifiable-state-data false;
+		}
+
+		leaf alarm-total-active {			
+			type uint32;
+			config false;
+			mandatory true;
+			description "Shows the total number of currently active alarms. This
+                 corresponds to the the total number of instantiated alarm
+                 list entries.";
+			notife:notifiable-state-data false;
+		}
+
+		leaf alarm-last-changed {			
+			type yang:date-and-time;
+			config false;
+			mandatory true;
+			description "The time when any alarm last changed. Reading this
+                 leaf an external system can determine if a
+                 resynchronization operation is needed, such as following a
+                 loss and restore of a communications link.";
+			notife:notifiable-state-data false;
+		}
+
+		leaf alert-total {	
+			if-feature alert;		
+			type uint32;
+			config false;
+			mandatory true;
+			description "Number of alerts. This corresponds to the the 
+			number of instantiated alert list entries.";
+			notife:notifiable-state-data false;
+		}
+
+		leaf alert-last-changed {			
+			if-feature alert;		
+			type yang:date-and-time;
+			config false;
+			mandatory true;
+			description "The time ist of alerts last changed. Reading this
+                 leaf an external system can determine if a
+                 resynchronization operation is needed, such as following a
+                 loss and restore of a communications link.";
+			notife:notifiable-state-data false;
+		}
+
+		leaf alert-last-sequence-no {		
+			if-feature alert;		
+			type uint32;
+			config false;
+			mandatory true;
+			description "The last used sequence number for an alert 
+                 notification. The sequence numbers are consecutive. Reading
+                 this leaf, an external system can determine if a
+                 resynchronization operation is needed, such as following a
+                 loss and restore of a communications link.";
+			notife:notifiable-state-data false;
+
+		}
+
+		leaf heartbeat-interval {	
+			type uint32;
+			units second;
+			default 60;
+			description "The interval in seconds, with which an SNMP heartbeat 
+                 notification is sent to all alarm consumers.";
+		}
+
+		list alarm-model {
+			key id;
+			description "A list to contain a set of related FM alarm types.";
+			yexte:is-system-created;
+			
+			leaf id {
+				type string;
+				description "Identity of the alarm-model.";
+			}
+
+			list alarm-type {
+				key id;
+				description "A specific kind of alarm that can be reported, for example
+                 power failure. In an X.733 context it maps to event type,
+                 probable cause, and specific problem. The same principle is
+                 used for alert types as for alarm types.";
+                reference "ITU-T X.733"; 
+				yexte:is-system-created;
+				
+				leaf id {
+					type string;
+					description "Identity of the alarm-type.";
+				}
+
+				leaf major-type {
+					type uint32;
+					config false;
+					description "The leafs majorType and minorType identify the alarm type.";
+					notife:notifiable-state-data false;
+				}
+
+				leaf minor-type {
+					type uint32;
+					config false;
+					description "The leafs majorType and minorType identify the alarm type.";
+					notife:notifiable-state-data false;
+				}
+
+				leaf specific-problem {
+					type string {
+						length 4..64;
+					}
+					config false;
+					description "Provides further refinement to the information given by
+                 		probableCause. Can be used to find an associated operating
+                 		instruction (OPI).";
+					notife:notifiable-state-data false;
+				}
+
+				leaf event-type {
+					type event-type;
+					config false;
+					description "General category for the alarm type.";
+					notife:notifiable-state-data false;
+				}
+
+				leaf probable-cause {
+					type fmpce:eri-probable-cause;
+					config false;
+					description "Qualifies and provides further information on the reason 
+                 		for the event. A standard set of probableCause values 
+                 		from a number of standards is provided in the 
+                 		ERICSSON-ALARM-PC-MIB / ericsson-alarm-pc-types";
+					notife:notifiable-state-data false;
+				}
+				leaf is-stateful {
+					type boolean;
+					config false;
+					description "True indicates alarm. False indicates alert (stateless
+                 		alarm).";
+					notife:notifiable-state-data false;
+				}
+
+				leaf additional-text {
+					type string {
+						length 4..512;
+					}
+					config false;
+					description "Extra information that would not be contained by other
+                 		alarm-type leafs.";
+					notife:notifiable-state-data false;
+				}
+
+				leaf configured-severity {
+					type severity-level;
+					description "Gives the possibility to configure the perceived severity
+                 		for all alarms of this type. If set, this value overrides
+                 		the perceived severity provided by the alarming object.
+                 		Setting this leaf has no impact on existing alarms,
+                 		only new and updated ones.";
+                 	reference "RFC3877";  
+				}
+
+				leaf default-severity {
+					type severity-level;
+					config false;
+					description "The default perceived severity for all alarms of this type.
+                 		Not set means alarms of this type can be assigned different
+                 		severities.";
+                 	reference "RFC3877";  
+					notife:notifiable-state-data false;
+				}
+
+			}
+
+		}
+
+		list alarm {
+			key id;
+			config false;
+			description "An alarm instance represents an active alarm. An alarm is
+                 a persistent indication of a fault that clears only when 
+                 the triggering condition has been resolved.";
+			yexte:is-system-created;
+			
+			leaf id {
+				type uint32;
+				description "Identity of the alarm.";
+			}
+
+			leaf source {
+				type alarm-source;
+				description "Reference to the alarming object.";
+				notife:notifiable-state-data false;
+			}
+
+			leaf last-event-time {
+				type yang:date-and-time;
+				description "The timestamp of when the alarm was last updated. This is
+                 set at alarm information change or severity change.";
+				notife:notifiable-state-data false;
+			}
+
+			leaf sequence-number {			
+				type uint32;
+				description "A unique identity for every notification sent. This 
+                 identity changes at every notification, that is, severity
+                 change and information change. It is not the same as the
+                 alarm/id as multiple notifications may be sent for one
+                 alarm instance.";
+				notife:notifiable-state-data false;
+			}
+
+			leaf active-severity {
+				type severity-level;
+				description "The perceived severity of the alarm. It may change during
+                 the alarm's lifetime.";
+                reference "RFC3877";  
+				notife:notifiable-state-data false;
+			}
+
+			leaf additional-text {
+				type string {
+					length 4..512;
+				}
+				description "Extra information about the alarm. It may change during the
+                 alarm's lifetime.";
+				notife:notifiable-state-data false;
+			}
+
+			leaf major-type {
+				type uint32;
+				description "The leafs majorType and minorType identify the alarm type.";
+				notife:notifiable-state-data false;
+			}
+
+			leaf minor-type {
+				type uint32;
+				description "The leafs majorType and minorType identify the alarm type.";
+				notife:notifiable-state-data false;
+			}
+
+			leaf specific-problem {
+				type string {
+					length 4..64;
+				}
+				description "Provides further refinement to the information given by
+                 probableCause. Can be used to find an associated operating
+                 instruction (OPI).";
+				notife:notifiable-state-data false;
+			}
+
+			leaf event-type {
+				type event-type;
+				description "General category for the alarm.";
+                reference "ITU-T X.733 X.736";  
+				notife:notifiable-state-data false;
+			}
+
+			leaf probable-cause {
+				type fmpce:eri-probable-cause;
+				description "Qualifies and provides further information on the reason 
+                 for the event. A standard set of probable-cause values is
+                 provided in the ERICSSON-ALARM-PC-MIB / ericsson-alarm-pc-types";
+				notife:notifiable-state-data false;
+			}
+
+			list additional-info {
+				description "Further information about the problem. The information is
+                 represented as a set of data structures with two items of
+                 information, an identifier and a value. It may change 
+                 during the alarm's lifetime.";
+				notife:notifiable-state-data false;
+				leaf name {
+					type string;
+					mandatory true;
+					description "The identifier.";
+					notife:notifiable-state-data false;
+				}
+
+				leaf value {
+					type string;
+					mandatory true;
+					description "The value or description associated with the identifier.";
+					notife:notifiable-state-data false;
+				}
+			}
+
+			leaf original-event-time {
+				type yang:date-and-time;
+				description "The timestamp when the alarm was raised. This leaf is
+                 set when the alarm is raised and will not change during the
+                 alarm's lifetime.";
+				notife:notifiable-state-data false;
+			}
+
+			leaf original-severity {
+				type severity-level;
+				description "The perceived severity set when the alarm was raised. It
+                 will not change during the alarm's lifetime.";
+                reference "RFC3877";  
+				notife:notifiable-state-data false;
+			}
+
+			leaf original-additional-text {
+				type string {
+					length 4..512;
+				}
+				description "The additional text set when the alarm was raised. This
+                 is set when the alarm is raised and will not
+                 change during the alarm's lifetime.";
+				notife:notifiable-state-data false;
+			}
+
+		}
+
+		list alert {
+			if-feature alert;		
+			key id;
+			config false;
+			description "An alert is a stateless event, that is no clear
+				notification will be sent. Entries in this list are
+				created when a new alert event is detected. Entries
+				are deleted by the instrumentation at a 
+				predefined size or age.";
+			yexte:is-system-created;
+			
+			leaf id {
+				type uint32;
+				description "Identity of the alert.";
+			}
+
+			leaf source {
+				type alarm-source;
+				description "Reference to the alerting resource.";
+				notife:notifiable-state-data false;
+			}
+
+			leaf event-time {
+				type yang:date-and-time;
+				description "The timestamp of when the alert was last created.";
+				notife:notifiable-state-data false;
+			}
+
+			leaf sequence-number {			
+				type uint32;
+				description "The sequence number used in the alert notification.";
+				notife:notifiable-state-data false;
+			}
+
+			leaf severity {
+				type severity-level;
+				description "The perceived severity of the alert.";
+                reference "RFC3877";  
+				notife:notifiable-state-data false;
+			}
+
+			leaf additional-text {
+				type string {
+					length 4..512;
+				}
+				description "A user friendly text describing the alert. The
+					text is both static depending on the alert type
+					and dynamic depending on YANG resource instance
+					and other conditions.";
+				notife:notifiable-state-data false;
+			}
+
+			leaf major-type {
+				type uint32;
+				description "The leafs majorType and minorType identify the alert type.";
+				notife:notifiable-state-data false;
+			}
+
+			leaf minor-type {
+				type uint32;
+				description "The leafs majorType and minorType identify the alert type.";
+				notife:notifiable-state-data false;
+			}
+
+			leaf specific-problem {
+				type string {
+					length 4..64;
+				}
+				description "Provides further refinement to the information given by
+                 probableCause. Can be used to find an associated operating
+                 instruction (OPI).";
+				notife:notifiable-state-data false;
+			}
+
+			leaf event-type {
+				type event-type;
+				description "General category for the alert.";
+                reference "ITU-T X.733 X.736";  
+				notife:notifiable-state-data false;
+			}
+
+			leaf probable-cause {
+				type fmpce:eri-probable-cause;
+				description "Qualifies and provides further information on the reason 
+                 for the event. A standard set of probable-cause values is
+                 provided in the ERICSSON-ALARM-PC-MIB / ericsson-alarm-pc-types";
+				notife:notifiable-state-data false;
+			}
+		}
+	}
+	
+	typedef severity-level {
+		type enumeration {
+			enum critical {
+				value 3;
+				description "Aligned with ERICSSON-ALARM-MIB numbering.";
+			}
+
+			enum major {
+				value 4;
+				description "Aligned with ERICSSON-ALARM-MIB numbering.";
+			}
+
+			enum minor {
+				value 5;
+				description "Aligned with ERICSSON-ALARM-MIB numbering.";
+			}
+
+			enum warning {
+				value 6;
+				description "Aligned with ERICSSON-ALARM-MIB numbering.";
+			}
+
+		}
+
+		description "The possible alarm serverities.
+			Aligned with ERICSSON-ALARM-MIB.";
+	}
+
+	typedef event-type {
+		type enumeration {
+			enum other {
+				value 1;
+				description "Defined by ITU-T X.733 and X.736.";
+			}
+
+			enum communications-alarm {
+				value 2;
+				description "Defined by ITU-T X.733 and X.736.";
+			}
+
+			enum quality-of-service-alarm {
+				value 3;
+				description "Defined by ITU-T X.733 and X.736.";
+			}
+
+			enum processing-error-alarm {
+				value 4;
+				description "Defined by ITU-T X.733 and X.736.";
+			}
+
+			enum equipment-alarm {
+				value 5;
+				description "Defined by ITU-T X.733 and X.736.";
+			}
+
+			enum environmental-alarm {
+				value 6;
+				description "Defined by ITU-T X.733 and X.736.";
+			}
+
+			enum integrity-violation {
+				value 7;
+				description "Defined by ITU-T X.733 and X.736.";
+			}
+
+			enum operational-violation {
+				value 8;
+				description "Defined by ITU-T X.733 and X.736.";
+			}
+
+			enum physical-violation {
+				value 9;
+				description "Defined by ITU-T X.733 and X.736.";
+			}
+
+			enum security-service-or-mechanism-violation {
+				value 10;
+				description "Defined by ITU-T X.733 and X.736.";
+			}
+
+			enum time-domain-violation {
+				value 11;
+				description "Defined by ITU-T X.733 and X.736.";
+			}
+
+		}
+
+		description "General category for the alarm.";
+		reference "Defined by ITU-T X.733 and X.736.";
+	}
+}

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:ComplexDataTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:oss_cdt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ns1:lifeCycle="CURRENT" ns1:name="TraceJob__mBSFNAreaList" ns1:ns="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:version="2023.2.14">
+  <ns1:modelCreationInfo author="YANG Transformer2">
+    <ns1:derivedModel derivedFrom="/net_yang/urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/_3gpp-common-managed-element%402023-02-14"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>The MBSFN Area consists of a MBSFN Area ID and Carrier Frequency (EARFCN). The target MBSFN area List can have up to 8 entries. This parameter is applicable only if the job type is Logged MBSFN MDT.</ns1:desc>
+  <ns1:meta metaName="YANG_MULTIPLE_KEY_NAMES" metaValue="mbsfnAreaId earfcn"/>
+  <ns2:attribute immutable="true" key="true" mandatory="true" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="earfcn" sensitive="false">
+    <ns1:desc>Carrier Frequency</ns1:desc>
+    <ns1:type xsi:type="ns1:longType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="4294967295" min="1"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="true" key="true" mandatory="true" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="mbsfnAreaId" sensitive="false">
+    <ns1:desc>MBSFN Area Identifier</ns1:desc>
+    <ns1:type xsi:type="ns1:longType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="4294967295" min="1"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:attribute>
+</ns2:ComplexDataTypeDefinition>

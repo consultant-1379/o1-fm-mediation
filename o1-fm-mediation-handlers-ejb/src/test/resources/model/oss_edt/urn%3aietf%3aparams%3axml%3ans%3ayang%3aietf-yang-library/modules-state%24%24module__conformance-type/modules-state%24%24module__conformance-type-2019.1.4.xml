@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:EnumDataTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:oss_edt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ns1:lifeCycle="CURRENT" ns1:name="modules-state$$module__conformance-type" ns1:ns="urn:ietf:params:xml:ns:yang:ietf-yang-library" ns1:version="2019.1.4">
+  <ns1:modelCreationInfo author="YANG Transformer2">
+    <ns1:derivedModel derivedFrom="/net_yang/urn%3aietf%3aparams%3axml%3ans%3ayang%3aietf-yang-library/ietf-yang-library%402019-01-04"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>Indicates the type of conformance the server is claiming for the YANG module identified by this entry.</ns1:desc>
+  <ns2:member name="implement" ns1:lifeCycle="CURRENT" value="0">
+    <ns2:desc>Indicates that the server implements one or more protocol-accessible objects defined in the YANG module identified in this entry.  This includes deviation statements defined in the module. 
+For YANG version 1.1 modules, there is at most one 'module' entry with conformance type 'implement' for a particular module name, since YANG 1.1 requires that at most one revision of a module is implemented. 
+For YANG version 1 modules, there SHOULD NOT be more than one 'module' entry for a particular module name.</ns2:desc>
+  </ns2:member>
+  <ns2:member name="import" ns1:lifeCycle="CURRENT" value="1">
+    <ns2:desc>Indicates that the server imports reusable definitions from the specified revision of the module but does not implement any protocol-accessible objects from this revision. 
+Multiple 'module' entries for the same module name MAY exist.  This can occur if multiple modules import the same module but specify different revision dates in the import statements.</ns2:desc>
+  </ns2:member>
+</ns2:EnumDataTypeDefinition>

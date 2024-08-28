@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns4:PrimaryTypeExtensionDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:dps_primarytype" xmlns:ns3="urn:com:ericsson:schema:xml:oss:dps_common" xmlns:ns4="urn:com:ericsson:schema:xml:oss:dps_primarytype_ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ns1:name="urn:3gpp:sa5:_3gpp-common-managed-element__PerfMetricJob__ext" ns1:ns="NODE__O1Node__1.0" ns1:version="1.0.0">
+  <ns1:modelCreationInfo author="YANG Transformer2">
+    <ns1:derivedModel derivedFrom="/net_yang/urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/_3gpp-common-managed-element%402023-02-14"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>Extension for /urn:3gpp:sa5:_3gpp-common-managed-element/PerfMetricJob/2023.2.14 to handle augmentations/deviations</ns1:desc>
+  <ns1:extendedModelElement urn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/PerfMetricJob/2023.2.14"/>
+  <ns1:requiresTargetType category="NODE" type="O1Node" version="1.0"/>
+  <ns4:primaryTypeExtension>
+    <ns4:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="fileLocation" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+      <ns1:desc>Applicable and must be present when the file-based reporting method is supported, and the files are stored on the MnS consumer.</ns1:desc>
+      <ns1:type xsi:type="ns1:stringType"/>
+      <ns2:requires>
+        <ns3:activeChoiceCase case="file-based-reporting" choice="reportingCtrl" primaryTypeUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/PerfMetricJob/2023.2.14"/>
+      </ns2:requires>
+    </ns4:primaryTypeAttribute>
+    <ns4:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="fileReportingPeriod" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+      <ns1:desc>For the file-based reporting method this is the time window during which collected measurements are stored into the same file before the file is closed and a new file is opened. The time-period must be a multiple of the granularityPeriod. 
+Applicable when the file-based reporting method is supported.</ns1:desc>
+      <ns1:type xsi:type="ns1:longType">
+        <ns1:valueRangeConstraint>
+          <ns1:minMaxRange max="4294967295" min="1"/>
+        </ns1:valueRangeConstraint>
+      </ns1:type>
+      <ns1:unit>minutes</ns1:unit>
+      <ns2:requires>
+        <ns3:activeChoiceCase case="file-based-reporting" choice="reportingCtrl" primaryTypeUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/PerfMetricJob/2023.2.14"/>
+      </ns2:requires>
+    </ns4:primaryTypeAttribute>
+    <ns4:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="notificationRecipientAddress" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+      <ns1:desc>Must be present when the notification-based reporting method is supported, and the the files are available as notifications for the MnS consumer to subscribe to.</ns1:desc>
+      <ns1:type xsi:type="ns1:stringType"/>
+      <ns2:requires>
+        <ns3:activeChoiceCase case="file-based-reporting" choice="reportingCtrl" primaryTypeUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/PerfMetricJob/2023.2.14"/>
+      </ns2:requires>
+    </ns4:primaryTypeAttribute>
+    <ns4:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="streamTarget" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+      <ns1:desc>Applicable when stream-based reporting method is supported.</ns1:desc>
+      <ns1:type xsi:type="ns1:stringType"/>
+      <ns2:requires>
+        <ns3:activeChoiceCase case="stream-based-reporting" choice="reportingCtrl" primaryTypeUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/PerfMetricJob/2023.2.14"/>
+      </ns2:requires>
+    </ns4:primaryTypeAttribute>
+  </ns4:primaryTypeExtension>
+  <ns4:choiceHandling>
+    <ns4:replaceChoice mandatory="true" name="reportingCtrl">
+      <ns2:case name="file-based-reporting">
+        <ns2:attribute name="fileLocation"/>
+        <ns2:attribute name="fileReportingPeriod"/>
+        <ns2:attribute name="notificationRecipientAddress"/>
+      </ns2:case>
+      <ns2:case name="stream-based-reporting">
+        <ns2:attribute name="streamTarget"/>
+      </ns2:case>
+    </ns4:replaceChoice>
+  </ns4:choiceHandling>
+</ns4:PrimaryTypeExtensionDefinition>

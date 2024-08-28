@@ -1,0 +1,92 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>o1-fm-mediation</artifactId>
+        <groupId>com.ericsson.oss.mediation.o1</groupId>
+        <version>1.7.8-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>o1-fm-mediation-heartbeat-ejb</artifactId>
+    <name>[${project.artifactId}] EJB module</name>
+    <packaging>ejb</packaging>
+
+    <properties>
+        <sonar.sources>pom.xml,src</sonar.sources>
+        <sonar.tests />
+        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/../${aggregate.report.dir}
+        </sonar.coverage.jacoco.xmlReportPaths>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.mediation.o1</groupId>
+            <artifactId>o1-common-heartbeat-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.itpf.sdk</groupId>
+            <artifactId>sdk-recording-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.itpf.sdk</groupId>
+            <artifactId>sdk-modeled-eventbus-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.services.fm.models</groupId>
+            <artifactId>fmmediationeventmodel-jar</artifactId>
+        </dependency>
+        <!-- Test dependencies -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib-nodep</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.cds</groupId>
+            <artifactId>cdi-test-support</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-simple</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.spockframework</groupId>
+            <artifactId>spock-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.gmavenplus</groupId>
+                <artifactId>gmavenplus-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

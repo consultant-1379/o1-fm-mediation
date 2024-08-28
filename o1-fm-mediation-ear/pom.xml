@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>o1-fm-mediation</artifactId>
+        <groupId>com.ericsson.oss.mediation.o1</groupId>
+        <version>1.7.8-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>o1-fm-mediation-ear</artifactId>
+    <name>[${project.artifactId}] EAR module</name>
+    <packaging>ear</packaging>
+
+    <properties>
+        <project.ear.dependencies>
+            com.ericsson.oss.itpf.sdk.service-framework:4.x services export,
+            com.ericsson.oss.mediation.engine-api export,
+            org.slf4j,
+            javax.api,
+            com.ericsson.oss.itpf.datalayer.dps.api export,
+            com.ericsson.oss.mediation.util.netconf.api,
+            com.ericsson.oss.mediation.adapter.netconf.jca.xa.api,
+            com.ericsson.oss.itpf.modeling.modelservice.api,
+            com.ericsson.oss.itpf.modeling.modelservice.impl,
+            com.ericsson.oss.itpf.security.cryptography.api services export meta-inf,
+            com.ericsson.oss.itpf.security.cryptography.impl services export,
+            com.fasterxml.jackson.core.jackson-core,
+            com.google.code.gson,
+            org.apache.commons.lang3 export meta-inf
+        </project.ear.dependencies>
+        <sonar.skip>true</sonar.skip>
+
+        <!-- yang specific -->
+        <version.er6000-configuration-model-jar>1.4.3</version.er6000-configuration-model-jar>
+        <version.netconf-client-configuration-params-jar>1.27.1</version.netconf-client-configuration-params-jar>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>o1-fm-mediation-handlers-ejb</artifactId>
+            <version>${project.version}</version>
+            <type>ejb</type>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>o1-fm-mediation-heartbeat-ejb</artifactId>
+            <version>${project.version}</version>
+            <type>ejb</type>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>o1-fm-mediation-transformation-jar</artifactId>
+            <version>${project.version}</version>
+            <type>ejb</type>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>o1-fm-mediation-common-utils-jar</artifactId>
+            <version>${project.version}</version>
+            <type>ejb</type>
+        </dependency>
+        <!-- yang handler specific -->
+        <dependency>
+            <groupId>com.ericsson.oss.mediation.models</groupId>
+            <artifactId>er6000-configuration-model-jar</artifactId>
+            <version>${version.er6000-configuration-model-jar}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.mediation.netconf.models</groupId>
+            <artifactId>netconf-client-configuration-params-jar</artifactId>
+            <version>${version.netconf-client-configuration-params-jar}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.mediation.netconf</groupId>
+            <artifactId>netconf-session-api-dist</artifactId>
+            <version>${iso.ERICnetconfsessionapi_CXP9032052}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.jboss.as.plugins</groupId>
+                <artifactId>jboss-as-maven-plugin</artifactId>
+                <configuration>
+                    <filename>${project.parent.artifactId}.${project.packaging}</filename>
+                    <skip>false</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ear-plugin</artifactId>
+                <configuration>
+                    <generateApplicationXml>true</generateApplicationXml>
+                    <defaultLibBundleDir>lib</defaultLibBundleDir>
+                    <archive>
+                        <manifestEntries>
+                            <Dependencies>${project.ear.dependencies}</Dependencies>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <outputDirectory>${project.build.directory}/resources</outputDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/resources/eap7/META-INF/</directory>
+                                    <includes>
+                                        <include>*.*</include>
+                                    </includes>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                            <outputDirectory>
+                                ${project.build.directory}/main/resources/eap7/META-INF/
+                            </outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>assembly:package</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <archive>
+                                <manifestEntries>
+                                    <Dependencies>${project.ear.Dependencies}</Dependencies>
+                                </manifestEntries>
+                            </archive>
+                            <archiverConfig>
+                                <appxml>
+                                    ${project.build.directory}/main/resources/eap7/META-INF/application.xml
+                                </appxml>
+                            </archiverConfig>
+                            <descriptors>
+                                <descriptor>src/main/resources/assembly_eap7.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:PrimaryTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:dps_primarytype" xmlns:ns3="urn:com:ericsson:schema:xml:oss:dps_common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" hierarchyType="HIERARCHICAL" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="job" ns1:ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:version="4.1.6" readBehavior="FROM_PERSISTENCE" writeBehavior="PERSIST_AND_DELEGATE">
+  <ns1:modelCreationInfo author="YANG Transformer2">
+    <ns1:derivedModel derivedFrom="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-pm/ericsson-pm%402021-03-15"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>Describes a user-defined PM job on the Managed Element. A PM Job defines the configuration required per job and also defines the measurements to be included in the job. An instance of the measurement-reader list is created for every group or measurement-type instance being measured.</ns1:desc>
+  <ns2:primaryTypeAttribute immutable="true" key="true" mandatory="true" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="name" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Holds the name used when identifying the job.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="compression-type" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Indicates file compression type to be applied to the report file. If no value is set, then no compression is to be applied to the report file for this job. Must have the same value for all PM jobs with the same group tag and reporting-period assigned. Must have the same value for all PM jobs for which no group tag is assigned (the default group), but the same reporting-period assigned.</ns1:desc>
+    <ns1:type modelUrn="//urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-yang-types/compression-types/1.7.0" xsi:type="ns1:enumRefType"/>
+    <ns2:requires>
+      <ns3:pathExpressionCondition condition="../type = 'measurement-job'"/>
+    </ns2:requires>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="control" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Describes the level of user control of the PM job.</ns1:desc>
+    <ns1:type modelUrn="//urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-pm/job__control/4.1.6" xsi:type="ns1:enumRefType"/>
+    <ns1:default value="full" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="current-job-state" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Describes the current state of the PM job.</ns1:desc>
+    <ns1:type modelUrn="//urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-pm/job__current-job-state/4.1.6" xsi:type="ns1:enumRefType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="granularity-period" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Contains the granularity period of the job. The granularity period is the time between the initiation of two successive gatherings of measurement data. This is directly related to the reporting-period as the granularity period can not be longer than the reporting period. Granularity period must be one of the supported values for that job type as listed in /pm/measurement-capabilities/XXX/supported-XXX-job-gps where XXX defines the type of the job</ns1:desc>
+    <ns1:type modelUrn="//urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-pm/job__granularity-period/4.1.6" xsi:type="ns1:enumRefType"/>
+    <ns1:default value="fifteen-min" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="group" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Tag for grouping PM measurement job results. Represents a grouping of separate PM Jobs for which the measurement results must be collected together in a single report file for that group only. If this leaf is not set, then for each reporting period, the measurement results for this job are written to the same report file as other jobs that have no job group assigned.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType"/>
+    <ns2:requires>
+      <ns3:pathExpressionCondition condition=" ../../measurement-capabilities/measurement-jobs/job-grouping-support = 'true' and ../type = 'measurement-job'"/>
+    </ns2:requires>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="priority" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Contains the priority of the job.</ns1:desc>
+    <ns1:type modelUrn="//urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-pm/job__priority/4.1.6" xsi:type="ns1:enumRefType"/>
+    <ns1:default value="medium" xsi:type="ns1:stringValue"/>
+    <ns2:requires>
+      <ns3:pathExpressionCondition condition="../../measurement-capabilities/measurement-jobs/job-prioritization-support = 'true'"/>
+    </ns2:requires>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="reporting-period" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Contains the reporting period of the result file. This is directly related to the granularity period as the granularity period can not be longer than the reporting period. Reporting period must be one of the supported values for that job type as listed in /pm/measurement-capabilities/measurement-jobs/supported-reporting-periods</ns1:desc>
+    <ns1:type modelUrn="//urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-pm/measurement-jobs__supported-reporting-periods/4.1.6" xsi:type="ns1:enumRefType"/>
+    <ns1:default value="fifteen-min" xsi:type="ns1:stringValue"/>
+    <ns2:requires>
+      <ns3:pathExpressionCondition condition="../type = 'measurement-job'"/>
+    </ns2:requires>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="requested-job-state" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Contains the requested state of the PM job. It represents the state that the job has been ordered to reach.</ns1:desc>
+    <ns1:type modelUrn="//urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-pm/job__requested-job-state/4.1.6" xsi:type="ns1:enumRefType"/>
+    <ns1:default value="active" xsi:type="ns1:stringValue"/>
+    <ns2:requires>
+      <ns3:pathExpressionCondition condition="../../measurement-capabilities/job-start-stop-support != 'none'"/>
+    </ns2:requires>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="true" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="type" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Type of PM job.</ns1:desc>
+    <ns1:type modelUrn="//urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-pm/job__type/4.1.6" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+</ns2:PrimaryTypeDefinition>

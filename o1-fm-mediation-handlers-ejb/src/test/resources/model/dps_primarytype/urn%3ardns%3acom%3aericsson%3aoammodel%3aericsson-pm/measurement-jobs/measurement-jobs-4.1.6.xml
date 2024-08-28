@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:PrimaryTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:dps_primarytype" xmlns:ns3="urn:com:ericsson:schema:xml:oss:dps_common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" hierarchyType="HIERARCHICAL" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="measurement-jobs" ns1:ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:version="4.1.6" readBehavior="FROM_PERSISTENCE" writeBehavior="NOT_ALLOWED">
+  <ns1:modelCreationInfo author="YANG Transformer2">
+    <ns1:derivedModel derivedFrom="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-pm/ericsson-pm%402021-03-15"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>measurement-jobs</ns1:desc>
+  <ns1:meta metaName="YANG_NON_PRESENCE_CONTAINER"/>
+  <ns2:primaryTypeAttribute immutable="true" key="true" mandatory="true" ns1:definedBy="OSS" ns1:name="measurement-jobs-key" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Key attribute</ns1:desc>
+    <ns1:meta metaName="YANG_ARTIFIAL_KEY"/>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="1" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="aligned-reporting-period" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Defines whether or not the Managed Element aligns its reporting periods to the hour.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="file-location" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Contains the path to the virtual file system on the node from which to fetch the measurement files.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="file-rp-supported" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Specifies if a file Reporting Period different to Granularity Period, where RP &gt; GP, is supported.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="final-rop" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Indicates if measurement file for the last Result Output Period (ROP) is expected. When a measurement job is stopped, this leaf specifies whether a result file for the last ROP is expected (true), or not expected (false).</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="job-grouping-support" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Indicates if grouping of selected measurement job results in a report file is supported. If set to true, the selected measurement job results are grouped into one file per reporting period based on the job leaf group. If set to false, the default behaviour is to generate a single PM report file per reporting period for all jobs.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="job-prioritization-support" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Defines whether or not measurement jobs can be stopped by the system. Based on the priority of the Measurement jobs, they can either be stopped (true) or not (false) by the system.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="max-no-of-measurement-jobs" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Specifies the maximum number of measurement jobs that can be defined. A value of 0 means there is no limit to the number of jobs. If the specified limit is exceeded, when a performance monitoring is created or started, the create job or start job operation is rejected. This is an upper system limit, and support for it cannot be guaranteed in high-load conditions.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="65535" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="0" xsi:type="ns1:integerValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="max-no-of-measurements" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The maximum number of measurement instances, that is, active measurements, that can be reported in one ROP. This is used by an MS to determine the max PM data file size. This is an upper-system limit, and support for it cannot be guaranteed in high-load conditions. A value of 0 means there is no limit.</ns1:desc>
+    <ns1:type unsigned="true" xsi:type="ns1:longType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="-1" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="max-no-of-pm-files" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Specifies the maximum number of Result Output Period (ROP) files that are maintained. If a new file is created and the limit is exceeded, the oldest file is deleted. This is an upper-system limit, and support for it cannot be guaranteed in high-load conditions.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="65535" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="rop-filename-timestamp" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Indicates what timestamp format is used in the Result Output Period (ROP) filename.</ns1:desc>
+    <ns1:type modelUrn="//urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-pm/measurement-jobs__rop-filename-timestamp/4.1.6" xsi:type="ns1:enumRefType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="supported-compression-types" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Indicates which compression types are supported for report files. No value means that compression of report files is not supported.</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionSizeConstraint>
+        <ns1:maxSize value="2"/>
+      </ns1:collectionSizeConstraint>
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-yang-types/compression-types/1.7.0" xsi:type="ns1:enumRefType"/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="supported-meas-job-gps" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Indicates which granularity periods are supported for Measurement jobs.</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionSizeConstraint>
+        <ns1:minMaxSize max="9" min="1"/>
+      </ns1:collectionSizeConstraint>
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-pm/measurement-jobs__supported-meas-job-gps/4.1.6" xsi:type="ns1:enumRefType"/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="supported-reporting-periods" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Indicates the Reporting Period or ROPs supported by the ME.</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionSizeConstraint>
+        <ns1:minMaxSize max="9" min="1"/>
+      </ns1:collectionSizeConstraint>
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-pm/measurement-jobs__supported-reporting-periods/4.1.6" xsi:type="ns1:enumRefType"/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+</ns2:PrimaryTypeDefinition>

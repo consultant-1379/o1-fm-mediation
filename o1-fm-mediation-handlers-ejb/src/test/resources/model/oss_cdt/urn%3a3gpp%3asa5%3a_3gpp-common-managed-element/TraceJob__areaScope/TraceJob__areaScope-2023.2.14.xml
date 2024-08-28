@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:ComplexDataTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:oss_cdt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ns1:lifeCycle="CURRENT" ns1:name="TraceJob__areaScope" ns1:ns="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:version="2023.2.14">
+  <ns1:modelCreationInfo author="YANG Transformer2">
+    <ns1:derivedModel derivedFrom="/net_yang/urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/_3gpp-common-managed-element%402023-02-14"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>It specifies the area where data shall be collected. List of eNB/list of gNB/eNB/gNB for RLF or RCEF. 
+List of cells/TA/LA/RA for signaling based MDT or management based Logged MDT. 
+List of cells for management based Immediate MDT. 
+Cell, TA, LA, RA are mutually exclusive. 
+This attribute shall be present if MDT is supported.</ns1:desc>
+  <ns2:attribute immutable="false" key="false" mandatory="false" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="eutraCellIdList" sensitive="false">
+    <ns1:desc>List of E-UTRAN cells identified by E-UTRAN-CGI</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionSizeConstraint>
+        <ns1:minMaxSize max="32" min="1"/>
+      </ns1:collectionSizeConstraint>
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType xsi:type="ns1:stringType"/>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="true" key="true" mandatory="true" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="idx" sensitive="false">
+    <ns1:desc>idx</ns1:desc>
+    <ns1:type xsi:type="ns1:longType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="4294967295" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="false" key="false" mandatory="false" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="tacList" sensitive="false">
+    <ns1:desc>Tracking Area Code list</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionSizeConstraint>
+        <ns1:minMaxSize max="8" min="1"/>
+      </ns1:collectionSizeConstraint>
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType xsi:type="ns1:integerType">
+        <ns1:valueRangeConstraint>
+          <ns1:minMaxRange max="16777215" min="0"/>
+        </ns1:valueRangeConstraint>
+      </ns1:collectionValuesType>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="false" key="false" mandatory="false" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="utraCellIdList" sensitive="false">
+    <ns1:desc>List of UTRAN cells identified by UTRAN CGI</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionSizeConstraint>
+        <ns1:minMaxSize max="32" min="1"/>
+      </ns1:collectionSizeConstraint>
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType xsi:type="ns1:stringType"/>
+    </ns1:type>
+  </ns2:attribute>
+</ns2:ComplexDataTypeDefinition>

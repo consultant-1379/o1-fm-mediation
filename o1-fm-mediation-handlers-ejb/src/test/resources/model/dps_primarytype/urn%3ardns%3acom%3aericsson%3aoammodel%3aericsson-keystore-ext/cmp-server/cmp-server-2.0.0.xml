@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:PrimaryTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:dps_primarytype" xmlns:ns3="urn:com:ericsson:schema:xml:oss:dps_common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" hierarchyType="HIERARCHICAL" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="cmp-server" ns1:ns="urn:rdns:com:ericsson:oammodel:ericsson-keystore-ext" ns1:version="2.0.0" readBehavior="FROM_PERSISTENCE" writeBehavior="PERSIST_AND_DELEGATE">
+  <ns1:modelCreationInfo author="YANG Transformer2">
+    <ns1:derivedModel derivedFrom="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-keystore-ext/ericsson-keystore-ext%402021-03-31"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>A CMPv2 server, which can be implemented by either a Registration Authority or a Certificate Authority.</ns1:desc>
+  <ns2:primaryTypeAttribute immutable="true" key="true" mandatory="true" ns="urn:rdns:com:ericsson:oammodel:ericsson-keystore-ext" ns1:lifeCycle="CURRENT" ns1:name="name" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The name of the CMPv2 server.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="true" ns="urn:rdns:com:ericsson:oammodel:ericsson-keystore-ext" ns1:lifeCycle="CURRENT" ns1:name="ca-certs" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>A reference to a list of certificate authority (CA) certificates used by the CMPv2 client to authenticate the CMPv2 server certificates. A CMPv2 server certificate is authenticated if it has a valid chain of trust to a configured CA certificate.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="true" ns="urn:rdns:com:ericsson:oammodel:ericsson-keystore-ext" ns1:lifeCycle="CURRENT" ns1:name="certificate-authority" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The Certificate Authority used by this CMPv2 server.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+      <ns1:stringContentsConstraint type="REGEX" value="([a-zA-Z][a-zA-Z0-9-]*=(\\( |#|\\|&gt;|&lt;|;|&quot;|\+|,|[a-fA-F0-9]{2})|[^\\&gt;&lt;;&quot;+,# ])((\\( |#|\\|&gt;|&lt;|;|&quot;|\+|,|[a-fA-F0-9]{2})|[^\\&gt;&lt;;&quot;+,])*(\\( |#|\\|&gt;|&lt;|;|&quot;|\+|,|[a-fA-F0-9]{2})|[^\\&gt;&lt;;&quot;+, ]))?[,\+])*[a-zA-Z][a-zA-Z0-9-]*=(\\( |#|\\|&gt;|&lt;|;|&quot;|\+|,|[a-fA-F0-9]{2})|[^\\&gt;&lt;;&quot;+,# ])((\\( |#|\\|&gt;|&lt;|;|&quot;|\+|,|[a-fA-F0-9]{2})|[^\\&gt;&lt;;&quot;+,])*(\\( |#|\\|&gt;|&lt;|;|&quot;|\+|,|[a-fA-F0-9]{2})|[^\\&gt;&lt;;&quot;+, ]))?"/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-keystore-ext" ns1:lifeCycle="CURRENT" ns1:name="priority" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>A priority assigned to a CMPv2 server. A smaller number signifies higher priority. A server with a lower priority is chosen when servers with higher priority are not accessible. In the case when CMPv2 servers have the same priority, then the server is chosen with round robin.</ns1:desc>
+    <ns1:type xsi:type="ns1:shortType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="255" min="1"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="1" xsi:type="ns1:shortValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-keystore-ext" ns1:lifeCycle="CURRENT" ns1:name="ra-mode-enabled" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>If set to true, RA mode is used when performing CMPv2 online enrollment towards this CMP server. Requires that ra-client-identity is configured with key and certificate or password.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType"/>
+    <ns1:default value="false" xsi:type="ns1:booleanValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="true" ns="urn:rdns:com:ericsson:oammodel:ericsson-keystore-ext" ns1:lifeCycle="CURRENT" ns1:name="uri" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The URI of the CMPv2 server. 
+Example: http://192.168.33.27:8080 or cmp://192.168.33.27</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+</ns2:PrimaryTypeDefinition>

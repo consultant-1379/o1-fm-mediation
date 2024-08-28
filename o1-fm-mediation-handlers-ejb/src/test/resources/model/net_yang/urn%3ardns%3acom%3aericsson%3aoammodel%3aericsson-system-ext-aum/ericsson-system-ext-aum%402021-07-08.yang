@@ -1,0 +1,468 @@
+module ericsson-system-ext-aum {
+    yang-version 1.1;
+    namespace urn:rdns:com:ericsson:oammodel:ericsson-system-ext-aum;
+    prefix sysxeaum;
+
+    import ericsson-yang-extensions {
+        prefix yexte;
+    }
+    import ericsson-system-ext {
+      prefix sysxe;
+    }
+    import ietf-system {
+      prefix sys;
+    }
+
+    organization "Ericsson AB";
+    contact "Ericsson first line support via email";
+    description "The module extends and deviates ericsson-system-ext-aum.
+
+     Copyright (c) 2020-2021 Ericsson AB. All rights reserved.";
+
+    revision 2021-07-08 {
+        description "Introduce some replace deviations for password-policy and default-password-policy
+            to prevent integer overflow in OpenLDAP.
+            Deviations added:
+                - /sys:system/sys:authentication/sysxe:password-policy/sysxe:failure-count-interval (range 0..2147483647)
+                - /sys:system/sys:authentication/sysxe:password-policy/sysxe:history-length (range 0..2147483647)
+                - /sys:system/sys:authentication/sysxe:password-policy/sysxe:lockout-duration (range 0..2147483647)
+                - /sys:system/sys:authentication/sysxe:password-policy/sysxe:max-failure (range 0..2147483647)
+                - /sys:system/sys:authentication/sysxe:default-password-policy/sysxe:failure-count-interval (range 0..2147483647)
+                - /sys:system/sys:authentication/sysxe:default-password-policy/sysxe:history-length (range 0..2147483647)
+                - /sys:system/sys:authentication/sysxe:default-password-policy/sysxe:lockout-duration (range 0..2147483647)
+                - /sys:system/sys:authentication/sysxe:default-password-policy/sysxe:max-failure (range 0..2147483647)";
+        yexte:version 1;
+        yexte:release 6;
+        yexte:correction 0;
+    }
+
+    revision 2021-04-22 {
+        description "Introduce some replace deviations for default-password-policy to prevent integer overflow in OpenLDAP
+            Deviations added:
+                - /sys:system/sys:authentication/sysxe:default-password-policy/sysxe:max-age (range 0..24855)
+                - /sys:system/sys:authentication/sysxe:default-password-policy/sysxe:min-age (range 0..24855)
+                - /sys:system/sys:authentication/sysxe:default-password-policy/sysxe:expiry-warning (range 0..24855)";
+        yexte:version 1;
+        yexte:release 5;
+        yexte:correction 0;
+    }
+
+    revision 2021-01-27 {
+        description "Remove temporary not-supported deviations
+            Deviations removed:
+                - /sys:system/sys:authentication/sysxe:password-policy/sysxe:must-change (temporary not-supported)
+                - /sys:system/sys:authentication/sysxe:default-password-policy/sysxe:must-change (temporary not-supported)";
+        yexte:version 1;
+        yexte:release 4;
+        yexte:correction 0;
+    }
+
+    revision 2021-01-19 {
+        // lmfakos
+        description "Take oauth2-client in use but keep private-key-jwt still deviated.
+            Deviate the following paths as not-supported:
+                - /sys:system/sys:authentication/sysxe:password-policy/sysxe:must-change (temporary not-supported)
+                - /sys:system/sys:authentication/sysxe:default-password-policy/sysxe:must-change (temporary not-supported)
+                - /sys:system/sys:authentication/sysxe:admin-user/sysxe:password (temporary not-supported)
+                - /sys:system/sys:authentication/sysxe:oauth2-client/sysxe:client-authentication/sysxe:private-key-jwt
+            Remove deviation because node no longer exists:
+                - /sys:system/sys:authentication/sysxe:change-password";
+        yexte:version 1;
+        yexte:release 3;
+        yexte:correction 0;
+    }
+
+    revision 2020-12-07 {
+        description "Introduce some replace deviations to prevent integer overflow in OpenLDAP
+            Deviations added:
+                - /sys:system/sys:authentication/sysxe:password-policy/sysxe:max-age (range 0..24855)
+                - /sys:system/sys:authentication/sysxe:password-policy/sysxe:min-age (range 0..24855)
+                - /sys:system/sys:authentication/sysxe:password-policy/sysxe:expiry-warning (range 0..24855)";
+        yexte:version 1;
+        yexte:release 2;
+        yexte:correction 0;
+    }
+
+    revision 2020-03-31 {
+        // erdrjxx
+        description "Enabling some LDAP paths for central authentication
+            Features unlocked:
+                - ericsson-system-ext:ldap
+                - ericsson-system-ext:ldap-authentication
+                - ericsson-system-ext:ldap-clear";
+        yexte:version 1;
+        yexte:release 1;
+        yexte:correction 0;
+    }
+
+    revision 2020-03-04 {
+        // erdrjxx
+        description "First version";
+        yexte:version 1;
+        yexte:release 0;
+        yexte:correction 0;
+    }
+
+    // #################################################################################
+    // ############################## VERSION 1.0.0 ####################################
+    // #################################################################################
+
+    deviation /sys:set-current-datetime {
+      description "not-supported.";
+      deviate not-supported;
+    }
+
+    deviation /sys:system-restart {
+      description "not-supported.";
+      deviate not-supported;
+    }
+
+    deviation /sys:system/sys:clock {
+      description "not-supported.";
+      deviate not-supported;
+    }
+
+    deviation /sys:system/sys:contact {
+      description "not-supported.";
+      deviate not-supported;
+    }
+
+    deviation /sys:system/sys:dns-resolver {
+      description "not-supported.";
+      deviate not-supported;
+    }
+
+    deviation /sys:system/sys:hostname {
+      description "not-supported.";
+      deviate not-supported;
+    }
+
+    deviation /sys:system/sys:location {
+      description "not-supported.";
+      deviate not-supported;
+    }
+
+    deviation /sys:system/sysxe:user-label {
+      description "not-supported.";
+      deviate not-supported;
+    }
+
+    deviation /sys:system/sysxe:ldap-checks {
+      description "not-supported.";
+      deviate not-supported;
+    }
+
+    // @TODO deviate to config false (ready-only)
+    deviation /sys:system/sys:authentication/sys:user-authentication-order {
+      description "not-supported.";
+      deviate not-supported;
+    }
+
+    deviation /sys:system/sys:authentication/sysxe:authentication-failure-delay {
+      description "not-supported.";
+      deviate not-supported;
+    }
+
+    deviation /sys:system/sys:authentication/sys:user/sysxe:unlock-operational-lock {
+      description "not-supported.";
+      deviate not-supported;
+    }
+
+    deviation /sys:system/sys:authentication/sysxe:password-quality {
+      description "not-supported.";
+      deviate not-supported;
+    }
+
+    deviation /sys:system/sys:authentication/sysxe:default-password-policy/sysxe:password-quality {
+      description "not-supported.";
+      deviate not-supported;
+    }
+
+    deviation /sys:system/sys:authentication/sysxe:password-policy/sysxe:password-quality {
+      description "not-supported.";
+      deviate not-supported;
+    }
+
+    deviation /sys:system/sys:authentication/sysxe:admin-user/sysxe:admin-password-policy {
+      description "not-supported.";
+      deviate not-supported;
+    }
+
+    deviation /sys:system-state/sys:platform {
+      description "not-supported.";
+      deviate not-supported;
+    }
+
+    deviation /sys:system-state/sys:clock {
+      description "not-supported.";
+      deviate not-supported;
+    }
+
+    deviation /sys:system-state/sysxe:release {
+      description "not-supported.";
+      deviate not-supported;
+    }
+
+    deviation /sys:system-state/sysxe:managed-element-type {
+      description "not-supported.";
+      deviate not-supported;
+    }
+
+    deviation /sys:system-state/sysxe:authentication/sysxe:user {
+      description "not-supported.";
+      deviate not-supported;
+    }
+
+    deviation /sys:system-state/sysxe:authentication/sysxe:admin-user/sysxe:admin-password-policy {
+      description "not-supported.";
+      deviate not-supported;
+    }
+
+    deviation /sys:system-state/sysxe:authentication/sysxe:admin-user/sysxe:last-login-time {
+      description "not-supported.";
+      deviate not-supported;
+    }
+
+    deviation /sys:system-state/sysxe:authentication/sysxe:admin-user/sysxe:password-changed-time {
+      description "not-supported.";
+      deviate not-supported;
+    }
+
+    deviation /sys:system-state/sysxe:authentication/sysxe:admin-user/sysxe:password-failure-times {
+      description "not-supported.";
+      deviate not-supported;
+    }
+
+    deviation /sys:system/sys:authentication/sys:user/sys:name {
+      description
+	"Deviate with proper type definition.";
+
+      deviate replace {
+	type string {
+	  length 1..32;
+	  pattern '[a-zA-Z_][a-zA-Z0-9_.-]*' {
+	    error-message
+	      "A string of alphanumeric US-ASCII characters, optionally containing
+    '-', '_', or '.'. For example: 'user_1'";
+	  }
+	}
+      }
+    }
+
+    // #################################################################################
+    // ############################## VERSION 1.1.0 ####################################
+    // #################################################################################
+
+    // DON'T REMOVE until confd issue has been solved (ietf-truststore)
+    deviation /sys:system/sysxe:ldap/sysxe:security/sysxe:transport-security/sysxe:tls/sysxe:tls/sysxe:client-identity {
+      description "not-supported.";
+      deviate not-supported;
+    }
+
+    // DON'T REMOVE until confd issue has been solved (ietf-truststore)
+    deviation /sys:system/sysxe:ldap/sysxe:security/sysxe:transport-security/sysxe:tls/sysxe:tls/sysxe:server-authentication {
+      description "not-supported.";
+      deviate not-supported;
+    }
+
+    // DON'T REMOVE until confd issue has been solved (ietf-truststore)
+    deviation /sys:system/sysxe:ldap/sysxe:security/sysxe:transport-security/sysxe:tls/sysxe:tls/sysxe:hello-params {
+      description "not-supported.";
+      deviate not-supported;
+    }
+
+    // DON'T REMOVE until confd issue has been solved (ietf-truststore)
+    deviation /sys:system/sysxe:ldap/sysxe:security/sysxe:transport-security/sysxe:tls/sysxe:tls/sysxe:keepalives {
+      description "not-supported.";
+      deviate not-supported;
+    }
+
+    deviation /sys:system/sysxe:ldap/sysxe:options/sysxe:group-filter {
+      description "not-supported.";
+      deviate not-supported;
+    }
+
+    deviation /sys:system/sysxe:ldap/sysxe:security/sysxe:authentication-type/sysxe:simple-anonymous/sysxe:simple-anonymous {
+       description "not-supported.";
+       deviate not-supported;
+    }
+
+    deviation /sys:system/sysxe:ldap/sysxe:security/sysxe:authentication-type/sysxe:simple-unauthenticated/sysxe:simple-unauthenticated {
+       description "not-supported.";
+       deviate not-supported;
+    }
+
+    // #################################################################################
+    // ############################## VERSION 1.2.0 ####################################
+    // #################################################################################
+
+    deviation /sys:system/sys:authentication/sysxe:password-policy/sysxe:max-age {
+      description "Limit range of max-age of password-policy to 0-24855 (days) to prevent integer overflow in OpenLDAP when value is converted into seconds";
+      deviate replace {
+        type uint16 {
+          range 0..24855;
+        }
+      }
+    }
+
+    deviation /sys:system/sys:authentication/sysxe:password-policy/sysxe:min-age {
+      description "Limit range of min-age of password-policy to 0-24855 (days) to prevent integer overflow in OpenLDAP when value is converted into seconds";
+      deviate replace {
+        type uint16 {
+          range 0..24855;
+        }
+      }
+    }
+
+    deviation /sys:system/sys:authentication/sysxe:password-policy/sysxe:expiry-warning {
+      description "Limit range of expiry-warning of password-policy to 0-24855 (days) to prevent integer overflow in OpenLDAP when value is converted into seconds";
+      deviate replace {
+        type uint16 {
+          range 0..24855;
+        }
+      }
+    }
+
+    // #################################################################################
+    // ############################## VERSION 1.3.0 ####################################
+    // #################################################################################
+
+    // Conflicts with CertM
+    // Add the following features to 'models.json' once this deviation is removed
+    // - "ietf-truststore:local-definitions-supported"
+    // - "ietf-truststore:raw-public-keys"
+    deviation /sys:system/sys:authentication/sysxe:oauth2-client/sysxe:client-authentication/sysxe:private-key-jwt {
+      description "not-supported.";
+      deviate not-supported;
+    }
+
+    // Temporarly disabled nodes
+    // *****************************************************************************************
+
+    deviation /sys:system/sys:authentication/sysxe:admin-user/sysxe:password {
+      description "Temporarly disabled (it will be enabled in future releases)";
+      deviate not-supported;
+    }
+
+    // #################################################################################
+    // ############################## VERSION 1.4.0 ####################################
+    // #################################################################################
+
+    deviation /sys:system/sys:authentication/sysxe:password-policy/sysxe:must-change {
+      description "Set password policy must-change default value to true";
+      deviate add {
+        default true;
+      }
+    }
+
+    // #################################################################################
+    // ############################## VERSION 1.5.0 ####################################
+    // #################################################################################
+
+    deviation /sys:system/sys:authentication/sysxe:default-password-policy/sysxe:max-age {
+      description "Limit range of max-age of default-password-policy to 0-24855 (days) to prevent integer overflow in OpenLDAP when value is converted into seconds";
+      deviate replace {
+        type uint16 {
+          range 0..24855;
+        }
+      }
+    }
+
+    deviation /sys:system/sys:authentication/sysxe:default-password-policy/sysxe:min-age {
+      description "Limit range of min-age of default-password-policy to 0-24855 (days) to prevent integer overflow in OpenLDAP when value is converted into seconds";
+      deviate replace {
+        type uint16 {
+          range 0..24855;
+        }
+      }
+    }
+
+    deviation /sys:system/sys:authentication/sysxe:default-password-policy/sysxe:expiry-warning {
+      description "Limit range of expiry-warning of default-password-policy to 0-24855 (days) to prevent integer overflow in OpenLDAP when value is converted into seconds";
+      deviate replace {
+        type uint16 {
+          range 0..24855;
+        }
+      }
+    }
+
+    // #################################################################################
+    // ############################## VERSION 1.6.0 ####################################
+    // #################################################################################
+
+    // Password policy
+
+    deviation /sys:system/sys:authentication/sysxe:password-policy/sysxe:failure-count-interval {
+      description "Limit range of failure-count-interval of password-policy to 0-2147483647 to prevent integer overflow in OpenLDAP";
+      deviate replace {
+        type uint32 {
+          range 0..2147483647;
+        }
+      }
+    }
+
+    deviation /sys:system/sys:authentication/sysxe:password-policy/sysxe:history-length {
+      description "Limit range of history-length of password-policy to 0-2147483647 to prevent integer overflow in OpenLDAP";
+      deviate replace {
+        type uint32 {
+          range 0..2147483647;
+        }
+      }
+    }
+
+    deviation /sys:system/sys:authentication/sysxe:password-policy/sysxe:lockout-duration {
+      description "Limit range of lockout-duration of password-policy to 0-2147483647 to prevent integer overflow in OpenLDAP";
+      deviate replace {
+        type uint32 {
+          range 0..2147483647;
+        }
+      }
+    }
+
+    deviation /sys:system/sys:authentication/sysxe:password-policy/sysxe:max-failure {
+      description "Limit range of max-failure of password-policy to 0-2147483647 to prevent integer overflow in OpenLDAP";
+      deviate replace {
+        type uint32 {
+          range 0..2147483647;
+        }
+      }
+    }
+
+    // Default password-policy
+
+    deviation /sys:system/sys:authentication/sysxe:default-password-policy/sysxe:failure-count-interval {
+      description "Limit range of failure-count-interval of default-password-policy to 0-2147483647 to prevent integer overflow in OpenLDAP";
+      deviate replace {
+        type uint32 {
+          range 0..2147483647;
+        }
+      }
+    }
+
+    deviation /sys:system/sys:authentication/sysxe:default-password-policy/sysxe:history-length {
+      description "Limit range of history-length of default-password-policy to 0-2147483647 to prevent integer overflow in OpenLDAP";
+      deviate replace {
+        type uint32 {
+          range 0..2147483647;
+        }
+      }
+    }
+
+    deviation /sys:system/sys:authentication/sysxe:default-password-policy/sysxe:lockout-duration {
+      description "Limit range of lockout-duration of default-password-policy to 0-2147483647 to prevent integer overflow in OpenLDAP";
+      deviate replace {
+        type uint32 {
+          range 0..2147483647;
+        }
+      }
+    }
+
+    deviation /sys:system/sys:authentication/sysxe:default-password-policy/sysxe:max-failure {
+      description "Limit range of max-failure of default-password-policy to 0-2147483647 to prevent integer overflow in OpenLDAP";
+      deviate replace {
+        type uint32 {
+          range 0..2147483647;
+        }
+      }
+    }
+}

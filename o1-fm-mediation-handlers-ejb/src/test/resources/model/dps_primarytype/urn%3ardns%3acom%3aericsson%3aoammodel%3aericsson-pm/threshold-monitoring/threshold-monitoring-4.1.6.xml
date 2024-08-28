@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:PrimaryTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:dps_primarytype" xmlns:ns3="urn:com:ericsson:schema:xml:oss:dps_common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" hierarchyType="HIERARCHICAL" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="threshold-monitoring" ns1:ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:version="4.1.6" readBehavior="FROM_PERSISTENCE" writeBehavior="PERSIST_AND_DELEGATE">
+  <ns1:modelCreationInfo author="YANG Transformer2">
+    <ns1:derivedModel derivedFrom="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-pm/ericsson-pm%402021-03-15"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>Contains configuration of each threshold for Threshold jobs. To be able to monitor the overall health of the network, thresholds are used for generating Performance Alarms. Performance alarms cannot be cleared manually. Performance alarms must be cleared when the threshold is (a) crossed, or (b) reached, in the opposite direction to the one that triggers the alarm.</ns1:desc>
+  <ns2:primaryTypeAttribute immutable="true" key="true" mandatory="true" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="name" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Holds the name used when identifying the threshold monitor.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="true" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="threshold-high" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Defines the high-threshold level for this alarm severity. For each pair of high-threshold and low-threshold levels, one of them must generate an alarm notification, or  increase the severity of an existing alarm. The other one must generate an alarm clear notification, or decrease the severity of an existing alarm. If the direction of the threshold monitor is increasing, a new alarm (or severity increase of an existing alarm) is not generated before the measurement value has (a) crossed or (b) reached the high-level threshold value. Furthermore, an existing alarm is not cleared (or its severity decreased) before the measurement value has reached or crossed the low-level threshold value. If the direction of the threshold monitor is defined as decreasing, this means that the counter behaviour approaches  an alarm situation as its value decreases. For this scenario, the threshold-low leaf holds the alarming level, and if hysteresis is applied, the threshold-high leaf holds the value at which the alarm will clear (or decrease in severity) as the value of the counter increases to this level. The value of threshold-low shall never be higher than the value of threshold-high. It is not mandatory to apply hysteresis to the threshold monitor. If hysteresis is not required, the same threshold value shall be assigned to both threshold-high and threshold-low. The hysteresis mechanism can be used for both Gauges and Cumulative Counters thresholds.</ns1:desc>
+    <ns1:type xsi:type="ns1:longType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="true" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="threshold-low" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Defines the low-threshold level for this alarm severity. For each pair of high-threshold and low-threshold levels, one of them must generate an alarm notification, or  increase the severity of an existing alarm. The other one must generate an alarm clear notification, or decrease the severity of an existing alarm. If the direction of the threshold monitor is increasing, a new alarm (or severity increase of an existing alarm) is not generated before the measurement value has (a) crossed or (b) reached the high-level threshold value. Furthermore, an existing alarm is not cleared (or its severity decreased) before the measurement value has reached or crossed the low-level threshold value. If the direction of the threshold monitor is defined as decreasing, this means that the counter behaviour approaches  an alarm situation as its value decreases. For this scenario, the threshold-low leaf holds the alarming level, and if hysteresis is applied, the threshold-high leaf holds the value at which the alarm will clear (or decrease in severity) as the value of the counter increases to this level. The value of threshold-low shall never be higher than the value of threshold-high. It is not mandatory to apply hysteresis to the threshold monitor. If hysteresis is not required, the same threshold value shall be assigned to both threshold-high and threshold-low. The hysteresis mechanism can be used for both Gauges and Cumulative Counters thresholds.</ns1:desc>
+    <ns1:type xsi:type="ns1:longType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="threshold-severity" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Threshold severity. One of the following Severity Levels must be assigned per threshold, in order to raise a threshold alarm of this severity, or change an existing  alarm to this severity, if that threshold is reached or crossed: 'critical', 'major', 'minor' or 'warning'. Severity level 'cleared' is not a valid severity level and cannot be assigned to this leaf.</ns1:desc>
+    <ns1:type modelUrn="//urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-pm/threshold-monitoring__threshold-severity/4.1.6" xsi:type="ns1:enumRefType"/>
+    <ns1:default value="minor" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:requires>
+    <ns3:pathExpressionCondition condition="../../type = 'threshold-job'"/>
+  </ns2:requires>
+</ns2:PrimaryTypeDefinition>

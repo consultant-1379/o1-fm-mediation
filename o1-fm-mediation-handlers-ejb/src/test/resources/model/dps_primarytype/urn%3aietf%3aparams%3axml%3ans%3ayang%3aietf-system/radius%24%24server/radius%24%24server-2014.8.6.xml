@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:PrimaryTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:dps_primarytype" xmlns:ns3="urn:com:ericsson:schema:xml:oss:dps_common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" hierarchyType="HIERARCHICAL" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="radius$$server" ns1:ns="urn:ietf:params:xml:ns:yang:ietf-system" ns1:version="2014.8.6" readBehavior="FROM_PERSISTENCE" writeBehavior="PERSIST_AND_DELEGATE">
+  <ns1:modelCreationInfo author="YANG Transformer2">
+    <ns1:derivedModel derivedFrom="/net_yang/urn%3aietf%3aparams%3axml%3ans%3ayang%3aietf-system/ietf-system%402014-08-06"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>List of RADIUS servers used by the device. 
+When the RADIUS client is invoked by a calling application, it sends the query to the first server in this list.  If no response has been received within 'timeout' seconds, the client continues with the next server in the list.  If no response is received from any server, the client continues with the first server again. When the client has traversed the list 'attempts' times without receiving any response, it gives up and returns an error to the calling application.</ns1:desc>
+  <ns1:meta metaName="YANG_ORIGINAL_NAME" metaValue="server"/>
+  <ns2:primaryTypeAttribute immutable="true" key="true" mandatory="true" ns="urn:ietf:params:xml:ns:yang:ietf-system" ns1:lifeCycle="CURRENT" ns1:name="name" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>An arbitrary name for the RADIUS server.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:ietf:params:xml:ns:yang:ietf-system" ns1:lifeCycle="CURRENT" ns1:name="authentication-type" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The authentication type requested from the RADIUS server.</ns1:desc>
+    <ns1:type modelUrn="//urn%3aietf%3aparams%3axml%3ans%3ayang%3aietf-system/radius-authentication-type/2014.8.6" xsi:type="ns1:enumRefType"/>
+    <ns1:default value="radius-pap" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:choice mandatory="true" name="transport">
+    <ns2:case name="udp">
+      <ns2:primaryType primaryTypeUrn="//urn%3aietf%3aparams%3axml%3ans%3ayang%3aietf-system/radius%24%24server%24%24udp/2014.8.6"/>
+    </ns2:case>
+  </ns2:choice>
+</ns2:PrimaryTypeDefinition>

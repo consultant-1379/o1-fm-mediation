@@ -1,0 +1,797 @@
+module ericsson-yang-types {
+  yang-version 1.1;
+  namespace "urn:rdns:com:ericsson:oammodel:ericsson-yang-types";
+  prefix typese;
+  import ericsson-yang-extensions {
+    prefix yexte;
+  }
+
+  import ietf-yang-types {
+    prefix yang;
+  }
+
+  organization "Ericsson AB";
+  contact "Ericsson first line support via email";
+  description "Types, Groupings, Identities defined by Ericsson for common usage
+    Whenever there is a standard type (IETF, IANA, IEEE) that should be
+    used instead of Ericsson types.
+
+      Copyright (c) 2021 Ericsson AB. All rights reserved.";
+  yexte:library-module;
+
+  revision "2021-05-10" {
+      description "Added redundancy-state";
+    yexte:version "1";
+    yexte:release "7";
+    yexte:correction "0";
+  }
+
+  revision "2021-02-05" {
+      description "Added semantic-version, commercial-version";
+    yexte:version "1";
+    yexte:release "6";
+    yexte:correction "1";
+  }
+
+  revision "2019-11-27" {
+      description "Added dependency-holding enum in avail-status typedef";
+    yexte:version "1";
+    yexte:release "5";
+    yexte:correction "0";
+  }
+
+  revision "2019-04-29" {
+    description "Updated the description of enum abridged-instance-identifier";
+    yexte:version "1";
+    yexte:release "4";
+    yexte:correction "3";
+  }
+
+  revision "2019-04-24" {
+      description "Updated the description of enum shutting-down";
+    yexte:version "1";
+    yexte:release "4";
+    yexte:correction "2";
+  }
+
+  revision "2019-04-02" {
+      description "Added progress-report-ref as a text template,
+          deprecated progress-report-id
+        Added dependency-recovery enum in avail-status typedef";
+    yexte:version "1";
+    yexte:release "4";
+    yexte:correction "1";
+  }
+
+  revision "2017-07-11" {
+    description "Defined order of keys in abridged-instance-identifier";
+    yexte:version "1";
+    yexte:release "3";
+    yexte:correction "0";
+  }
+
+  typedef redundancy-state {
+    type enumeration {
+      enum passive {
+        value 1;
+        description "The node is in passive state standing by for later 
+          service.";
+      }
+      enum active {
+        value 2;
+        description "The node is in active state providing services.";
+      }
+    }
+    description "Redundancy state of an entity.";
+  }
+
+  typedef schema-node-identifier {
+    type string;
+    description "String used to identify a schema node,";
+    reference RFC6020;
+  }
+
+  typedef percent {
+    type uint8 {
+      range 0..100 ;
+    }
+    description "Datatype for representing percent of something 
+      in the range 0..100%";
+  }
+
+  typedef progress-report-id {
+    type uint16;
+    status deprecated {
+      yexte:status-information "Use instead a leaf defined similar to the
+        progress-report-ref comment below.";
+    }
+    description "Datatype for identifying progress-reports about 
+      Asychronous Actions.";
+  }
+
+  //The type progress-report-ref cannot be defined formally as  unneccesary 
+  // path-xpath checks prevent it. Reported as bug.
+  /*typedef progress-report-ref {
+    type leafref {
+      path "../../progress-report/action-id" ;
+    }
+    description "Datatype for identifying progress reports about Asychronous
+    Actions in action output.
+    The relevant progress-report list based on grouping async-action-progress
+    SHOULD be placed beside the action, however if it is placed somewhere else
+    a similar leafref with an updated path should be defined.";
+  }*/
+
+  typedef day-of-week-occurrence {
+    type enumeration {
+      enum first {
+        value 1;
+        description "First occurrence.";
+      }
+
+      enum second {
+        value 2;
+        description "Second occurrence.";
+      }
+
+      enum third {
+        value 3;
+        description "Third occurrence.";
+      }
+
+      enum fourth {
+        value 4;
+        description "Fourth occurrence.";
+      }
+
+      enum last {
+        value 5;
+        description "Last occurrence.";
+      }
+
+      enum all {
+        value 0;
+        description "All occurrences.";
+      }
+
+    }
+
+    description "The occurrence of a day in the month, for example the first
+                 Monday of the month. This is used in combination with
+                 day-of-the-week to schedule an event on a certain occurrence of
+                 that day in the month, for example first Monday or last
+                 Friday of the month.";
+  }
+
+  typedef day-of-the-week {
+    type enumeration {
+      enum sunday {
+        value 7;
+        description "Sunday.";
+      }
+
+      enum monday {
+        value 1;
+        description "Monday.";
+      }
+
+      enum tuesday {
+        value 2;
+        description "Tuesday.";
+      }
+
+      enum wednesday {
+        value 3;
+        description "Wednesday.";
+      }
+
+      enum thursday {
+        value 4;
+        description "Thursday.";
+      }
+
+      enum friday {
+        value 5;
+        description "Friday.";
+      }
+
+      enum saturday {
+        value 6;
+        description "Saturday.";
+      }
+
+      enum all {
+        value 0;
+        description "All days.";
+      }
+
+    }
+
+    description "Day of the week.";
+  }
+
+  typedef action-result-type {
+    type enumeration {
+      enum success {
+        value 1;
+        description "The asynchronous action ended with success.";
+      }
+
+      enum failure {
+        value 2;
+        description "The asynchronous action ended with failure.";
+      }
+
+      enum not-available {
+        value 3;
+        description "No result is available yet.";
+      }
+
+    }
+
+    description "Lists the different results of an action.";
+  }
+
+  typedef action-state-type {
+    type enumeration {
+      enum cancelling {
+        value 1;
+        description "Cancellation is in progress.";
+      }
+
+      enum running {
+        value 2;
+        description "The execution of the action is currently in progress.";
+      }
+
+      enum finished {
+        value 3;
+        description "The action is finished.";
+      }
+
+      enum cancelled {
+        value 4;
+        description "The action has been cancelled and cancellation has been
+                 done.";
+      }
+
+    }
+
+    description "Lists the action states.";
+  }
+
+  typedef adm-state {
+    type enumeration {
+      enum locked {
+        value 0;
+        description "The resource is administratively prohibited from performing
+                 services for its users.";
+      }
+
+      enum unlocked {
+        value 1;
+        description "The resource is administratively permitted to perform
+                 services for its users. This is independent of its inherent
+                 operability.";
+      }
+
+      enum shutting-down {
+        value 2;
+        description "Use of the resource is administratively permitted to
+                 existing instances of use only. While the system remains in
+                 the shutting down state the manager or the managed element
+                 may at any time cause the resource to transition to the
+                 locked state.";
+      }
+
+    }
+
+    description "Administrative state of a resource.";
+  }
+
+  typedef basic-adm-state {
+    type enumeration {
+      enum locked {
+        value 0;
+        description " The resource is administratively prohibited from
+                 performing services for its users.";
+      }
+
+      enum unlocked {
+        value 1;
+        description "The resource is administratively permitted to perform
+                 services for its users. This is independent of its inherent
+                 operability.";
+      }
+    }
+
+    description "Basic administrative states for a resource.";
+  }
+
+  typedef oper-state {
+    type enumeration {
+      enum disabled {
+        value 0;
+        description "The resource is totally inoperable.";
+      }
+
+      enum enabled {
+        value 1;
+        description "The resource is partially or fully operable.";
+      }
+    }
+
+    description "Operational states of a resource.";
+  }
+
+  identity compression-types {
+         description "Supported compression type(s).";
+     }
+
+    identity gzip {
+      base compression-types;
+      description "GNU zip file compression type.";
+
+    }
+
+  typedef avail-status {
+    type enumeration {
+      enum in-test {
+        value 0;
+        description "The resource is undergoing a test procedure. If the
+                 administrative state is locked or shutting down, normal
+                 users are prevented from using the resource.";
+      }
+
+      enum failed {
+        value 1;
+        description "The resource has an internal fault that prevents it from
+                 operating.";
+      }
+
+      enum power-off {
+        value 2;
+        description "The resource requires power to be applied and is not
+                 powered on.";
+      }
+
+      enum off-line {
+        value 3;
+        description "The resource requires a routine operation to be performed.
+                 This routine operation is to place the resource online and
+                 make it available for use. The operation may be manual or
+                 automatic, or both. The operational state is disabled.";
+      }
+
+      enum off-duty {
+        value 4;
+        description "The resource has been made inactive by an internal control
+                 process.";
+      }
+
+      enum dependency {
+        value 5;
+        description "The resource cannot operate because some other resource on
+                 which it depends is unavailable.";
+      }
+
+      enum degraded {
+        value 6;
+        description "The service available from the resource is degraded in some
+                 respect.";
+      }
+
+      enum not-installed {
+        value 7;
+        description "The resource is not
+                 present, or is incomplete.";
+      }
+
+      enum log-full {
+        value 8;
+        description "Indicates a log full condition. The semantics are defined
+                 in CCITT Rec. X.735 | ISO/IEC 10164-6.";
+      }
+
+      enum dependency-locked {
+        value 9;
+        description "The administrative state of a resource that this resource
+                 depends on is locked. or the availability status of the
+                 other resource is dependency locked.";
+      }
+
+      enum dependency-failed {
+        value 10;
+        description "The availability status of a resource that this resource
+                 depends on is failed or dependency failed.";
+      }
+
+      enum dependency-shutting-down {
+        value 11;
+        description "The administrative state of a resource that this resource
+                 depends on is shutting down. or the availability status of
+                 the other resource is dependency shutting down.";
+      }
+
+      enum dependency-recovery {
+        value 12;
+        description "Resource that this resource depends on is
+                  undergoing a recovery procedure.";
+        }
+
+      enum dependency-holding {
+        value 13;
+        description "Resource cannot operate because some other resource on
+                  which it depends is currently unavailable. The situation is
+                  expected to be resolved. Actions to facilitate dependency
+                  resolution may be ongoing.";
+        }
+    }
+
+    description "The availability status is used to qualify the operational
+                 state. It indicates why the operational state has changed
+                 its value.";
+  }
+
+  typedef basic-avail-status {
+    type enumeration {
+      enum dependency {
+        value 5;
+        description "The resource cannot operate because of its dependency on
+                 other resource.";
+      }
+
+      enum failed {
+        value 1;
+        description "The resource has an internal fault that prevents it from
+                 operating.";
+      }
+    }
+
+    description "Truly common available status required to qualify the
+                 operational state.";
+  }
+
+  typedef usage-state {
+    type enumeration {
+      enum idle {
+        value 0;
+        description "The resource is not currently in use. Defined by ITU-T
+                 X.731";
+      }
+
+      enum active {
+        value 1;
+        description "The resource is in use and it has sufficient spare
+                 operating capacity. Spare operating capacity to provide for
+                 additional users simultaneously. Defined by ITU-T X.731";
+      }
+
+      enum busy {
+        value 2;
+        description "The resource is in use, but it has no spare operating
+                 capacity. Spare operating capacity to provide for
+                 additional users at this instant. Defined by ITU-T X.731";
+      }
+    }
+
+    description "The usage state describes the usage of a resource. The
+                 allowed values are defined by ITU-T X.731.";
+  }
+
+  typedef time {
+    type string {
+      pattern '(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])';
+    }
+
+    description "Represents the international standard for the
+                 representation of local time (ISO 8601). The following
+                 pattern describes the Time format: hh:mm:ss Where: hh = Two
+                 digits of hour (00 through 23, AM/PM not allowed) mm = Two
+                 digits of minute (00 through 59) ss = Two digits of second
+                 (00 through 59, leap second not allowed)
+                 The time is assumed to be in local-time unless specified
+                 otherwise by the data node using the type.";
+  }
+
+  typedef day-of-month {
+    type uint8 {
+      range "0..31";
+    }
+
+    description "Represents a day in the month in digits (1 through 31)
+      0 denotes all days.
+      The lexical  format is D or DD = One or two digit e.g. 6 or 06 or 12
+      The canonical format is always DD = two digits 00, 01, 02 .. 12 ..31";
+  }
+
+  typedef month {
+    type uint8 {
+      range "0..12";
+    }
+
+    description "Represents a month in digits (1=January through 12=December)
+      0 denotes all months.
+      The lexical  format is M or MM = One or two digit e.g. 6 or 06 or 12
+      The canonical format is always MM = two digits 00, 01, 02 .. 12";
+  }
+
+  typedef date-time-without-offset {
+    type string {
+      length "19";
+      pattern '([0-9]{4})-(1[0-2]|0[1-9])-(0[1-9]|[1|2][0-9]|3[0-1])'
+        +'T(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])([\.][0-9]+){0,1}';
+    }
+
+    description "Represents the international standard for the
+                 representation of local date and time (ISO 8601). The
+                 following pattern describes the date-time-without-offset
+                 format: YYYY-MM-DDThh:mm:ss[.S+] Where: YYYY = Four digit
+                 year MM = Two digit month (01=January, and so on) DD = Two
+                 digit day of month (01 through 31) T = Time designator
+                 (shows start of time component) hh = Two digits of hour (00
+                 through 23, AM/PM not allowed) mm = Two digits of minute
+                 (00 through 59) ss = Two digits of second (00 through 59,
+                 leap second not allowed) S+ = One or more digits of decimal
+                 fraction of a second date-time-without-offset values are
+                 compliant with ISO 8601 Representation of dates and times
+                 but are restricted according to RFC 3339 Date and Time on
+                 the Internet: Timestamps. The date-time-without-offset format
+                 is further restricted as follows: - T designator is upper
+                 case. - . (dot) is used to indicate start of fractions of
+                 seconds (ISO 8601 also allows comma)";
+    reference "ISO 8601:2004(E)";
+  }
+
+  typedef difference-from-utc {
+    type string {
+      length "6";
+      pattern '([+|-])(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9])';
+    }
+    description "Time zone difference between the local current time and
+                 Coordinated Universal Time (UTC). The format is as follows:
+                 [+/-]hh:mm It is expressed as positive (that is, with the
+                 leading plus sign [+]) if the local time is ahead of or
+                 equal to UTC of day and as negative (that is, with the
+                 leading minus sign [-]) if it is behind the UTC of day.
+                 Example: +01:00";
+    reference "ISO 8601:2004(E)";
+  }
+
+  typedef date {
+    type string {
+      pattern '\d{4}-(1[0-2]|0[1-9])-(0[1-9]|[1|2][0-9]|3[0-1])';
+    }
+
+    description "Represents the international standard for the
+                 representation of date (ISO 8601). The string format is
+                 YYYY-MM-DD (excluding quotes). The following pattern
+                 describes the Date format: YYYY-MM-DD Where: YYYY = Four
+                 digit year MM = Two digit month (01=January, and so on) DD
+                 = Two digit day of month (01 through 31)
+                 The days are assumed to start and end according to local-time
+                 unless specified otherwise by the data node using the type.";
+  }
+
+  typedef distinguished-name {
+    type string {
+      pattern '([a-zA-Z][a-zA-Z0-9-]*=(\\( |#|\\|>|<|;|"|\+|,|[a-fA-F0-9]{2})|[^\\><;"+,# ])'
+        + '((\\( |#|\\|>|<|;|"|\+|,|[a-fA-F0-9]{2})|[^\\><;"+,])*'
+        + '(\\( |#|\\|>|<|;|"|\+|,|[a-fA-F0-9]{2})|[^\\><;"+, ]))?'
+        + '[,\+])*[a-zA-Z][a-zA-Z0-9-]*=(\\( |#|\\|>|<|;|"|\+|,|[a-fA-F0-9]{2})|[^\\><;"+,# ])'
+        + '((\\( |#|\\|>|<|;|"|\+|,|[a-fA-F0-9]{2})'
+        + '|[^\\><;"+,])*(\\( |#|\\|>|<|;|"|\+|,|[a-fA-F0-9]{2})|[^\\><;"+, ]))?';
+    }
+    description "Represents the international standard for the representation
+      of Distinguished Name (RFC 4512).
+      The format of the DistinguishedName REGEX is:
+      {AttributeType = AttributeValue}
+
+      AttributeType consists of alphanumeric and hyphen (OIDs not allowed).
+      All other characters are restricted.
+      The Attribute value cannot contain control characters or the
+        following characters : \\ > < ; \" + , (Comma) and White space
+      The Attribute value can contain the following characters if they
+        are excaped : \\ > < ; \" + , (Comma) and White space
+      The Attribute value can contain control characters if its an escaped
+        double digit hex number.
+        Examples could be
+          UID=nobody@example.com,DC=example,DC=com
+            CN=John Smith,OU=Sales,O=ACME Limited,L=Moab,ST=Utah,C=US";
+    reference  "RFC 4512 Lightweight Directory Access Protocol (LDAP):
+                      Directory Information Models";
+  } // recheck regexp it doesn't handle posix [:cntrl:]
+
+  grouping async-action-progress {
+    description "Records the progress of an asynchronous action.";
+    leaf action-name {
+      type string;
+      description "Name of the invoked asynchronous action.";
+    }
+
+    leaf-list additional-info {
+      type string;
+      description "Used for logging significant messages during execution of
+                 an action.";
+    }
+
+    leaf progress-info {
+      type string;
+      description "Textual information that describes the actual state of the
+                 action execution.";
+    }
+
+    leaf progress-percentage {
+      type percent;
+      description "Progress of the action.";
+    }
+
+    leaf result {
+      type action-result-type;
+      description "Result state of a completed action. This field has value
+                 not-available if the action is not finished.";
+    }
+
+    leaf result-info {
+      type string;
+      description "Textual description of the outcome/result of the action
+                 containing useful information for the NMS. If the action
+                 failed, it can contain an error message.";
+    }
+
+    leaf state {
+      type action-state-type;
+      description "Current state of the action.";
+    }
+
+    leaf action-id {
+      type uint16;
+      description "Uniquely identifies the invocation of an action. Identifies
+                 the invocation of an action when the managed object allows
+                 invocation of more than one action at a time.";
+    }
+
+    leaf time-action-started {
+      type yang:date-and-time;
+      mandatory true;
+      description "Date and time when the current action was started.";
+    }
+
+    leaf time-action-completed {
+      type yang:date-and-time;
+      description "Date and time when the action was completed (successfully
+                 or unsuccessfully).";
+    }
+
+    leaf time-of-last-status-update {
+      type yang:date-and-time;
+      mandatory true;
+      description "Date and time when the struct member state was last
+                 updated.";
+    }
+
+  }
+
+  grouping product-data {
+    description "Represents an Ericsson software product.";
+    leaf product-name {
+      type string;
+      mandatory true;
+      description "Name of the product.";
+    }
+
+    leaf product-number {
+      type string;
+      mandatory true;
+      description "Product number of the product.";
+    }
+
+    leaf product-revision {
+      type string;
+      mandatory true;
+      description "Revision state of the product.";
+    }
+
+    leaf semantic-version {
+      type string {
+        pattern '\d+[.]\d+[.]\d+(-[\w\d.]+)?([+][\w\d\.]+)?';
+      }
+      description "Semantic version of the product.
+        semantic-version will change to a new value whenever
+        product-revision changes. A specific product-version will always be
+        acompanied by the same semantic-version.";
+      reference "Based on https://semver.org/ version 2.0";
+    }
+
+    leaf commercial-version {
+      type string;
+      description "Commercial version of the product.
+        commercial-version will change to a new value whenever
+        product-revision changes. A specific product-version will always be
+        acompanied by the same commercial-version.";
+    }
+
+    leaf production-date {
+      type yang:date-and-time;
+      mandatory true;
+      description "Production date of the product.";
+    }
+
+    leaf description {
+      type string;
+      mandatory true;
+      description "Free text description of the product.";
+    }
+
+    leaf type {
+      type string;
+      mandatory true;
+      description "Free text description of the product type.";
+    }
+  }
+
+  typedef time-period {
+    type enumeration {
+      enum one-min {
+        value 3;
+        description "Represents a one-minute time period.";
+      }
+      enum five-min {
+        value 4;
+        description "Represents a five-minute time period.";
+      }
+      enum fifteen-min {
+        value 5;
+        description "Represents a 15-minute time period.";
+      }
+      enum thirty-min {
+        value 6;
+        description "Represents a 30-minute time period.";
+      }
+      enum one-hour {
+        value 7;
+        description "This represents a one-hour time period.";
+      }
+      enum twelve-hour {
+        value 8;
+        description "This represents a 12-hour (720-minute) time period.";
+      }
+      enum one-day {
+        value 9;
+        description "This represents a 24-hour (1440-minute) time period.";
+      }
+      enum ten-seconds {
+        value 1;
+        description "This represents a 10-second time period.";
+      }
+      enum thirty-seconds {
+        value 2;
+        description "This represents a 30-second time period.";
+      }
+    }
+    description "Represents a set of time periods that may be used
+      e.g. for reporting, information gathering.";
+    }
+
+    typedef abridged-instance-identifier {
+    type string ;
+    description "An instance-identifier in which the prefix is not repeated.
+      The prefix is omitted where ever the last included prefix is the
+      same as the one that would be present for the current data-node.
+      The original instance-identifier syntax would be
+        /ex:system/ex:user[ex:name='fred']/other:type
+      The corresponding abridged-instance-identifier format is
+        /ex:system/user[name='fred']/other:type
+
+      Prefixes are always taken from the module's prefix substatement,
+      not from the import's prefix substatement.
+
+      If a list has multiple keys they are listed, in the same order
+      as they are defined within the key statement.
+
+      The abridged-instance-identifier format MAY be used to specify
+      resources that are not actually modeled in a YANG module. In this
+      case the prefix value has no significance. The first non-modeled prefix
+      SHOULD be set to 'x' and all following prefix values omitted.";
+  }
+}

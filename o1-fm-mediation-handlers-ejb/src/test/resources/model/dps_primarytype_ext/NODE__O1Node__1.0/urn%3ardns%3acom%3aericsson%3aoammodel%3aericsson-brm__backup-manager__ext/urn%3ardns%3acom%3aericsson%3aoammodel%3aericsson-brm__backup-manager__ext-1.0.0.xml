@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns4:PrimaryTypeExtensionDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:dps_primarytype" xmlns:ns3="urn:com:ericsson:schema:xml:oss:dps_common" xmlns:ns4="urn:com:ericsson:schema:xml:oss:dps_primarytype_ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ns1:name="urn:rdns:com:ericsson:oammodel:ericsson-brm__backup-manager__ext" ns1:ns="NODE__O1Node__1.0" ns1:version="1.0.0">
+  <ns1:modelCreationInfo author="YANG Transformer2">
+    <ns1:derivedModel derivedFrom="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-brm/ericsson-brm%402021-06-08"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>Extension for /urn:rdns:com:ericsson:oammodel:ericsson-brm/backup-manager/4.2.1 to handle augmentations/deviations</ns1:desc>
+  <ns1:extendedModelElement urn="//urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-brm/backup-manager/4.2.1"/>
+  <ns1:requiresTargetType category="NODE" type="O1Node" version="1.0"/>
+  <ns4:primaryTypeExtension>
+    <ns4:primaryTypeAction ns="urn:rdns:com:ericsson:oammodel:ericsson-brm" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="cancel-current-action">
+      <ns1:desc>Cancel an ongoing asynchronous create-backup, delete-backup, or import-backup operation.</ns1:desc>
+      <ns2:returnType xsi:type="ns1:integerType">
+        <ns1:valueRangeConstraint>
+          <ns1:minMaxRange max="65535" min="0"/>
+        </ns1:valueRangeConstraint>
+      </ns2:returnType>
+    </ns4:primaryTypeAction>
+    <ns4:primaryTypeAction ns="urn:rdns:com:ericsson:oammodel:ericsson-brm" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="create-backup">
+      <ns1:desc>Create a new backup of the backup-type and backup-domain managed by this backup-manager. This is an asynchronous action - the progress and result are reported in the progress-report list.</ns1:desc>
+      <ns2:parameter immutable="false" key="false" mandatory="false" ns1:lifeCycle="CURRENT" ns1:name="name" sensitive="false">
+        <ns1:desc>The name of the backup to create. If specified, input name validation is done by the implementation to forbid illegal names. Backup name validation rules are defined by the implementation and include duplicate backup names, names exceeding maximum allowed length, etc. If not specified, the implementation will generate a backup name automatically with format defined by the implementation, example: &lt;hostname&gt;_&lt;YYYY-MM-DDThh-mm-ss&gt;.</ns1:desc>
+        <ns1:type xsi:type="ns1:stringType"/>
+      </ns2:parameter>
+      <ns2:returnType xsi:type="ns1:integerType">
+        <ns1:valueRangeConstraint>
+          <ns1:minMaxRange max="65535" min="0"/>
+        </ns1:valueRangeConstraint>
+      </ns2:returnType>
+    </ns4:primaryTypeAction>
+    <ns4:primaryTypeAction ns="urn:rdns:com:ericsson:oammodel:ericsson-brm" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="delete-backup">
+      <ns1:desc>Delete a backup specified by its name and the backup-type and backup-domain managed by this backup-manager. This is an asynchronous action. The progress and result are reported in the progress-report list.</ns1:desc>
+      <ns2:parameter immutable="false" key="false" mandatory="true" ns1:lifeCycle="CURRENT" ns1:name="name" sensitive="false">
+        <ns1:desc>The backup-name of the backup to delete.</ns1:desc>
+        <ns1:type xsi:type="ns1:stringType">
+          <ns1:notNullConstraint/>
+        </ns1:type>
+      </ns2:parameter>
+      <ns2:returnType xsi:type="ns1:integerType">
+        <ns1:valueRangeConstraint>
+          <ns1:minMaxRange max="65535" min="0"/>
+        </ns1:valueRangeConstraint>
+      </ns2:returnType>
+    </ns4:primaryTypeAction>
+    <ns4:primaryTypeAction ns="urn:rdns:com:ericsson:oammodel:ericsson-brm" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="import-backup">
+      <ns1:desc>Import a backup using the specified resource identifier (uri). This is an asynchronous action where the progress and result are reported in the progress-report list. Note that the type and domain of the backup to be imported must match the backup type and domain indicated by the instance of the backup manager on which this action is invoked.</ns1:desc>
+      <ns2:parameter immutable="false" key="false" mandatory="false" ns1:lifeCycle="CURRENT" ns1:name="password" sensitive="true">
+        <ns1:desc>The password required to access the location specified by the uri. If no password is required, this parameter may be omitted.</ns1:desc>
+        <ns1:type xsi:type="ns1:stringType"/>
+      </ns2:parameter>
+      <ns2:parameter immutable="false" key="false" mandatory="true" ns1:lifeCycle="CURRENT" ns1:name="uri" sensitive="false">
+        <ns1:desc>Specifies the location (url) of the backup to import or the resource name (urn) that encapsulates the backup import procedure.</ns1:desc>
+        <ns1:type xsi:type="ns1:stringType">
+          <ns1:notNullConstraint/>
+        </ns1:type>
+      </ns2:parameter>
+      <ns2:returnType xsi:type="ns1:integerType">
+        <ns1:valueRangeConstraint>
+          <ns1:minMaxRange max="65535" min="0"/>
+        </ns1:valueRangeConstraint>
+      </ns2:returnType>
+    </ns4:primaryTypeAction>
+  </ns4:primaryTypeExtension>
+  <ns4:choiceHandling/>
+</ns4:PrimaryTypeExtensionDefinition>

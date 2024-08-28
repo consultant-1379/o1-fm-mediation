@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:EnumDataTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:oss_edt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ns1:lifeCycle="CURRENT" ns1:name="TraceJob__reportingTrigger" ns1:ns="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:version="2023.2.14">
+  <ns1:modelCreationInfo author="YANG Transformer2">
+    <ns1:derivedModel derivedFrom="/net_yang/urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/_3gpp-common-managed-element%402023-02-14"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>It specifies whether periodic or event based measurements should be collected. The attribute is applicable only for Immediate MDT and when the listOfMeasurements is configured for M1 (for both UMTS and LTE) or M2 (only for UMTS). In case this attribute is not used, it carries a null semantic.</ns1:desc>
+  <ns2:member name="1F_FOR_UMTS" ns1:lifeCycle="CURRENT" value="2">
+    <ns2:desc>1F_FOR_UMTS</ns2:desc>
+  </ns2:member>
+  <ns2:member name="1I_FOR_UMTS_MCPS_TDD" ns1:lifeCycle="CURRENT" value="3">
+    <ns2:desc>1I_FOR_UMTS_MCPS_TDD</ns2:desc>
+  </ns2:member>
+  <ns2:member name="A2_FOR_LTE" ns1:lifeCycle="CURRENT" value="1">
+    <ns2:desc>A2_FOR_LTE</ns2:desc>
+  </ns2:member>
+  <ns2:member name="A2_TRIGGERED_PERIODIC_FOR_LTE" ns1:lifeCycle="CURRENT" value="4">
+    <ns2:desc>A2_TRIGGERED_PERIODIC_FOR_LTE</ns2:desc>
+  </ns2:member>
+  <ns2:member name="ALL_CONFIGURED_RRM_FOR_LTE" ns1:lifeCycle="CURRENT" value="5">
+    <ns2:desc>ALL_CONFIGURED_RRM_FOR_LTE</ns2:desc>
+  </ns2:member>
+  <ns2:member name="ALL_CONFIGURED_RRM_FOR_UMTS" ns1:lifeCycle="CURRENT" value="6">
+    <ns2:desc>ALL_CONFIGURED_RRM_FOR_UMTS</ns2:desc>
+  </ns2:member>
+  <ns2:member name="PERIODICAL" ns1:lifeCycle="CURRENT" value="0">
+    <ns2:desc>PERIODICAL</ns2:desc>
+  </ns2:member>
+</ns2:EnumDataTypeDefinition>

@@ -1,0 +1,148 @@
+module ericsson-truststore-ext {
+  yang-version 1.1;
+  namespace "urn:rdns:com:ericsson:oammodel:ericsson-truststore-ext";
+  prefix tsxe;
+
+  import ericsson-yang-extensions {
+    prefix yexte;
+  }
+  import ietf-truststore {
+    prefix ts;
+    revision-date 2019-11-20;
+    description
+      "Based on draft";
+  }
+
+  organization
+    "Ericsson AB";
+  contact
+    "Ericsson first line support via email.";
+  description
+    "The module extends and deviates ietf-truststore@2019-06-07.
+
+        Features truststore-supported, x509-certificates, and ssh-host-keys are
+        included from ietf-truststore@2019-11-20.
+
+        --- ---
+
+        Copyright (c) 2021 Ericsson AB. All rights reserved.";
+
+  revision 2021-03-31 {
+    description
+      "Added expiration threshold feature.";
+    yexte:version "1";
+    yexte:release "2";
+    yexte:correction "0";
+  }
+  revision 2019-12-05 {
+    description
+      "Aligned to use ietf-truststore@2019-11-20.
+
+       Missing if-feature statements added for actions.";
+    yexte:version "1";
+    yexte:release "1";
+    yexte:correction "0";
+  }
+  revision 2019-07-19 {
+    description
+      "First version.";
+    yexte:version "1";
+    yexte:release "0";
+    yexte:correction "0";
+  }
+
+  feature thresholds {
+    description
+      "Enables configuration of expiration threshold.";
+  }
+
+  deviation "/ts:truststore/ts:certificates/ts:certificate/ts:certificate-expiration" {
+    description
+      "Certificate expiration notification is sent as fault indication instead,
+       triggering alarms.";
+    deviate not-supported;
+  }
+  augment "/ts:truststore/ts:certificates" {
+    description
+      "Adds an action to import a PEM certificate chain.";
+    action install-certificate-pem {
+      if-feature "ts:x509-certificates";
+      description
+        "Installs a PEM with the self-signed root certificate.
+         The resulting certificate values are copied to <running>.";
+      input {
+        leaf name {
+          type string;
+          mandatory true;
+          description
+            "The name the certificate should have when listed in
+             /truststore/certificates/certificate";
+        }
+        leaf pem {
+          type binary;
+          mandatory true;
+          description
+            "A binary that contains the PEM encoded textual value of the
+             self-signed root certificate.";
+          reference
+            "RFC 7468";
+        }
+      }
+    }
+  }
+  augment "/ts:truststore/ts:host-keys" {
+    if-feature "ts:ssh-host-keys";
+    description
+      "Adds an action to install a PEM public key.";
+    action install-host-key-pem {
+      description
+        "Installs a PEM binary with a public key. The resulting
+         host key values are copied to <running>.";
+      input {
+        leaf name {
+          type string;
+          mandatory true;
+          description
+            "The name the host-key should have when listed in
+             /truststore/host-keys/host-key";
+        }
+        leaf pem {
+          type binary;
+          mandatory true;
+          description
+            "A binary that contains the PEM encoded textual value of the
+             host-key.";
+          reference
+            "RFC 7468";
+        }
+      }
+    }
+  }
+  augment "/ts:truststore" {
+    description
+      "Augments truststore with expiration threshold";
+    reference
+      "DR-F0401-200";
+    container thresholds {
+      description
+        "Expiration threshold configuration";
+      leaf expiration-threshold {
+        type uint32 {
+          range "3..max";
+        }
+        units days;
+        default "90";
+        description
+          "The threshold specifies the number of days before the certificate
+           expires to start sending expiration alarms. The alarm severity
+           increases closer to expiration:
+           WARNING when the certificate expires within the threshold
+           MINOR when the certificate expires within 1/3 of the threshold
+           MAJOR when the certificate expires within 1/6 of the threshold
+           CRITICAL when the certificate expires within 1/30 of the threshold
+           or 3 days, whichever is largest. This severity is used also after
+           certificate expiration.";
+      }
+    }
+  }
+}

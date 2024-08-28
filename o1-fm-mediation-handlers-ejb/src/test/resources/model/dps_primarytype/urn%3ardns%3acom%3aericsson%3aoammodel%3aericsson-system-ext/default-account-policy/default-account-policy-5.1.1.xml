@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:PrimaryTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:dps_primarytype" xmlns:ns3="urn:com:ericsson:schema:xml:oss:dps_common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" hierarchyType="HIERARCHICAL" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="default-account-policy" ns1:ns="urn:rdns:com:ericsson:oammodel:ericsson-system-ext" ns1:version="5.1.1" readBehavior="FROM_PERSISTENCE" writeBehavior="PERSIST_AND_DELEGATE">
+  <ns1:modelCreationInfo author="YANG Transformer2">
+    <ns1:derivedModel derivedFrom="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-system-ext/ericsson-system-ext%402021-05-24"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>The default user account policy.</ns1:desc>
+  <ns1:meta metaName="YANG_NON_PRESENCE_CONTAINER"/>
+  <ns2:primaryTypeAttribute immutable="true" key="true" mandatory="true" ns1:definedBy="OSS" ns1:name="default-account-policy-key" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Key attribute</ns1:desc>
+    <ns1:meta metaName="YANG_ARTIFIAL_KEY"/>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="1" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-system-ext" ns1:lifeCycle="CURRENT" ns1:name="dormant-timer" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Account dormant timer in days. Specifies the number of days it takes for the ME to automatically lock a user account that was not used in this time period. Value 0 means the dormant time is not measured.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="65535" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="180" xsi:type="ns1:integerValue"/>
+    <ns1:unit>days</ns1:unit>
+  </ns2:primaryTypeAttribute>
+</ns2:PrimaryTypeDefinition>

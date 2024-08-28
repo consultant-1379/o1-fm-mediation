@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns4:PrimaryTypeExtensionDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:dps_primarytype" xmlns:ns3="urn:com:ericsson:schema:xml:oss:dps_common" xmlns:ns4="urn:com:ericsson:schema:xml:oss:dps_primarytype_ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ns1:name="urn:rdns:com:ericsson:oammodel:ericsson-swim__sw-item$$administrative-data__ext" ns1:ns="NODE__O1Node__1.0" ns1:version="1.0.0">
+  <ns1:modelCreationInfo author="YANG Transformer2">
+    <ns1:derivedModel derivedFrom="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-swim/ericsson-swim%402018-09-04"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>Extension for /urn:rdns:com:ericsson:oammodel:ericsson-swim/sw-item$$administrative-data/1.1.0 to handle augmentations/deviations</ns1:desc>
+  <ns1:extendedModelElement urn="//urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-swim/sw-item%24%24administrative-data/1.1.0"/>
+  <ns1:requiresTargetType category="NODE" type="O1Node" version="1.0"/>
+  <ns4:primaryTypeExtension>
+    <ns4:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-swim" ns1:lifeCycle="CURRENT" ns1:name="commercial-version" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+      <ns1:desc>Commercial version of the product. commercial-version will change to a new value whenever product-revision changes. A specific product-version will always be acompanied by the same commercial-version.</ns1:desc>
+      <ns1:type xsi:type="ns1:stringType"/>
+    </ns4:primaryTypeAttribute>
+    <ns4:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-swim" ns1:lifeCycle="CURRENT" ns1:name="description" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+      <ns1:desc>Free text description of the product.</ns1:desc>
+      <ns1:type xsi:type="ns1:stringType"/>
+    </ns4:primaryTypeAttribute>
+    <ns4:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-swim" ns1:lifeCycle="CURRENT" ns1:name="product-name" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+      <ns1:desc>Name of the product.</ns1:desc>
+      <ns1:type xsi:type="ns1:stringType"/>
+    </ns4:primaryTypeAttribute>
+    <ns4:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-swim" ns1:lifeCycle="CURRENT" ns1:name="product-number" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+      <ns1:desc>Product number of the product.</ns1:desc>
+      <ns1:type xsi:type="ns1:stringType"/>
+    </ns4:primaryTypeAttribute>
+    <ns4:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-swim" ns1:lifeCycle="CURRENT" ns1:name="product-revision" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+      <ns1:desc>Revision state of the product.</ns1:desc>
+      <ns1:type xsi:type="ns1:stringType"/>
+    </ns4:primaryTypeAttribute>
+    <ns4:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-swim" ns1:lifeCycle="CURRENT" ns1:name="production-date" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+      <ns1:desc>Production date of the product.</ns1:desc>
+      <ns1:type xsi:type="ns1:stringType">
+        <ns1:stringContentsConstraint type="REGEX" value="\d{4}-(1[0-2]|0[1-9])-(0[1-9]|[1|2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\.\d+)?(Z|[\+\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?"/>
+      </ns1:type>
+    </ns4:primaryTypeAttribute>
+    <ns4:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-swim" ns1:lifeCycle="CURRENT" ns1:name="semantic-version" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+      <ns1:desc>Semantic version of the product. semantic-version will change to a new value whenever product-revision changes. A specific product-version will always be acompanied by the same semantic-version.</ns1:desc>
+      <ns1:type xsi:type="ns1:stringType">
+        <ns1:stringContentsConstraint type="REGEX" value="\d+[.]\d+[.]\d+(-[\w\d.]+)?([+][\w\d\.]+)?"/>
+      </ns1:type>
+    </ns4:primaryTypeAttribute>
+    <ns4:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-swim" ns1:lifeCycle="CURRENT" ns1:name="type" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+      <ns1:desc>Free text description of the product type.</ns1:desc>
+      <ns1:type xsi:type="ns1:stringType"/>
+    </ns4:primaryTypeAttribute>
+  </ns4:primaryTypeExtension>
+  <ns4:choiceHandling/>
+</ns4:PrimaryTypeExtensionDefinition>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:PrimaryTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:dps_primarytype" xmlns:ns3="urn:com:ericsson:schema:xml:oss:dps_common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" hierarchyType="HIERARCHICAL" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="group" ns1:ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:version="4.1.6" readBehavior="FROM_PERSISTENCE" writeBehavior="NOT_ALLOWED">
+  <ns1:modelCreationInfo author="YANG Transformer2">
+    <ns1:derivedModel derivedFrom="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-pm/ericsson-pm%402021-03-15"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>Represents a group of Measurement Types.</ns1:desc>
+  <ns2:primaryTypeAttribute immutable="true" key="true" mandatory="true" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="name" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Name of the PM Group.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="description" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Description of the PM Group.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="generation" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Determines if group concerns, for example, GSM, UMTS, EPS, combined(GSM+UMTS+EPS), IMS or 5GS measurements.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="measured-object" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The container/list that the measurement-types in this group refers to. No value means this group is not associated with any specific container/list.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="switching-technology" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The Switching domain or domains to which this measurement is applicable.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="validity" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>States if the group is valid. A group might not be valid if, for example, the feature that this group is used for is not available to the customer.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="version" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>group version identifier. Unique version identifier associated with a change to the contents of the PM Group, where new Measurement Types have been added.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType"/>
+  </ns2:primaryTypeAttribute>
+</ns2:PrimaryTypeDefinition>

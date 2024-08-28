@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:EnumDataTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:oss_edt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ns1:lifeCycle="CURRENT" ns1:name="backup__creation-type" ns1:ns="urn:rdns:com:ericsson:oammodel:ericsson-brm" ns1:version="4.2.1">
+  <ns1:modelCreationInfo author="YANG Transformer2">
+    <ns1:derivedModel derivedFrom="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-brm/ericsson-brm%402021-06-08"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>Creation type; whether manually created or automatically via scheduler.</ns1:desc>
+  <ns2:member name="manual" ns1:lifeCycle="CURRENT" value="1">
+    <ns2:desc>Backup created via a manual operation. A backup of this creation type maybe subject to housekeeping.</ns2:desc>
+  </ns2:member>
+  <ns2:member name="scheduled" ns1:lifeCycle="CURRENT" value="2">
+    <ns2:desc>Backup created automatically based on a preconfigured schedule. A backup of this creation type maybe subject to housekeeping.</ns2:desc>
+  </ns2:member>
+  <ns2:member name="system-created" ns1:lifeCycle="CURRENT" value="3">
+    <ns2:desc>Backup automatically created by the managed element. A backup of this creation type is not subject to any housekeeping policy defined by the management system and can only be removed by the managed element. Such a backup is primarily used for automatic recovery from catastrophic failures, but may also be used as any other backup if the management system chooses to restore the managed element with it.</ns2:desc>
+  </ns2:member>
+</ns2:EnumDataTypeDefinition>

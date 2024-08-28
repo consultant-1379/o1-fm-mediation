@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns4:PrimaryTypeExtensionDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:dps_primarytype" xmlns:ns3="urn:com:ericsson:schema:xml:oss:dps_common" xmlns:ns4="urn:com:ericsson:schema:xml:oss:dps_primarytype_ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ns1:name="urn:ietf:params:xml:ns:yang:ietf-yang-library__modules-state$$module__ext" ns1:ns="NODE__O1Node__1.0" ns1:version="1.0.0">
+  <ns1:modelCreationInfo author="YANG Transformer2">
+    <ns1:derivedModel derivedFrom="/net_yang/urn%3aietf%3aparams%3axml%3ans%3ayang%3aietf-yang-library/ietf-yang-library%402019-01-04"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>Extension for /urn:ietf:params:xml:ns:yang:ietf-yang-library/modules-state$$module/2019.1.4 to handle augmentations/deviations</ns1:desc>
+  <ns1:extendedModelElement urn="//urn%3aietf%3aparams%3axml%3ans%3ayang%3aietf-yang-library/modules-state%24%24module/2019.1.4"/>
+  <ns1:requiresTargetType category="NODE" type="O1Node" version="1.0"/>
+  <ns4:primaryTypeExtension>
+    <ns4:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-yang-library-ext" ns1:lifeCycle="CURRENT" ns1:name="correction" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+      <ns1:desc>The correction number of the module/submodule, will be stepped for each backward compatible correction, when a later release already exists. When release is stepped or reset, correction is reset to 0.</ns1:desc>
+      <ns1:type xsi:type="ns1:longType">
+        <ns1:valueRangeConstraint>
+          <ns1:minMaxRange max="4294967295" min="0"/>
+        </ns1:valueRangeConstraint>
+      </ns1:type>
+      <ns2:requires>
+        <ns3:pathExpressionCondition condition="starts-with(yanglib:name, 'ericsson-')"/>
+      </ns2:requires>
+    </ns4:primaryTypeAttribute>
+    <ns4:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-yang-library-ext" ns1:lifeCycle="CURRENT" ns1:name="release" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+      <ns1:desc>The release number of the module/submodule, will be stepped for each backward compatible change. When the version is stepped, the release is reset to 0.</ns1:desc>
+      <ns1:type xsi:type="ns1:longType">
+        <ns1:valueRangeConstraint>
+          <ns1:minMaxRange max="4294967295" min="0"/>
+        </ns1:valueRangeConstraint>
+      </ns1:type>
+      <ns2:requires>
+        <ns3:pathExpressionCondition condition="starts-with(yanglib:name, 'ericsson-')"/>
+      </ns2:requires>
+    </ns4:primaryTypeAttribute>
+    <ns4:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-yang-library-ext" ns1:lifeCycle="CURRENT" ns1:name="version" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+      <ns1:desc>The version number of the module/submodule, will be stepped when the module/submodule is changed in a backward incompatible way.</ns1:desc>
+      <ns1:type xsi:type="ns1:longType">
+        <ns1:valueRangeConstraint>
+          <ns1:minMaxRange max="4294967295" min="0"/>
+        </ns1:valueRangeConstraint>
+      </ns1:type>
+      <ns2:requires>
+        <ns3:pathExpressionCondition condition="starts-with(yanglib:name, 'ericsson-')"/>
+      </ns2:requires>
+    </ns4:primaryTypeAttribute>
+  </ns4:primaryTypeExtension>
+  <ns4:choiceHandling/>
+</ns4:PrimaryTypeExtensionDefinition>

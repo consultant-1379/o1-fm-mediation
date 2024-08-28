@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:PrimaryTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:dps_primarytype" xmlns:ns3="urn:com:ericsson:schema:xml:oss:dps_common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" hierarchyType="HIERARCHICAL" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="alarm" ns1:ns="urn:rdns:com:ericsson:oammodel:ericsson-fm" ns1:version="3.1.1" readBehavior="FROM_PERSISTENCE" writeBehavior="NOT_ALLOWED">
+  <ns1:modelCreationInfo author="YANG Transformer2">
+    <ns1:derivedModel derivedFrom="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-fm/ericsson-fm%402020-09-17"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>An alarm instance represents an active alarm. An alarm is a persistent indication of a fault that clears only when the triggering condition has been resolved.</ns1:desc>
+  <ns2:systemCreated/>
+  <ns2:primaryTypeAttribute immutable="true" key="true" mandatory="true" ns="urn:rdns:com:ericsson:oammodel:ericsson-fm" ns1:lifeCycle="CURRENT" ns1:name="id" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Identity of the alarm.</ns1:desc>
+    <ns1:type xsi:type="ns1:longType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="4294967295" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-fm" ns1:lifeCycle="CURRENT" ns1:name="active-severity" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The perceived severity of the alarm. It may change during the alarm's lifetime.</ns1:desc>
+    <ns1:type modelUrn="//urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-fm/alarm__active-severity/3.1.1" xsi:type="ns1:enumRefType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-fm" ns1:lifeCycle="CURRENT" ns1:name="additional-text" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Extra information about the alarm. It may change during the alarm's lifetime.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:stringLengthConstraint>
+        <ns1:minMaxLength max="512" min="4"/>
+      </ns1:stringLengthConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-fm" ns1:lifeCycle="CURRENT" ns1:name="event-type" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>General category for the alarm.</ns1:desc>
+    <ns1:type modelUrn="//urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-fm/alarm__event-type/3.1.1" xsi:type="ns1:enumRefType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-fm" ns1:lifeCycle="CURRENT" ns1:name="last-event-time" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The timestamp of when the alarm was last updated. This is set at alarm information change or severity change.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:stringContentsConstraint type="REGEX" value="\d{4}-(1[0-2]|0[1-9])-(0[1-9]|[1|2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\.\d+)?(Z|[\+\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?"/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-fm" ns1:lifeCycle="CURRENT" ns1:name="major-type" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The leafs majorType and minorType identify the alarm type.</ns1:desc>
+    <ns1:type xsi:type="ns1:longType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="4294967295" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-fm" ns1:lifeCycle="CURRENT" ns1:name="minor-type" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The leafs majorType and minorType identify the alarm type.</ns1:desc>
+    <ns1:type xsi:type="ns1:longType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="4294967295" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-fm" ns1:lifeCycle="CURRENT" ns1:name="original-additional-text" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The additional text set when the alarm was raised. This is set when the alarm is raised and will not change during the alarm's lifetime.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:stringLengthConstraint>
+        <ns1:minMaxLength max="512" min="4"/>
+      </ns1:stringLengthConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-fm" ns1:lifeCycle="CURRENT" ns1:name="original-event-time" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The timestamp when the alarm was raised. This leaf is set when the alarm is raised and will not change during the alarm's lifetime.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:stringContentsConstraint type="REGEX" value="\d{4}-(1[0-2]|0[1-9])-(0[1-9]|[1|2][0-9]|3[0-1])T(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\.\d+)?(Z|[\+\-]((1[0-3]|0[0-9]):([0-5][0-9])|14:00))?"/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-fm" ns1:lifeCycle="CURRENT" ns1:name="original-severity" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The perceived severity set when the alarm was raised. It will not change during the alarm's lifetime.</ns1:desc>
+    <ns1:type modelUrn="//urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-fm/alarm__original-severity/3.1.1" xsi:type="ns1:enumRefType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-fm" ns1:lifeCycle="CURRENT" ns1:name="probable-cause" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Qualifies and provides further information on the reason for the event. A standard set of probable-cause values is provided in the ERICSSON-ALARM-PC-MIB / ericsson-alarm-pc-types</ns1:desc>
+    <ns1:type modelUrn="//urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-fm/alarm__probable-cause/3.1.1" xsi:type="ns1:enumRefType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-fm" ns1:lifeCycle="CURRENT" ns1:name="sequence-number" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>A unique identity for every notification sent. This identity changes at every notification, that is, severity change and information change. It is not the same as the alarm/id as multiple notifications may be sent for one alarm instance.</ns1:desc>
+    <ns1:type xsi:type="ns1:longType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="4294967295" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-fm" ns1:lifeCycle="CURRENT" ns1:name="source" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Reference to the alarming object.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:stringLengthConstraint>
+        <ns1:minMaxLength max="150" min="4"/>
+      </ns1:stringLengthConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-fm" ns1:lifeCycle="CURRENT" ns1:name="specific-problem" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Provides further refinement to the information given by probableCause. Can be used to find an associated operating instruction (OPI).</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:stringLengthConstraint>
+        <ns1:minMaxLength max="64" min="4"/>
+      </ns1:stringLengthConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+</ns2:PrimaryTypeDefinition>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:PrimaryTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:dps_primarytype" xmlns:ns3="urn:com:ericsson:schema:xml:oss:dps_common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" hierarchyType="HIERARCHICAL" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="swm" ns1:ns="urn:rdns:com:ericsson:oammodel:ericsson-swm" ns1:version="3.1.0" readBehavior="FROM_PERSISTENCE" writeBehavior="PERSIST_AND_DELEGATE">
+  <ns1:modelCreationInfo author="YANG Transformer2">
+    <ns1:derivedModel derivedFrom="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-swm/ericsson-swm%402020-10-14"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>Sw management</ns1:desc>
+  <ns1:meta metaName="YANG_NON_PRESENCE_CONTAINER"/>
+  <ns1:meta metaName="YANG_TOP_LEVEL_DATA_NODE"/>
+  <ns2:primaryTypeAttribute immutable="true" key="true" mandatory="true" ns1:definedBy="OSS" ns1:name="swm-key" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Key attribute</ns1:desc>
+    <ns1:meta metaName="YANG_ARTIFIAL_KEY"/>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="1" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-swm" ns1:lifeCycle="CURRENT" ns1:name="action-capable" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Shows whether the Software Management function is in a state of readiness to execute actions. The Managed Element sets it to wait during any operations and maintenance activity that causes one or more of the Software Management function related actions to become unavailable. The Management System should wait until the state returns to capable before invoking any Software Management action.</ns1:desc>
+    <ns1:type modelUrn="//urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-swm/swm__action-capable/3.1.0" xsi:type="ns1:enumRefType"/>
+    <ns1:default value="capable" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-swm" ns1:lifeCycle="CURRENT" ns1:name="action-capable-info" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Additional information relating to actionCapable. Provides free-text information if available about the managed element operation or maintenance activity causing actionCapable to be at state wait.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-swm" ns1:lifeCycle="CURRENT" ns1:name="fallback-timer" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Maximum interval in seconds within which the next action must be invoked to avoid fallback. The maximum number of seconds allowed to elapse between the finish of an activation step and the start of the next new activate() action or new confirm() action. This leaf holds the value to which leaf time-remaining-before-fallback is set after the action activate() is successfully completed. -1 means infinity. In this case, the start value of time-remaining-before-fallback must also be set to -1 when the timer starts, even though no countdown ever starts (it remains always -1).</ns1:desc>
+    <ns1:type xsi:type="ns1:shortType">
+      <ns1:valueRangeConstraint>
+        <ns1:minValue value="-1"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="1200" xsi:type="ns1:shortValue"/>
+    <ns1:unit>seconds</ns1:unit>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-swm" ns1:lifeCycle="CURRENT" ns1:name="local-file-store-path" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>URI of the directory where the upgrade-packages are stored on the ME.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-swm" ns1:lifeCycle="CURRENT" ns1:name="time-remaining-before-fallback" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Remaining number of seconds before performing fallback. Value -1 indicates an infinite number of seconds. Fallback means that the system returns to state prepare-completed .</ns1:desc>
+    <ns1:type xsi:type="ns1:shortType"/>
+    <ns1:default value="-1" xsi:type="ns1:shortValue"/>
+    <ns1:unit>seconds</ns1:unit>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-swm" ns1:lifeCycle="CURRENT" ns1:name="user-label" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Label for free use.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType"/>
+  </ns2:primaryTypeAttribute>
+</ns2:PrimaryTypeDefinition>

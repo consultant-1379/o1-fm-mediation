@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>o1-fm-mediation</artifactId>
+        <groupId>com.ericsson.oss.mediation.o1</groupId>
+        <version>1.7.8-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>o1-fm-mediation-flow-tests</artifactId>
+    <name>[${project.artifactId}] flow tests module</name>
+    <packaging>jar</packaging>
+
+
+    <properties>
+        <sonar.sources>pom.xml</sonar.sources>
+        <sonar.tests />
+        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/../${aggregate.report.dir}
+        </sonar.coverage.jacoco.xmlReportPaths>
+    </properties>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>com.ericsson.oss.mediation.o1</groupId>
+            <artifactId>o1-common-flow-tests</artifactId>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.cds</groupId>
+            <artifactId>flow-test-support</artifactId>
+            <version>${version.cdi-test-support}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- FM specific handler models and impl -->
+        <dependency>
+            <groupId>com.ericsson.oss.mediation.fm.models.configurations</groupId>
+            <artifactId>o1-fm-mediation-config-model-jar</artifactId>
+            <version>${version.o1.fm.mediation.config.model}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>o1-fm-mediation-handlers-ejb</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>o1-fm-mediation-transformation-jar</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <!-- Transitive (provided) dependencies used by handlers -->
+        <dependency>
+            <groupId>com.ericsson.oss.mediation.o1</groupId>
+            <artifactId>o1-fm-node-suspender-ejb</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.mediation.o1</groupId>
+            <artifactId>o1-common-heartbeat-ejb</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.mediation.o1</groupId>
+            <artifactId>o1-fm-mediation-heartbeat-ejb</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.nms.mediation</groupId>
+            <artifactId>core-mediation-models-api</artifactId>
+            <version>3.1.8</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.itpf.common.flow</groupId>
+            <artifactId>eventflow-api</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.mediation.adapter</groupId>
+            <artifactId>netconf-yang-xa-resource-provider-jar</artifactId>
+            <version>2.12.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.mediation.util.netconf</groupId>
+            <artifactId>cba-netconf-mediation-api</artifactId>
+            <version>2.9.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.mediation.adapter</groupId>
+            <artifactId>netconf-resource-adapter-api</artifactId>
+            <version>1.5.4</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.ericsson.oss.mediation.netconf</groupId>
+            <artifactId>netconf-session-api-jar</artifactId>
+            <version>1.13.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.awaitility</groupId>
+            <artifactId>awaitility</artifactId>
+            <version>4.2.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <useSystemClassLoader>true</useSystemClassLoader>
+                    <useManifestOnlyJar>false</useManifestOnlyJar>
+                    <useFile>false</useFile>
+                    <includes>
+                        <include>**/*Spec.java</include>
+                        <include>**/*Test.java</include>
+                    </includes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>none</phase>
+                        <goals>
+                            <goal>compare-dependencies</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

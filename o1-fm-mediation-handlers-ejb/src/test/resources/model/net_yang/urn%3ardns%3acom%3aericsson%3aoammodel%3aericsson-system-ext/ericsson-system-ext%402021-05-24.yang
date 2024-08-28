@@ -1,0 +1,2206 @@
+module ericsson-system-ext {
+    yang-version 1.1;
+    namespace urn:rdns:com:ericsson:oammodel:ericsson-system-ext;
+    prefix sysxe;
+
+    import ericsson-yang-extensions {
+        prefix yexte;
+    }
+
+    import ericsson-yang-types {
+        prefix typese;
+    }
+    import ericsson-notifications {
+        prefix notife;
+    }
+    import ietf-system {
+        prefix sys;
+    }
+    import ietf-inet-types {
+        prefix inet;
+    }
+    import ietf-yang-types {
+        prefix yang;
+    }
+    import ietf-netconf-acm {
+        prefix nacm;
+    }
+    import iana-crypt-hash {
+        prefix ianach;
+    }
+
+    import ietf-tls-client {
+        prefix tlsc;
+        revision-date 2019-11-20;
+        description
+          "Based on draft";
+        reference
+          "ietf-tls-client@2019-11-20";
+    }
+
+    import ietf-truststore {
+        prefix ts;
+        revision-date 2019-11-20;
+        description
+          "Based on draft";
+        reference
+          "ietf-truststore@2019-11-20";
+    }
+
+    import ietf-crypto-types {
+        prefix ct;
+        revision-date 2019-11-20;
+        description
+          "Based on draft";
+        reference
+          "ietf-crypto-types@2019-11-20";
+    }
+
+    organization
+      "Ericsson AB";
+    contact
+      "Ericsson first line support via email";
+    description
+      "The module extends and deviates ietf-system by:
+       - adding managed element type, release, and timezone information and
+         removing the shutdown rpc.
+       - extending local user authentication
+       - adding LDAP user authentication
+       - extending generic authentication parameters
+       
+       --- ---
+       Feature authentication, local-users, ntp, ntp-udp-port, timezone-name,
+       dns-udp-tcp-port are included from ietf-system
+       Feature radius is excluded from ietf-system
+       
+       Feature tls-client-hello-params-config and x509-certificate-auth 
+       included from ietf-tls-client@2019-11-20
+       
+       Feature tls-ecc, tls-dhe, tls-3des, tls-gcm, tls-sha2, tls-1_2, tls-1_3
+       are included from ietf-tls-common@2019-11-20
+       
+       Feature x509-certificates and truststore-supported are included from
+       ietf-truststore@2019-11-20.
+       
+       Feature ldap, ldap-authentication, ldap-clear, ldap-posix-filter,
+       ldap-custom-filter, ldap-sasl-external, local-target-classes, 
+       authentication-failure-alarm are defined
+       
+       --- ---
+       Copyright (c) 2020 Ericsson AB. All rights reserved.";
+
+    revision "2021-05-24" {
+        // by esimnik
+        description
+          "
+           Correction to 3.1.0 revision date, since it was copy-paste
+           error with the 4.0.0 revision date.
+          ";
+        yexte:version 5;
+        yexte:release 1;
+        yexte:correction 1;
+    }
+
+    revision "2021-03-17" {
+        // by ebalkov
+        description
+          "
+           OAuth2 client authentication group parameter regular expression
+           updated to comply to RFC6749.
+           Average athentication failure delay changed to 3 seconds to 
+           comply to TEA Sec DR.
+          ";
+        yexte:version 5;
+        yexte:release 1;
+        yexte:correction 0;
+    }    
+    
+    revision "2020-12-10" {
+        // by ebalkov
+        description
+          "
+           OAuth2 client authentication added.
+           Password mustChange policy configuration added to 
+           default and custom policies. change-password action to be removed, 
+           as it was agreed to keep this as a user-agent (e.g., CLI command) 
+           feature but not as a Netconf (m2m) action. The admin-user received 
+           a 'password' leaf so it is now possible to reset password for it also
+           via Netconf.
+          ";
+        yexte:version 5;
+        yexte:release 0;
+        yexte:correction 0;
+    }
+
+    revision "2020-05-13" {
+        // by lmfmato
+        description
+          "
+           Added a post-login-notice attribute due to 'Login, logout and 
+           branding quick study'. The attribute was added to 
+           class /sys:system/sys:authentication.
+          ";
+        yexte:version 4;
+        yexte:release 1;
+        yexte:correction 0;
+    }
+
+    revision "2020-01-28" {
+        // by lmfmato and ebalkov
+        description
+          "
+           Inclusion of crypto-types removed due to major update to it.
+           Typedef for mac-algorithm-supported-t added.
+          ";
+        yexte:version 4;
+        yexte:release 0;
+        yexte:correction 0;
+    }
+
+    revision "2019-11-24" {
+        // by lmfmato and ebalkov
+        description
+          "
+           Username pattern deviation removed to make this
+           possible for implementations.
+           LDAP over TLS deviations removed.
+           Added privacy notice and ntp-security feature.
+           Uplifted to use ietf-tls-client@2019-11-20
+           Uplifted to use ietf-tls-client@2019-07-02
+           Uplifted to use ietf-tls-client@2019-04-29
+          ";
+        yexte:version 3;
+        yexte:release 1;
+        yexte:correction 0;
+    }
+
+    revision "2019-01-04" {
+        // by ebalkov
+        description
+          "
+           Identity 'ldap' received feature conditions.
+          ";
+        yexte:version 3;
+        yexte:release 0;
+        yexte:correction 1;
+    }
+
+    revision "2018-08-21" {
+        // by ebalkov
+        description
+          "
+           Use of ietf-tls-client@2018-09-20 for LDAP.
+           
+           Change of must expression on 
+           /sys:system/sys:authentication/sys:user/sysxe:groups.
+          ";
+        yexte:version 3;
+        yexte:release 0;
+        yexte:correction 0;
+    }
+
+    revision "2017-09-11" {
+        // by ethbll
+        description
+          "
+           Corrected must statement for /system/authentication/user/groups
+          ";
+        yexte:version 2;
+        yexte:release 0;
+        yexte:correction 3;
+    }
+
+    revision "2017-09-06" {
+        // by ethbll
+        description
+          "Checking the existence of LDAP servers moved to a 
+           separate dummy container, to avoid Confd limitations about 
+           circular dependency.
+           Added if-feature authentication/local-users for some augments";
+        yexte:version 2;
+        yexte:release 0;
+        yexte:correction 2;
+    }
+
+    revision "2017-05-25" {
+        description
+          "
+           - Removed /sys:system/security and /sys:system-state/security 
+             and any related groupings due to IETF IETF has introduced similar
+             configuration in other models, namely in 
+             draft-ietf-netconf-ssh-client-server-02
+             and draft-ietf-netconf-tls-client-server-02
+           
+             - /sys:system/sysxe:host-id removed as it is only useful for EPI
+               compatible PM files
+           
+             - feature tls removed as it was only used in /sys:system/security
+           
+             - import of ietf-system-keychain@2016-03-16.yang removed and
+               replaced by ietf-tls-client@2017-03-13.yang
+               The corresponding changes have been done in
+               /sys:system/ldap/security/tls. Feature list updated.
+           
+             - /sys:system-state/authentication/user/password-state
+               enumeration extended and description updated. Description of
+               expired literal changed and new literal 'locked' added. 
+               /sys:system-state/authentication/user/password-locked-time
+               added.
+           
+             - description of
+               /sys:system-state/authentication/user/unlock-operational-lock
+               and /sys:system-state/authentication/user/state are updated.
+           
+             - presence statements removed from ldap branch wherever it was
+               possible.
+           
+             - notife:notifiable-state-data added to some system-state data
+               nodes in 'platform' container,
+               managed-element-type, release leaves, boot-datetime, user, and
+               admin-user. password-failure-times has no notification.
+           
+             - error messages added for patterns where missed (based on ECIM
+               error messages)
+           
+             - 'change-password' action added
+           
+             - xpath representation simplified in descriptions and error
+               messages 
+           
+             - 'nacm-groups' leaf list name changed to 'groups'
+           
+             - user-label to system added
+           
+             - clarification of timezone revision
+           
+             - must statement added for enable-target-based-access-control
+           
+          ";
+        yexte:version 2;
+        yexte:release 0;
+        yexte:correction 0;
+    }
+
+    revision "2017-05-15" {
+        description
+          "
+           Updated due to changes in handling of supported-feature(s) 
+           - only removed 
+             yexte:supported-features
+             sys:authentication
+             sys:local-users
+             sys:ntp
+             sys:ntp-udp-port
+             sys:timezone-name
+             sys:dns-udp-tcp-port";
+        yexte:version 1;
+        yexte:release 1;
+        yexte:correction 0;
+    }
+
+    revision "2016-07-01" {
+        description
+          "
+           First version.
+             Based on ECIM_Top 2.3.0
+             Based on ECIM_Ldap 2.2
+             Based on ECIM_LocalAuthN 2.2
+             Based on ECIM_SecM 2.3
+             Based on ECIM_TimeM 1.2
+           
+           ---
+           Changes from ECIM:
+           - LDAP: server list is supported (not just two) to follow radius
+             server modeling pattern
+           - LDAP: network timeout option added
+           - Local Authentication: default policy modeling changed to allow
+             compatible augmentation for sys:user
+           - Local Authentication: password set/reset/unset replaced by using
+             ianach:cyrpt-hash standard leaf/type
+           - Local Authentication: replica storage and authentication is not
+             yet implemented due to missing support
+           
+          ";
+        yexte:version 1;
+        yexte:release 0;
+        yexte:correction 0;
+    }
+
+    /* Features */
+    feature ldap {
+        description
+          "Indicates that the ME can be configured as an LDAP authentication 
+           client.";
+        reference
+          "RFC 4513: Lightweight Directory Access Protocol (LDAP):
+           Authentication Methods and Security Mechanisms";
+    }
+
+    feature ldap-authentication {
+        if-feature ldap;
+        if-feature sys:authentication;
+        description
+          "Indicates that the ME supports configuration of user 
+           authentication over LDAP.";
+        reference
+          "RFC 4513: Lightweight Directory Access Protocol (LDAP):
+           Authentication Methods and Security Mechanisms.
+           RFC 2307: An Approach for Using LDAP as a Network Information
+           Service";
+    }
+
+    feature ldap-clear {
+        if-feature ldap;
+        if-feature sys:authentication;
+        description
+          "Indicates that the ME supports LDAP cleartext connections. User
+           passwords are sent in clear.";
+    }
+
+    feature ldap-posix-filter {
+        if-feature ldap;
+        if-feature sys:authentication;
+        description
+          "Indicates that the ME supports the POSIX group filter and related
+           configurations.";
+    }
+
+    feature ldap-custom-filter {
+        if-feature ldap;
+        if-feature sys:authentication;
+        description
+          "Indicates that the ME supports the Customizable group filter and
+           related configurations.";
+    }
+
+    feature ldap-sasl-external {
+        if-feature ldap;
+        if-feature sys:authentication;
+        description
+          "Indicates that the ME supports SASL EXTERNAL bind operation using
+           client certificate.";
+        reference
+          "RFC 4513: Lightweight Directory Access Protocol (LDAP):
+           Authentication Methods and Security Mechanisms";
+    }
+
+    feature local-target-classes {
+        description
+          "Indicates that the ME supports local target classification of
+           the ME for Target Based Access Control (TBAC)";
+    }
+
+    feature authentication-failure-alarm {
+        description
+          "Indicates that the ME supports the authentication failure alarm
+           for the local admin user.";
+    }
+
+    feature ntp-security {
+        if-feature sys:ntp;
+        description
+          "Indicates that the NTP-Security feature is supported.";
+        reference
+          "The feature is described on ECIM TimeM Use Case Description,
+           22/155 56-FAE 151 01 Uen";
+    }
+
+    feature oauth2-client-authentication {
+        if-feature sys:authentication;
+        description
+          "Indicates that the ME supports OAuth2 client authentication with 
+           client_credentials grant-type.";
+        reference
+          "RFC 6749: The OAuth 2.0 Authorization Framework";
+    }
+
+    /* Identities */
+    identity ldap {
+        if-feature ldap;
+        if-feature sys:authentication;
+        base sys:authentication-method;
+        description
+          "Indicates user authentication using LDAP.";
+        reference
+          "RFC 4513: Lightweight Directory Access Protocol (LDAP):
+           Authentication Methods and Security Mechanisms
+           RFC 2307: An Approach for Using LDAP as a Network Information
+           Service";
+    }
+
+    /* System augmentations */
+    augment /sys:system {
+        leaf user-label {
+            type string;
+            description
+              "Label for free use.";
+        }
+    }
+
+    augment /sys:system-state {
+        description
+          "Augments system monitoring.";
+        leaf managed-element-type {
+            notife:notifiable-state-data true;
+            type string;
+            description
+              "The type of product being managed.
+               For example the type could be RBS or CSCF.";
+        }
+
+        leaf release {
+            notife:notifiable-state-data true;
+            type string;
+            description
+              "The release of the product type 
+               specified by the attribute managedElementType.
+               It commonly contains the Managed Element release, 
+               for example L12.0, 13A, R1A";
+        }
+    }
+
+    deviation /sys:system-shutdown {
+        deviate not-supported;
+    }
+
+//    pyang 1.7.1 cannot cope with this
+//    deviation /sys:system-state/sys:platform {
+//        deviate add {
+//            notife:notifiable-state-data true;
+//        }
+//    }
+    augment /sys:system-state/sys:clock {
+        description
+          "Augments system clock monitoring.";
+
+        leaf timezone-revision {
+            notife:notifiable-state-data true;
+            type string;
+            description
+              "The revision of the timezone database stored 
+               in the ME based on IANA
+               version timezone versioning.";
+
+            reference
+              "https://www.iana.org/time-zones/repository/tz-link.html";
+        }
+    }
+
+//    pyang 1.7.1 cannot cope with this
+//    deviation /sys:system-state/sys:clock/sys:boot-datetime {
+//        deviate add {
+//            notife:notifiable-state-data true;
+//        }
+//    }
+    augment /sys:system {
+        description
+          "Augment in with LDAP AA model.";
+
+        container ldap {
+            if-feature ldap-authentication;
+            presence
+              "The LDAP client is configured.";
+
+            description
+              "Configuration of the LDAP client. At least 
+               one server must be configured with common 
+               configuration of transport security, LDAP 
+               authentication method, and user search base.";
+
+            list server {
+                key name;
+                min-elements 1;
+                ordered-by user;
+                description
+                  "List of LDAP servers used by the ME.
+                   
+                   When the LDAP client is invoked by a calling 
+                   application, it sends the query to the first 
+                   server in this list.  If no response has been 
+                   received within 'timeout' seconds, the client 
+                   continues with the next server in the list. 
+                   If no response is received from any server, it 
+                   gives up and returns an error to the calling 
+                   application.";
+
+                leaf name {
+                    type string;
+                    description
+                      "An arbitrary name for the LDAP server.";
+                }
+
+                choice transport {
+                    mandatory true;
+                    description
+                      "The transport-protocol-specific parameters
+                       for this server.";
+
+                    case tcp {
+                        container tcp {
+                            description
+                              "Contains TCP-specific configuration
+                               parameters for LDAP.";
+
+                            leaf address {
+                                type inet:host;
+                                mandatory true;
+                                description
+                                  "The address of the LDAP server.";
+                            }
+
+                            choice protocol {
+                                default "ldap";
+                                description
+                                  "The LDAP connection protocol. Can be 
+                                   either ldap or ldaps.";
+
+                                case ldap {
+                                    container ldap {
+                                        description
+                                          "The connection is established by 
+                                           using the ldap protocol. The client 
+                                           is using StartTLS operation if TLS 
+                                           is configured.";
+
+                                        leaf port {
+                                            type inet:port-number;
+                                            default "389";
+                                            description
+                                              "The port number of the 
+                                               LDAP server.";
+                                        }
+                                    }
+                                }
+
+                                case ldaps {
+                                    container ldaps {
+                                        must '(/sys:system/ldap/security/tls)' {
+                                            error-message
+                                              "When 'ldaps' is used, TLS 
+                                               must be configured.";
+
+                                            description
+                                              "When 'ldaps' is used TLS 
+                                               must be configured.";
+                                        }
+                                        presence
+                                          "Protocol scheme ldaps is
+                                           selected.";
+                                        description
+                                          "The connection is established by
+                                           using the ldaps protocol. 
+                                           Configuration of TLS is mandatory
+                                           for ldaps.";
+
+                                        leaf port {
+                                            type inet:port-number;
+                                            default "636";
+                                            description
+                                              "The port number of the
+                                               LDAP server.";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            container security {
+                description
+                  "Container for LDAP security options.";
+                choice transport-security {
+                    mandatory true;
+                    description
+                      "The security options for the LDAP
+                       protocol of this server.";
+
+                    case clear {
+                        if-feature ldap-clear;
+                        leaf clear {
+                            type empty;
+                            description
+                              "LDAP insecure clear connection. 
+                              User passwords are sent in 
+                              cleartext.";
+                        }
+                    }
+
+                    case tls {
+                        container tls {
+                            presence
+                              "TLS is selected for transport security.";
+                            description
+                              "LDAP secure TLS connection";
+
+                            uses tlsc:tls-client-grouping;
+                        }
+                    }
+                }
+
+                choice authentication-type {
+                    mandatory true;
+                    description
+                      "The LDAP authentication type.";
+
+                    case simple-anonymous {
+                        leaf simple-anonymous {
+                            type empty;
+                            description
+                              "The ME requests anonymous simple 
+                               bind from the LDAP server.";
+
+                            reference
+                              "RFC 4513";
+                        }
+                    }
+
+                    case simple-unauthenticated {
+                        container simple-unauthenticated {
+                            description
+                              "The ME requests unauthenticated simple 
+                               bind from the LDAP server.";
+
+                            reference
+                              "RFC 4513";
+
+                            leaf bind-dn {
+                                type typese:distinguished-name;
+                                mandatory true;
+                                description
+                                  "Default bind DN used to access the 
+                                   LDAP servers. When configured, the ME
+                                   uses the specified DN as the bind name 
+                                   for LDAP searches. The bind DN must
+                                   be specified in an LDAP DN format, 
+                                   for example 
+                                   'cn=bindaccount,dc=mycompany,dc=com'.";
+                            }
+                        }
+                    }
+
+                    case simple-authenticated {
+                        container simple-authenticated {
+                            description
+                              "The ME requests unauthenticated simple 
+                              bind from the LDAP server.";
+
+                            reference
+                              "RFC 4513";
+
+                            leaf bind-dn {
+                                type typese:distinguished-name;
+                                mandatory true;
+                                description
+                                  "Default bind DN used to access 
+                                   the LDAP servers. When configured, 
+                                   the ME uses the specified DN as the bind 
+                                   name for LDAP searches. The bind DN must
+                                   be specified in an LDAP DN format, 
+                                   for example
+                                   'cn=bindaccount,dc=mycompany,dc=com'.";
+                            }
+
+                            leaf bind-password {
+                                yexte:is-passphrase;
+                                type string;
+                                mandatory true;
+                                nacm:default-deny-all;
+                                description
+                                  "The password used with binddn 
+                                   to authenticate.";
+                            }
+                        }
+                    }
+
+                    case sasl-external {
+                        if-feature ldap-sasl-external;
+                        leaf sasl-external {
+                            type empty;
+                            must '(/sys:system/ldap/security/tls)' {
+                                error-message
+                                  "When 'sasl-external' is used, 
+                                   TLS must be configured.";
+
+                                description
+                                  "When 'sasl-external' is used 
+                                   TLS must be configured.";
+                            }
+
+                            description
+                              "The ME requests SASL EXTERNAL bind 
+                               from the LDAP server. For this
+                               authentication type, TLS is mandatory.";
+
+                            reference
+                              "RFC 4513";
+                        }
+                    }
+                }
+
+                leaf user-base-dn {
+                    type typese:distinguished-name;
+                    mandatory true;
+                    description
+                      "Default base DN to use in LDAP operations.
+                       
+                       The base DN must be specified in an LDAP DN 
+                       format, for example, 'ou=people,dc=mycompany,dc=com'.
+                       All LDAP objects used for authentication
+                       must be accessible from the base DN.";
+                }
+            }
+
+            container options {
+                description
+                  "LDAP client options.";
+
+                leaf timeout {
+                    type uint8 {
+                        range "1..max";
+                    }
+                    units "seconds";
+                    default "5";
+                    description
+                      "The number of seconds the ME will wait 
+                       for a response from each LDAP server 
+                       before trying with a different server.";
+                }
+
+                leaf enable-referrals {
+                    type boolean;
+                    default false;
+                    description
+                      "Toggle to enable the use of referrals. 
+                       When set to false, the ME ignores
+                       referrals returned by the LDAP server. 
+                       When set to true, the ME follows
+                       referrals. Referrals can be used for 
+                       authentication and authorization only
+                       if the referral URI refers back to a 
+                       directory tree within the same LDAP
+                       server instance; otherwise, access is 
+                       denied for referred user accounts.";
+                }
+
+                container group-filter {
+                    description
+                      "Contains a choice of group filter options.";
+
+                    choice group-filter {
+                        default ericsson-filter;
+                        description
+                          "The group filter can be used to provide 
+                           groups for the NACM module. In the
+                           NACM module, external groups should 
+                           be enabled. By default it uses the
+                           Ericsson filter.";
+
+                        case custom {
+                            if-feature ldap-custom-filter;
+                            container custom {
+                                description
+                                  "Defines a custom filter for groups.";
+
+                                leaf filter {
+                                    type string;
+                                    mandatory true;
+                                    description
+                                      "The filter used to search for group 
+                                       membership of users in the LDAP tree.
+                                       
+                                       Example:
+                                       (&(objectClass=posixAccount)(uid=%u))
+                                       The authorized users are all posixAccount
+                                       objects with non-empty data in the LDAP 
+                                       attribute configured for leaf attr. 
+                                       %u indicates where the ME inserts the 
+                                       user identifier.";
+                                }
+
+                                leaf attr {
+                                    type string;
+                                    mandatory true;
+                                    description
+                                      "The LDAP attribute to be returned and 
+                                       that can be interpreted as group.
+                                       Example: customGroupAttr";
+                                }
+                            }
+                        }
+
+                        case posix {
+                            if-feature ldap-posix-filter;
+                            leaf posix {
+                                type empty;
+                                description
+                                  "Standard POSIX group filter.
+                                   The groups are selected from the 
+                                   LDAP database based on the standard
+                                   posixGroup schema. The Common Name 
+                                   attribute (cn) of the posixGroup object
+                                   is treated as group.";
+
+                                reference
+                                  "RFC 2307";
+                            }
+                        }
+
+                        case ericsson-filter {
+                            description
+                              "Choice for configuration to use the 
+                               Ericsson LDAP schema.";
+
+                            container ericsson-filter {
+                                description
+                                  "Provides configuration of features 
+                                   supported by the Ericsson LDAP schema.";
+
+                                leaf enable-target-based-access-control {
+                                    type boolean;
+                                    default false;
+                                    description
+                                      "Toggles Target Based Access Control (TBAC). 
+                                       The optional Ericsson LDAP-schema-specified
+                                       attribute ericssonUserAuthenticationScope 
+                                       stores the targets where the user can be
+                                       authenticated and authorized. It is a 
+                                       case-insensitive string of <targettype>. 
+                                       The Ericsson target-type identifier, such 
+                                       as 'bsc', 'cscf',  classifies the target type 
+                                       the user can access. The optional Ericsson
+                                       LDAP-schema-specified attribute 
+                                       ericssonUserAuthorizationScope stores the
+                                       groups of which the user is a member. It is 
+                                       a case-insensitive string of
+                                       form <targettype>:<group>, 
+                                       where ':' is a separator; 
+                                       <targettype> is the
+                                       target-type identifier, such as 'bsc', 'cscf', 
+                                       and it classifies the target
+                                       type for which the user acquires the <group>.
+                                       
+                                       When TBAC is executed, the user targets are 
+                                       compared to the ME targets in
+                                       /system/authentication/target-types.
+                                       
+                                       Attribute ericssonUserAuthenticationScope 
+                                       behavior:
+                                       
+                                       When TBAC is activated in the ME, 
+                                       authentication and authorization are
+                                       performed without TBAC. When TBAC is 
+                                       deactivated in the ME and the user has
+                                       a target-restricted authentication scope, 
+                                       authentication and authorization
+                                       are performed when a match is found. 
+                                       If not, it fails.
+                                       
+                                       Attribute ericssonUserAuthenticationScope 
+                                       allows the use of wild-carded
+                                       scope ('*') to permit the user to be 
+                                       authorized on any ME based on its
+                                       ericssonUserAuthorizationScope attribute.
+                                       
+                                       Attribute ericssonUserAuthorizationScope 
+                                       behavior:
+                                       
+                                       When TBAC is deactivated in the ME, 
+                                       the groups without target qualifiers
+                                       and with wildcard target qualifier ('*') 
+                                       are assigned to the user from the
+                                       user database. When TBAC is activated 
+                                       in the ME, the groups with matching
+                                       target qualifiers and with wildcard 
+                                       target qualifier are assigned to the
+                                       user from the user database.
+                                       
+                                       Not using the Ericsson LDAP schema 
+                                       in the user accounts, or improper use of
+                                       this schema causes authorization failure.
+                                       
+                                       For more details, refer to the Ericsson 
+                                       LDAP Interface Description.
+                                       
+                                       Example:
+                                       
+                                       If the ME in /system/authentication/target-types 
+                                       is configured with 'cscf.ims.stockholm' and the
+                                       LDAP user account contains:
+                                       
+                                       ericssonUserAuthenticationScope: cscf.ims.stockholm
+                                       ericssonUserAuthenticationScope: cscf.ims.malmo
+                                       ericssonUserAuthorizationScope:  cscf.ims.stockholm:SystemAdministrator
+                                       ericssonUserAuthorizationScope:  cscf.ims.malmo:SystemSecurityAdministrator
+                                       ericssonUserAuthorizationScope:  *:ApplicationOperator
+                                       
+                                       Then given the LDAP user provided a correct 
+                                       password it is authenticated on
+                                       the ME and assigned with role 
+                                       'SystemAdministrator' and 
+                                       'ApplicationOperator'.";
+
+                                    must '(. = "false" or /sys:system/sys:authentication/target-types)' {
+                                        error-message
+                                          "When target based access control 
+                                           is enabled,
+                                           /system/authentication/target-types 
+                                           must be defined.";
+
+                                        description
+                                          "When target based access control 
+                                           is enabled, 
+                                           /system/authentication/target-types 
+                                           must be defined.";
+                                    }
+                                }
+
+                                leaf role-aliases-base-dn {
+                                    type typese:distinguished-name;
+                                    description
+                                      "LDAP DN to a subtree of objects that 
+                                       is used to convert alias roles to
+                                       groups the ME understands. The format
+                                       of the DN for such an object is
+                                       'role=[role], role-aliases-base-dn', 
+                                       where [role] must be replaced with
+                                       the name of a role alias or role group. 
+                                       All these objects must be
+                                       accessible from the base DN defined 
+                                       in this leaf.
+                                       
+                                       For example:
+                                       if role-aliases-base-dn = \"dc=example,dc=com\" 
+                                       and the user has role Admin,
+                                       and the object \"role=Admin,dc=example,dc=com\" 
+                                       exists and has attribute 
+                                       ericssonUserAuthorizationScope = Administrator, 
+                                       the user receives the Administrator 
+                                       role.";
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    augment /sys:system {
+        if-feature ldap-authentication;
+        description
+          "Augment in checks for the LDAP AA model.";
+
+        container ldap-checks {
+            description
+              "The container implements checks for the LDAP AA 
+               function and SHALL NOT be used for configuration.";
+            must 'not(/sys:system/sys:authentication[sys:user-authentication-order = "sysxe:ldap"]) ' +
+                    ' or /sys:system/sysxe:ldap/sysxe:server' {
+                error-message
+                  "When 'ldap' is used, a LDAP server must be configured.";
+                description
+                  "When 'ldap' is used as an authentication method, a 
+                   LDAP server must be configured.";
+            }
+        }
+    }
+
+    /* Note: description of user-authentication-order cannot be deviated.
+     * 
+     * List of deviations:
+     * 
+     *         If the 'ldap-authentication' feature is advertised by
+     *      the ME, the 'ldap' identity can be added to
+     *      this list.
+     * 
+     */
+    /*
+     * The below simple solution does not work as it creates a circular 
+     *  dependency between ietf-system and ericsson-system-ext. 
+     *  See https://openalm.lmera.ericsson.se/plugins/tracker/?aid=556175
+     * 
+     * 
+     *  deviation /sys:system/sys:authentication/sys:user-authentication-order {  
+     *     deviate add {
+     *         must '(. != "ldap" or ../../sysxe:ldap/sysxe:server)' {
+     *             error-message
+     *                  "When 'ldap' is used, a LDAP server must be configured.";
+     *            description
+
+     * "When 'ldap' is used as an authentication method, a LDAP server must be
+     * configured.";
+
+     *         }
+     *     }
+     }*/
+    /*
+     * The below deviations were removed as LDAP is a feature and not having if-feature
+     * on the deviation causes compilation issues.
+     * 
+     * 
+     * deviation /sys:system/ldap/security/transport-security/tls/tls/hello-params/tls-versions {
+     *     description "LDAP client third-party products used in Ericsson rarely support tls
+     *                 version configuration.";
+     *     deviate not-supported;
+     * }
+
+     * deviation /sys:system/ldap/security/transport-security/tls/tls/server-authentication/server-certs {
+     *     description "Only CA configuration is supported.";
+     *     deviate not-supported;
+     * }
+     */
+
+    /* Generic authentication parameters */
+    augment /sys:system/sys:authentication {
+        if-feature sys:authentication;
+        description
+          "Augment with generic authentication options.";
+
+        leaf authentication-failure-delay {
+            type uint8;
+            units seconds;
+            default "3";
+            description
+              "Average delay after a failed login attempt in seconds. 
+               Value 0 means no delay.";
+        }
+
+        leaf-list target-types {
+            if-feature local-target-classes;
+            type string {
+                pattern
+                  '(\\\\[a-fA-F0-9]{2}|[A-Za-z0-9!$%&' + "'" + './:=?@^_`{|}~-])' +
+                  '((\\\\[a-fA-F0-9]{2}|[A-Za-z0-9!$%&' + "'" + './:=?@^_`{|}~\-# ])*' +
+                  '(\\\\[a-fA-F0-9]{2}|[A-Za-z0-9!$%&' + "'" + './:=?@^_`{|}~\-#]))?' {
+                    error-message
+                      "A string with alphanumeric US ASCII or 
+                       punctuation characters.";
+                }
+            }
+            description
+              "Lists the target types of the ME for 
+               Target Based Access Control (TBAC).
+               Authentication methods use TBAC to determine 
+               whether a user can be authorized in the ME, 
+               and which groups apply to the user in the ME, 
+               based on the target types specified in this 
+               attribute.
+               
+               This leaf can contain any classifier string for 
+               the ME such as geographical,
+               network, or functional identifiers.";
+        }
+
+        leaf legal-notice {
+            type string;
+            default "IF YOU ARE NOT AN AUTHORIZED USER, 
+                     PLEASE EXIT IMMEDIATELY";
+
+            description
+              "The legal notice presented to the user when 
+               starting a session. The message is presented 
+               to the client before authentication takes place. 
+               Depends on the client capability and configuration
+               if the message is presented to the user. 
+               The user receives this information before 
+               authentication. The purpose of the message is to warn 
+               the user about the consequences of unauthorized
+               access.";
+        }
+
+        leaf privacy-notice {
+            type string;
+            default "This system processes sensitive personal data. 
+                     The misuse of such data may generate considerable
+                     harm to the data subjects. Be reminded of the 
+                     confidentiality obligations you have when accessing 
+                     this kind of data and the disciplinary consequences 
+                     of improper handling. 
+                     Version: 1.0, Last Updated: May 21, 2019";
+
+            description
+              "The privacy notice presented to the user.";
+        }
+
+        leaf post-login-notice {
+            type string;
+            default "";
+
+            description
+              "A legal notice that, for any reason related 
+               to specific regulations, must
+               be accessible only after users log in.";
+        }
+
+        /* ----------- REMOVED ------------*/
+ /*       action change-password {
+            description
+              "Changes password for own account.
+               
+               The password is updated by a local or remote 
+               user data store. The old and the new password 
+               are both checked at the user store. The new 
+               password is subject to password policy control.";
+
+            input {
+                leaf old-password {
+                    yexte:is-passphrase;
+                    type string;
+                    mandatory true;
+                    description
+                      "The old password.";
+                }
+
+                leaf new-password {
+                    yexte:is-passphrase;
+                    type string;
+                    mandatory true;
+                    description
+                      "The new password.";
+                }
+
+                leaf confirm-password {
+                    yexte:is-passphrase;
+                    type string;
+                    mandatory true;
+                    description
+                      "The confirmation of the new password.";
+                }
+
+                must 'new-password = confirm-password' {
+                    error-message
+                      "Password confirmation failed. 
+                       The new-password and the confirm-password
+                       do not match.";
+                }
+            }
+        }*/
+        /* ----------- TO BE REMOVED END ------------*/
+
+    }
+ 
+    /* Local authentication extensions */
+    grouping password-quality-grouping {
+        description
+          "Password quality grouping.";
+
+        leaf max-consecutive-characters-per-class {
+            type uint16;
+            description
+              "Maximum consecutive characters per class 
+               in a password. Specifies the maximum number 
+               of characters that can appear consecutively 
+               from a given character class. Value 0 means that
+               consecutive character classes are not checked. 
+               Possible character classes are digits, uppercase, 
+               lowercase, and other characters. ";
+        }
+
+        leaf min-digit {
+            type uint16;
+            description
+              "Minimum number of digits in passwords. 
+               Minimum number of digits a new password must have 
+               to be accepted by the ME. Value 0 means the check is
+               disabled.";
+        }
+
+        leaf min-lower {
+            type uint16;
+            description
+              "Minimum number of lower case characters in 
+               passwords. Minimum number of lower case characters 
+               a new password must have to be accepted by the ME.
+               Value 0 means the check is disabled.";
+        }
+
+        leaf min-upper {
+            type uint16;
+            description
+              "Minimum number of upper case characters in passwords.
+               Minimum number of upper case characters a new password
+               must have to be accepted by the ME.
+               Value 0 means the check is disabled.";
+        }
+
+        leaf min-other {
+            type uint16;
+            description
+              "Minimum number of non-alphanumeric characters in 
+               passwords. Minimum number of non-alphanumeric 
+               characters a new password must have to be accepted by
+               the ME. Value 0 means the check is disabled.";
+        }
+
+        leaf min-points {
+            type uint16 {
+                range 1..4;
+            }
+            description
+              "Minimum password quality points. Minimum number 
+               of quality points a new password must have to be 
+               accepted by the ME. One quality point is awarded
+               for each character class used in the password. 
+               Possible character classes
+               are digits, uppercase, lowercase, and other characters.";
+        }
+    }
+
+    grouping password-policy-grouping {
+        description
+          "Password policy grouping.";
+
+        leaf expiry-warning {
+            type uint16;
+            units days;
+            description
+              "Password expiry warning in days. Specifies the number
+               of days before the expiry date when the ME starts to
+               notify the user at authentication to
+               change password due to approaching expiry date. 
+               Value 0 means expiry warnings are never sent.";
+        }
+
+        leaf failure-count-interval {
+            type uint32;
+            units seconds;
+            description
+              "The time interval within which consecutive failed 
+               login attempts count in seconds. Specifies the time
+               interval it takes to obsolete records in password-failure-times
+               used for leaf max-failure. Value 0 means the failure
+               counter is reset only on successful authentication.";
+        }
+
+        leaf history-length {
+            type uint32;
+            description
+              "Specifies the number of passwords remembered by the 
+               ME to avoid the reuse of old passwords. 
+               Value 0 means old passwords are not recorded.";
+        }
+
+        leaf lockout-duration {
+            type uint32;
+            units seconds;
+            description
+              "Account lockout duration in seconds due to password 
+               failures. Specifies the time in seconds after an 
+               automatically locked user account is unlocked
+               automatically. Value 0 means that only the administrator 
+               can unlock a user account manually by invoking 
+               unlock-operational-lock action on the user
+               account.";
+        }
+
+        leaf max-age {
+            type uint16;
+            units days;
+            description
+              "Password maximum age in days.Specifies the number 
+               of days after a password is considered expired. 
+               Value 0 means passwords never expire.";
+        }
+
+        leaf max-failure {
+            type uint32;
+            description
+              "Maximum failed login attempts to lock a user account.
+               Specifies the number of consecutive failed login 
+               attempts which locks the user account
+               automatically, as counted in password-failure-times 
+               of the respective users. Value 0 means that an unlimited 
+               number of failed attempts is allowed,
+               the user account is not locked by failures. ";
+        }
+
+        leaf min-age {
+            type uint16;
+            units days;
+            description
+              "Password minimum age in days. Specifies the minimum
+               number of days that need to pass before a password 
+               can be changed. Value 0 means there is no
+               control on the minimum age of passwords.";
+        }
+
+        leaf min-length {
+            type uint16;
+            description
+              "Minimum length of passwords. Specifies the minimum 
+               character lengths of passwords that the ME can accept.";
+        }
+
+        leaf must-change {
+            type boolean;
+            description
+              "Indicates if the password must change after password 
+               set or reset by administrator.";
+        }
+
+        leaf password-quality {
+            type leafref {
+                path "/sys:system/sys:authentication/"
+                    + "password-quality/" + "name";
+            }
+            description
+              "The password quality";
+        }
+    }
+
+    grouping account-policy-grouping {
+        description
+          "User account policy grouping.";
+
+        leaf dormant-timer {
+            type uint16;
+            units days;
+            description
+              "Account dormant timer in days. Specifies the number 
+               of days it takes for the ME to automatically lock a 
+               user account that was not used in this time
+               period. Value 0 means the dormant time is not measured.";
+        }
+    }
+
+    augment /sys:system/sys:authentication {
+        if-feature sys:local-users;
+        description
+          "Augment with local-users specific configuration model.";
+
+        container default-password-quality {
+            description
+              "The default password quality.";
+
+            uses password-quality-grouping {
+                refine max-consecutive-characters-per-class {
+                    default 3;
+                }
+                refine min-digit {
+                    default 0;
+                }
+                refine min-lower {
+                    default 0;
+                }
+                refine min-upper {
+                    default 0;
+                }
+                refine min-other {
+                    default 0;
+                }
+                refine min-points {
+                    default 3;
+                }
+            }
+        }
+
+        list password-quality {
+            key name;
+
+            description
+              "List of password quality configurations 
+               to set up the dimensions of
+               password quality checking.
+               
+               The leaves that do not get a value use the 
+               defaults configured in default-password-quality.";
+
+            leaf name {
+                type string;
+                description
+                  "Name of the quality configuration.";
+            }
+
+            uses password-quality-grouping;
+
+            leaf user-label {
+                type string;
+                description
+                  "Label for free use.";
+            }
+        }
+
+        container default-password-policy {
+            description
+              "The default password policy. By default it uses the 
+               default-password-quality configuration.";
+
+            uses password-policy-grouping {
+                refine expiry-warning {
+                    default 7;
+                }
+                refine failure-count-interval {
+                    default 1800;
+                }
+                refine history-length {
+                    default 12;
+                }
+                refine lockout-duration {
+                    default 0;
+                }
+                refine max-age {
+                    default 90;
+                }
+                refine max-failure {
+                    default 3;
+                }
+                refine min-age {
+                    default 15;
+                }
+                refine min-length {
+                    default 10;
+                }
+                refine must-change {
+                    default true;
+                }
+            }
+        }
+
+        list password-policy {
+            key name;
+
+            description
+              "List of password policies. The leaves that do 
+               not get a value use the
+               defaults configured in default-password-policy.";
+
+            leaf name {
+                type string;
+                description
+                  "Name of the policy configuration.";
+            }
+
+            uses password-policy-grouping;
+
+            leaf user-label {
+                type string;
+                description
+                  "Label for free use.";
+            }
+        }
+
+        container default-account-policy {
+            description
+              "The default user account policy.";
+
+            uses account-policy-grouping {
+                refine dormant-timer {
+                    default 180;
+                }
+            }
+        }
+
+        list account-policy {
+            key name;
+
+            description
+              "List of user account policies. The leaves that do 
+               not get a value use the
+               defaults configured in default-account-policy.";
+
+            leaf name {
+                type string;
+                description
+                  "The name of the user account policy.";
+            }
+
+            uses account-policy-grouping;
+
+            leaf user-label {
+                type string;
+                description
+                  "Label for free use.";
+            }
+        }
+
+        container admin-user {
+            description
+              "The administrator user. Used for initial and 
+               recovery scenarios when authentication to regular user accounts 
+               is inaccessible. Password is first set at
+               deployment. Change of password requires a backup to be able to 
+               revert to last state.";
+
+            leaf password {
+                type ianach:crypt-hash;
+                yexte:is-passphrase;
+                nacm:default-deny-all;
+                description
+                  "The password for this entry.";
+            }
+
+            list authorized-key {
+                key name;
+                description
+                  "A list of public SSH keys for this user.  
+                   These keys are allowed for SSH
+                   authentication, as described in RFC 4253.";
+
+                reference
+                  "RFC 4253";
+
+                leaf name {
+                    type string;
+                    description
+                      "An arbitrary name for the SSH key.";
+                }
+
+                leaf algorithm {
+                    type string;
+                    mandatory true;
+                    description
+                      "The public key algorithm name for this SSH key. 
+                       Valid values are the values in the IANA 'Secure 
+                       Shell (SSH) Protocol Parameters' registry,
+                       Public Key Algorithm Names.";
+
+                    reference
+                      "IANA 'Secure Shell (SSH) Protocol Parameters' registry, 
+                       Public Key Algorithm Names";
+                }
+
+                leaf key-data {
+                    type binary;
+                    mandatory true;
+                    description
+                      "The binary public key data for this SSH key, 
+                       as specified by RFC 4253,
+                       Section 6.6, i.e.:
+                       
+                         string    certificate or public key format identifier
+                         byte[n]   key/certificate data.";
+
+                    reference
+                      "RFC 4253";
+                }
+            }
+
+            container admin-password-policy {
+                description
+                  "Container for admin user password policy.";
+
+                leaf failure-count-interval {
+                    if-feature authentication-failure-alarm;
+                    type uint32;
+                    units seconds;
+                    default 86400;
+                    description
+                      "The time interval within which consecutive 
+                       failed login attempts count in seconds. Specifies 
+                       the time interval it takes to obsolete records in
+                       password-failure-times used for leaf 
+                       password-max-failure. Value 0 means
+                       the failure counter is reset only on successful 
+                       authentication.";
+                }
+
+                leaf max-failure {
+                    if-feature authentication-failure-alarm;
+                    type uint32;
+                    default 3;
+                    description
+                      "Maximum failed login attempts to send an 
+                       authentication failure alarm. 
+                       Specifies the number of consecutive failed login 
+                       attempts that can be performed before the user 
+                       account is alarmed, as counted in
+                       password-failure-times. 
+                       Value 0 disables alarm sending.";
+                }
+
+                action clear-authentication-failure-alarm {
+                    if-feature authentication-failure-alarm;
+                    description
+                      "Clears the alarm of failed authentications. 
+                       The action shall be invoked when the external password 
+                       attack leading to the Authentication Failure
+                       Limit Reached alarm is isolated from the ME or 
+                       to test if the attack persists. 
+                       
+                       The threshold when the alarm is raised can be 
+                       configured by leaves max-failure and 
+                       failure-count-interval.";
+                }
+
+                leaf password-quality {
+                    type leafref {
+                        path "/sys:system/sys:authentication/"
+                            + "password-quality/" + "name";
+                    }
+
+                    description
+                      "The password quality. By default it uses the 
+                       default-password-quality configuration.";
+                }
+            }
+        }
+    }
+
+    deviation /sys:system/sys:authentication/sys:user/sys:password {
+        deviate add {
+            yexte:is-passphrase;
+            nacm:default-deny-all;
+        }
+    }
+
+    augment /sys:system/sys:authentication/sys:user {
+        if-feature "sys:authentication and sys:local-users";
+        description
+          "Augmenting with local user management configurations.";
+
+        leaf password-policy {
+            type leafref {
+                path "/sys:system/sys:authentication/"
+                    + "password-policy/name";
+            }
+            description
+              "The password policy. If not defined, the 
+              default-password-policy is used.";
+        }
+
+        leaf account-policy {
+            type leafref {
+                path "/sys:system/sys:authentication/"
+                    + "account-policy/name";
+            }
+            description
+              "The user account policy. If not defined, the 
+               default-account-policy is used.";
+        }
+
+        leaf administrative-state {
+            type typese:basic-adm-state;
+            default unlocked;
+            description
+              "The administrative state of the user account. 
+               Specifies the state of the user account based on 
+               administration performed by the MS. If set to
+               unlocked but account state is locked, 
+               unlock-operational-lock must be
+               invoked.";
+        }
+
+        leaf-list groups {
+            type string {
+                length 1..70;
+                pattern
+                  '[a-zA-Z][a-zA-Z0-9_.-]*[a-zA-Z0-9]' {
+                    error-message
+                      "Must be a string of alphanumeric US-ASCII 
+                       characters, optionally containing '-','_', or '.'. 
+                       For example: 'SystemAdministrator'";
+                }
+            }
+
+            must 'count(/nacm:nacm/nacm:groups/nacm:group/nacm:user-name)=0' {
+                error-message
+                  "/nacm/groups/user-name must be empty if groups are 
+                   defined in user records.";
+
+                description
+                  "When groups are defined in user records, 
+                  /nacm/groups must not be used.";
+            }
+
+            description
+              "The groups of the user provided for the NACM module if
+               /nacm/enable-external-groups is true.";
+        }
+
+        action unlock-operational-lock {
+            description
+              "Unlocks the account.
+               
+               The ME may lock a user account automatically based 
+               on the associated password policy or the user account policy. 
+               The action should be called if the administrative-state is 
+               unlocked but the user account-state or
+               password-state is locked. The action returns an error 
+               if the user account is locked by administrative-state.
+               
+               If the user account usage-state is dormant, 
+               the last-login-time leaf is
+               cleared and the usage-state becomes unused.";
+        }
+
+        leaf full-name {
+            type string;
+            description
+              "The full name of the user assigned to the user account.";
+        }
+
+        leaf user-label {
+            type string;
+            description
+              "Label for free use.";
+        }
+    }
+
+    grouping user-event-times {
+        description
+          "User account event times.";
+
+        leaf last-login-time {
+            type yang:date-and-time;
+            description
+              "The date of the last successful login.";
+        }
+
+        leaf password-changed-time {
+            type yang:date-and-time;
+            description
+              "The time the password was last changed or reset.";
+        }
+
+        leaf-list password-failure-times {
+            type yang:date-and-time;
+            notife:notifiable-state-data false;
+            description
+              "Dates of failed login attempts. The list of dates 
+               when a user tried to authenticate to this user account 
+               and failed. The leaf can be reset by a successful 
+               authentication or by a password reset. The dates outside 
+               the time-window set by failure-count-interval of the 
+               configured password-policy are removed.";
+        }
+    }
+
+    augment /sys:system/sys:authentication {
+        if-feature oauth2-client-authentication;
+        description
+          "Augments authentication with OAuth2 client authentication.";
+
+        list oauth2-client {
+            key client-id;
+            description
+              "A list of OAuth2 clients configured in this device.";
+            leaf client-id {
+                description
+                  "The client identifier to be registered.";
+                reference
+                  "RFC 6749: The OAuth 2.0 Authorization Framework";
+                type string {
+                    length 1..32;
+                    pattern
+                      '[a-zA-Z_][a-zA-Z0-9_.-]*' {
+                        error-message
+                          "A string of alphanumeric US-ASCII characters, 
+                           optionally containing '-', '_', or '.'.
+                           For example: 'client_1'";
+                    }
+                }
+            }
+
+            choice client-authentication {
+                mandatory true;
+
+                case client-secret {
+                    leaf client-secret {
+                        description
+                          "A client secret to authenticate an OAuth2 client.";
+                        reference
+                          "RFC 6749: The OAuth 2.0 Authorization Framework";
+                        type string;
+                        nacm:default-deny-all;
+                        yexte:is-passphrase;
+                    }
+                }
+
+                case private-key-jwt {
+                    container private-key-jwt {
+                        presence
+                          "Indicates that the server can authenticate clients
+                           using JWTs signed by private keys.";
+                        description
+                          "A set of raw public keys used by the OAuth2 server 
+                           to authenticate an OAuth2 client using JWT.";
+                        reference
+                          "RFC 7523: JSON Web Token (JWT) Profile for OAuth 2.0
+                           Client Authentication and Authorization Grants";
+                        uses ts:local-or-truststore-raw-pub-keys-grouping {
+                            refine "local-or-truststore/local/local-definition"
+                                 + "/raw-public-key" {
+                                must 'public-key-format'
+                                   + ' = "ct:subject-public-key-info-format"' {
+                                       error-message "Public key format must be 
+                                                      SubjectPublicKeyInfo 
+                                                      from RFC5280";
+                                   }
+                            }
+                            refine "local-or-truststore/truststore"
+                                 + "/truststore-reference" {
+                                must 'deref(.)/../*/ts:public-key-format'
+                                   + ' = "ct:subject-public-key-info-format"' {
+                                       error-message "Public key format must be 
+                                                      SubjectPublicKeyInfo from 
+                                                      RFC5280";
+                                   }
+                            }
+                        }
+                    }
+                }
+            }
+
+            leaf-list groups {
+                description
+                  "The authorization groups that the OAuth2 client can 
+                   access in a token request as scope.";
+                type string {
+                    length 1..70;
+                    pattern
+                      '[!\[\]\^_`#-Za-~]+' {
+                        error-message
+                          "Allows alphanumeric and special characters
+                           in the range of ( %x21 / %x23-5B / %x5D-7E ) as
+                           defined for the scope parameter in RFC6749.";
+                    }
+                }
+            }
+        }
+    }
+
+    augment /sys:system-state {
+        description
+          "Augmenting with authentication operational data.";
+
+        container authentication {
+            if-feature sys:authentication;
+
+            description
+              "The authentication state subtree.";
+
+            list user {
+                if-feature sys:local-users;
+                notife:notifiable-state-data true;
+                key name;
+                description
+                  "The local user state subtree.";
+
+                leaf name {
+                    type leafref {
+                        path "/sys:system/sys:authentication/sys:user/"
+                            + "sys:name";
+                    }
+                    description
+                      "The user name string identifying this entry.";
+                }
+
+                leaf state {
+                    type enumeration {
+                        enum locked {
+                            value 0;
+                            description
+                              "The user account is locked. 
+                               Authentication is not possible.";
+                        }
+                        enum unlocked {
+                            value 1;
+                            description
+                              "The user account is unlocked. 
+                               Authentication is possible.";
+                        }
+                    }
+                    description
+                      "The state of the user account.
+                       
+                       In locked state, users are not able to authenticate 
+                       to this user account.
+                       In unlocked state, users are able to authenticate 
+                       to this user account. 
+                       
+                       Automatic lock can be placed due to dormant account. 
+                       Manual locking and unlocking performed by 
+                       administrative-state is also reflected by the 
+                       account state. A manual lock has 
+                       precedence over an automatic lock, thus enabling
+                       an account must always start with checking the value 
+                       of the administrative-state attribute and setting 
+                       it unlocked. 
+                       If already unlocked and the account state is locked, 
+                       the ME automatically locked the account, 
+                       unlock-operational-lock must be invoked for unlock.";
+                }
+
+                leaf usage-state {
+                    type enumeration {
+                        enum unused {
+                            value 0;
+                            description
+                              "The user account is unused.";
+                        }
+                        enum active {
+                            value 1;
+                            description
+                              "The user account is active.";
+                        }
+                        enum dormant {
+                            value 2;
+                            description
+                              "The user account is dormant.";
+                        }
+                    }
+                    description
+                      "The state of the user account based on user activity. 
+                       
+                       The user account is dormant if the system time passes 
+                       the value of last-login-time plus the dormant-timer, 
+                       thus indicating lock due to user account inactivity. 
+                       When the user account is dormant the user account gets
+                       locked by changing user account state to locked.
+                       
+                       The user account is unused when no successful 
+                       authentication was performed to it.
+                       
+                       The user account is active in all other cases.";
+                }
+
+                leaf password-state {
+                    type enumeration {
+                        enum valid {
+                            value 0;
+                            description
+                              "The password is valid based on system time, 
+                               password changed time, and
+                               aging policy.";
+                        }
+                        enum expired-mustchange {
+                            value 1;
+                            description
+                              "The password is expired based on system time, 
+                               password changed time, and
+                               aging policy. 
+                               The user is forced to change password 
+                               at next login.";
+                        }
+                        enum expired {
+                            value 2;
+                            description
+                              "The password is expired based on system time, 
+                               password changed time, and
+                               aging policy. 
+                               Password authentication is locked.";
+                        }
+                        enum locked {
+                            value 3;
+                            description
+                              "The password is locked due to failure attempts 
+                               exceeding configured limit.";
+                        }
+                    }
+                    description
+                      "The state of the password.
+                       
+                       Has no value if the password is not set after 
+                       creating the user account or the password was removed; 
+                       thus, no password is set.
+                       
+                       If the state is expired-mustchange, the password must 
+                       be changed by the user at login. After a grace period 
+                       the state turns to expired and the user account becomes 
+                       locked; only an authorized user can reset the password in
+                       that state.
+                       
+                       If no change is required at the set of the password, 
+                       the state turns to valid. After expiry the state 
+                       returns to expired-mustchange.
+                       
+                       If failure counters reached the limit, the password 
+                       state turns to locked and password authentication 
+                       is not possible. The locked state may be
+                       resolved by an automatic operational unlock by ME, 
+                       or a manual unlock by the MS. The automatic unlock 
+                       is based on the lockout-duration of the current
+                       password-policy of the user. The manual unlock is 
+                       done by invoking the action unlock-operational-lock.";
+                }
+
+                uses user-event-times;
+
+                leaf locked-time {
+                    type yang:date-and-time;
+                    description
+                      "The time the user account was locked. Specifies 
+                       the time the user account was locked regardless 
+                       if that was due to an administrative lock or an
+                       automatic operational lock. The value is cleared
+                       when the user account is unlocked.";
+                }
+
+                leaf password-locked-time {
+                    type yang:date-and-time;
+                    description
+                      "The time the password authentication was locked. 
+                       Specifies the time the password was locked due 
+                       to excessive failure attempts or expired password. 
+                       The value is cleared when the password is unlocked
+                       or removed.";
+                }
+            }
+
+            container admin-user {
+                if-feature sys:local-users;
+                notife:notifiable-state-data true;
+                description
+                  "The admin user state subtree.";
+
+                leaf name {
+                    type string {
+                        length 1..32;
+                        pattern
+                          '[a-zA-Z_][a-zA-Z0-9_.-]*' {
+                            error-message
+                              "A string of alphanumeric US-ASCII characters, 
+                               optionally containing '-', '_', or '.'. 
+                               For example: 'user_1'";
+                        }
+                    }
+
+                    description
+                      "The user name string identifying the admin user.";
+                }
+
+                container admin-password-policy {
+                    description
+                      "Container for admin user password policy 
+                       state information.";
+
+                    leaf history-length {
+                        type uint32;
+                        description
+                          "Specifies the number of passwords remembered 
+                           by the ME to avoid the reuse of old passwords. 
+                           Value 0 means old passwords are not recorded.";
+                    }
+
+                    leaf min-length {
+                        type uint32;
+                        description
+                          "Minimum length of passwords. Specifies the 
+                           minimum character lengths of
+                           passwords that the ME can accept.";
+                    }
+                }
+
+                uses user-event-times;
+            }
+        }
+    }
+
+    /*************************************/
+    /*   Identities for MAC Algorithms   */
+    /*************************************/
+    typedef mac-algorithm-supported-t {
+        type enumeration {
+            enum hmac-sha2-224 {
+                value 3;
+                description
+                  "Generating MAC using SHA2 hash function";
+                reference
+                  "RFC 6234: US Secure Hash Algorithms
+                   (SHA and SHA-based HMAC and HKDF)";
+            }
+            enum hmac-sha2-256 {
+                value 4;
+                description
+                  "Generating MAC using SHA2 hash function";
+                reference
+                  "RFC 6234: US Secure Hash Algorithms
+                   (SHA and SHA-based HMAC and HKDF)";
+            }
+            enum hmac-sha2-256-128 {
+                value 5;
+                description
+                  "Generating a 256 bits MAC using SHA2 hash function and
+                   truncate it to 128 bits";
+                reference
+                  "RFC 4868: Using HMAC-SHA-256, HMAC-SHA-384,
+                   and HMAC-SHA-512 with IPsec";
+            }
+            enum hmac-sha2-384 {
+                value 6;
+                description
+                  "Generating a 384 bits MAC using SHA2 hash function";
+                reference
+                  "RFC 6234: US Secure Hash Algorithms
+                   (SHA and SHA-based HMAC and HKDF)";
+            }
+            enum hmac-sha2-384-192 {
+                value 7;
+                description
+                  "Generating a 384 bits MAC using SHA2 hash function and
+                   truncate it to 192 bits";
+                reference
+                  "RFC 4868: Using HMAC-SHA-256, HMAC-SHA-384,
+                   and HMAC-SHA-512 with IPsec";
+            }
+            enum hmac-sha2-512 {
+                value 8;
+                description
+                  "Generating a 512 bits MAC using SHA2 hash function";
+                reference
+                  "RFC 6234: US Secure Hash Algorithms
+                   (SHA and SHA-based HMAC and HKDF)";
+            }
+            enum hmac-sha2-512-256 {
+                value 9;
+                description
+                  "Generating a 512 bits MAC using SHA2 hash function and
+                   truncate it to 256 bits";
+                reference
+                  "RFC 4868: Using HMAC-SHA-256, HMAC-SHA-384,
+                   and HMAC-SHA-512 with IPsec";
+            }
+        }
+    }
+
+    augment /sys:system/sys:ntp/sys:server {
+        if-feature ntp-security;
+        description
+          "Augmenting with ntp security features.";
+
+        leaf administrative-state {
+            type typese:basic-adm-state;
+            description
+              "Locks or unlocks the administrative state of the NTP 
+               client function. This is a convenience function to 
+               permit some or all NtpServer instances to be temporarily 
+               locked without the need to delete the object List of 
+               supported key algorithms by the ME.";
+
+            default unlocked;
+        }
+
+        leaf-list mac-algorithm {
+            type mac-algorithm-supported-t;
+            description
+              "The hash algorithm used towards the corresponding NTP Server.";
+        }
+
+        leaf pre-shared-key {
+            yexte:is-passphrase;
+            nacm:default-deny-all;
+            type string;
+            description
+              "The pre shared key for the NTP authentication.";
+        }
+
+        leaf key-id {
+            type uint64 {
+                range "1..65534";
+            }
+            description
+              "The key ID for the NTP authentication. 
+               This is an integer identifying the
+               cryptographic key used to generate the 
+               message authentication code.";
+        }
+
+        leaf user-label {
+            type string;
+            description
+              "Label for free use.";
+        }
+    }
+}

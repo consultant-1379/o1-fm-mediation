@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI 2023. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><PrimaryTypeDefinition xmlns="urn:com:ericsson:schema:xml:oss:dps_primarytype" xmlns:ns2="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns6="urn:com:ericsson:schema:xml:oss:dps_common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" hierarchyType="HIERARCHICAL" ns2:lifeCycle="CURRENT" ns2:name="O1ConnectivityInformation" ns2:ns="O1_MED" ns2:version="1.0.0" readBehavior="FROM_PERSISTENCE" writeBehavior="DELEGATE">
+  <ns2:modelCreationInfo author="lciadm100" creationDate="Wed May 03 16:24:35 IST 2023">
+    <ns2:designedModel className="com.ericsson.oss.mediation.model.ci.o1.O1ConnectivityInformation_100" componentId="o1node-ci-model-jar"/>
+  </ns2:modelCreationInfo>
+  <ns2:inheritsFrom urn="//TOP_MED/ConnectivityInformation/1.0.0"/>
+  <ns2:desc>This MO encapsulates all the connectivity attributes for the O1 based nodes.</ns2:desc>
+  <primaryTypeAttribute immutable="true" key="true" mandatory="true" ns2:lifeCycle="CURRENT" ns2:name="O1ConnectivityInformationId" sensitive="false">
+    <ns2:desc>The unique key identifying this particular MO</ns2:desc>
+    <ns2:type xsi:type="ns2:stringType">
+      <ns2:notNullConstraint/>
+    </ns2:type>
+  </primaryTypeAttribute>
+  <primaryTypeAttribute immutable="false" key="false" mandatory="true" ns2:lifeCycle="CURRENT" ns2:name="ipAddress" sensitive="false">
+    <ns2:desc>The IP address</ns2:desc>
+    <ns2:type xsi:type="ns2:ipAddressType">
+      <ns2:notNullConstraint/>
+    </ns2:type>
+    <changeEventHandling onCreatePo="" onDeletePo="" onModifyAttr="VALUE"/>
+  </primaryTypeAttribute>
+  <primaryTypeAttribute immutable="false" key="false" mandatory="false" ns2:lifeCycle="CURRENT" ns2:name="snmpAgentPort" sensitive="false">
+    <ns2:desc>The port number of the node where the SNMP agent is listening.</ns2:desc>
+    <ns2:type xsi:type="ns2:integerType">
+      <ns2:notNullConstraint/>
+      <ns2:valueRangeConstraint>
+        <ns2:minMaxRange max="65535" min="1"/>
+      </ns2:valueRangeConstraint>
+    </ns2:type>
+    <ns2:default value="161" xsi:type="ns2:integerValue"/>
+  </primaryTypeAttribute>
+  <primaryTypeAttribute immutable="false" key="false" mandatory="false" ns2:lifeCycle="CURRENT" ns2:name="snmpTrapPort" sensitive="false">
+    <ns2:desc>The port number where ENM is listening to SNMP traps.</ns2:desc>
+    <ns2:type xsi:type="ns2:integerType">
+      <ns2:notNullConstraint/>
+      <ns2:valueRangeConstraint>
+        <ns2:minMaxRange max="65535" min="1"/>
+      </ns2:valueRangeConstraint>
+    </ns2:type>
+    <ns2:default value="162" xsi:type="ns2:integerValue"/>
+  </primaryTypeAttribute>
+  <primaryTypeAttribute immutable="false" key="false" mandatory="false" ns2:lifeCycle="CURRENT" ns2:name="snmpVersion" sensitive="false">
+    <ns2:desc>The SNMP version to be used towards the node</ns2:desc>
+    <ns2:type modelUrn="//O1_MED/SnmpVersion/1.0.0" xsi:type="ns2:enumRefType"/>
+    <ns2:default value="SNMP_V2C" xsi:type="ns2:stringValue"/>
+  </primaryTypeAttribute>
+  <primaryTypeAttribute immutable="false" key="false" mandatory="false" ns2:lifeCycle="CURRENT" ns2:name="snmpReadCommunity" sensitive="false">
+    <ns2:desc>Community string to be used for SNMP GET management</ns2:desc>
+    <ns2:type xsi:type="ns2:stringType"/>
+    <ns2:default value="public" xsi:type="ns2:stringValue"/>
+  </primaryTypeAttribute>
+  <primaryTypeAttribute immutable="false" key="false" mandatory="false" ns2:lifeCycle="CURRENT" ns2:name="snmpWriteCommunity" sensitive="false">
+    <ns2:desc>Community string to be used for SNMP SET management</ns2:desc>
+    <ns2:type xsi:type="ns2:stringType"/>
+    <ns2:default value="public" xsi:type="ns2:stringValue"/>
+  </primaryTypeAttribute>
+  <primaryTypeAttribute immutable="false" key="false" mandatory="false" ns2:lifeCycle="CURRENT" ns2:name="port" sensitive="false">
+    <ns2:desc>The netconf port</ns2:desc>
+    <ns2:type xsi:type="ns2:integerType">
+      <ns2:notNullConstraint/>
+    </ns2:type>
+    <ns2:default value="22" xsi:type="ns2:integerValue"/>
+    <changeEventHandling onCreatePo="" onDeletePo="" onModifyAttr="VALUE"/>
+  </primaryTypeAttribute>
+  <primaryTypeAttribute immutable="false" key="false" mandatory="false" ns2:lifeCycle="CURRENT" ns2:name="transportProtocol" sensitive="false">
+    <ns2:desc>Transport protocol provided by node</ns2:desc>
+    <ns2:type modelUrn="//O1_MED/TransportProtocolType/1.0.0" xsi:type="ns2:enumRefType"/>
+    <ns2:default value="SSH" xsi:type="ns2:stringValue"/>
+  </primaryTypeAttribute>
+  <primaryTypeAttribute immutable="false" key="false" mandatory="false" ns2:lifeCycle="CURRENT" ns2:name="snmpSecurityName" sensitive="false">
+    <ns2:desc>SNMP security name</ns2:desc>
+    <ns2:type xsi:type="ns2:stringType"/>
+  </primaryTypeAttribute>
+  <primaryTypeAttribute immutable="false" key="false" mandatory="false" ns2:lifeCycle="CURRENT" ns2:name="snmpSecurityLevel" sensitive="false">
+    <ns2:desc>SNMP security level</ns2:desc>
+    <ns2:type modelUrn="//O1_MED/SnmpSecurityLevelType/1.0.0" xsi:type="ns2:enumRefType"/>
+  </primaryTypeAttribute>
+  <changeEventHandling onCreateAssoc="" onCreatePo="NAMES VALUES" onDeleteAssoc="" onDeletePo="NAMES VALUES" onModifyAttr=""/>
+</PrimaryTypeDefinition>

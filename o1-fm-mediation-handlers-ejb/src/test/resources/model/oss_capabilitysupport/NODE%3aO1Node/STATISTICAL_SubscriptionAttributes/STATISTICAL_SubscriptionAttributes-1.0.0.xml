@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+******************************************************************************
+* COPYRIGHT Ericsson LMI 2023. All rights reserved.
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+******************************************************************************
+-->
+<CapabilitySupportDefinition
+        oss_common:ns="NODE:O1Node"
+        oss_common:name="STATISTICAL_SubscriptionAttributes"
+        oss_common:version="1.0.0"
+        oss_common:lifeCycle="CURRENT"
+        xmlns="urn:com:ericsson:schema:xml:oss:oss_capabilitysupport"
+        xmlns:oss_common="urn:com:ericsson:schema:xml:oss:oss_common"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <oss_common:modelCreationInfo author="TeamAmerica" creationDate="2023-04-26">
+        <oss_common:designedModel componentId="o1node-node-model-common-jar" />
+    </oss_common:modelCreationInfo>
+
+    <oss_common:desc>PM Statistical Subscription Capability Support for O1Node node target type</oss_common:desc>
+
+    <complexCapability name="supportedOtherNodeTypes">
+        <value xsi:type="oss_common:collectionValue">
+             <oss_common:values></oss_common:values>
+        </value>
+    </complexCapability>
+
+    <capability name="countersEventsSelectionApplicable" value="false"/>
+    <capability name="countersEventsValidationApplicable" value="false"/>
+    <capability name="importExportCountersEventsApplicable" value="false"/>
+
+    <complexCapability name="supportedRopPeriods">
+        <value xsi:type="oss_common:collectionValue">
+            <oss_common:values>
+                <oss_common:value xsi:type="oss_common:stringValue" value="FIFTEEN_MIN" />
+            </oss_common:values>
+        </value>
+    </complexCapability>
+</CapabilitySupportDefinition>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+*******************************************************************************
+* COPYRIGHT Ericsson LMI 2023. All rights reserved.
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*******************************************************************************
+-->
+<CapabilitySupportDefinition
+    oss_common:ns="O1Node"
+    oss_common:name="PMICFunctions"
+    oss_common:version="1.0.0"
+    xmlns="urn:com:ericsson:schema:xml:oss:oss_capabilitysupport"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:oss_common="urn:com:ericsson:schema:xml:oss:oss_common">
+
+    <oss_common:modelCreationInfo author="TeamAmerica" creationDate="2023-04-26">
+        <oss_common:designedModel componentId="o1node-node-model-common-jar" />
+    </oss_common:modelCreationInfo>
+
+    <oss_common:desc>PM Capability Support for O1Node target version</oss_common:desc>
+
+    <capability name="scannerMasterEnabled" value="true" />
+    <capability name="metaDataValidationRequired" value="false" />
+    <capability name="mediationAutonomyEnabled" value="true"/>
+    <capability name="pmFunctionMediationCapability" value="FULL_CONFIG"/>
+
+    <complexCapability name="supportedSubscriptionTypes">
+        <value xsi:type="oss_common:collectionValue">
+            <oss_common:values>
+                <oss_common:value xsi:type="oss_common:stringValue" value="STATISTICAL"/>
+            </oss_common:values>
+        </value>
+    </complexCapability>
+</CapabilitySupportDefinition>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns4:PrimaryTypeExtensionDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:dps_primarytype" xmlns:ns3="urn:com:ericsson:schema:xml:oss:dps_common" xmlns:ns4="urn:com:ericsson:schema:xml:oss:dps_primarytype_ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ns1:name="urn:ietf:params:xml:ns:yang:ietf-system__user__ext" ns1:ns="NODE__O1Node__1.0" ns1:version="1.0.0">
+  <ns1:modelCreationInfo author="YANG Transformer2">
+    <ns1:derivedModel derivedFrom="/net_yang/urn%3aietf%3aparams%3axml%3ans%3ayang%3aietf-system/ietf-system%402014-08-06"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>Extension for /urn:ietf:params:xml:ns:yang:ietf-system/user/2014.8.6 to handle augmentations/deviations</ns1:desc>
+  <ns1:extendedModelElement urn="//urn%3aietf%3aparams%3axml%3ans%3ayang%3aietf-system/user/2014.8.6"/>
+  <ns1:requiresTargetType category="NODE" type="O1Node" version="1.0"/>
+  <ns4:primaryTypeExtension>
+    <ns4:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-system-ext" ns1:lifeCycle="CURRENT" ns1:name="account-policy" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+      <ns1:desc>The user account policy. If not defined, the default-account-policy is used.</ns1:desc>
+      <ns1:type xsi:type="ns1:stringType"/>
+    </ns4:primaryTypeAttribute>
+    <ns4:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-system-ext" ns1:lifeCycle="CURRENT" ns1:name="administrative-state" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+      <ns1:desc>The administrative state of the user account. Specifies the state of the user account based on administration performed by the MS. If set to unlocked but account state is locked, unlock-operational-lock must be invoked.</ns1:desc>
+      <ns1:type modelUrn="//NODE__O1Node__1.0/urn%3aietf%3aparams%3axml%3ans%3ayang%3aietf-system__user__administrative-state/1.0.0" xsi:type="ns1:enumRefType"/>
+      <ns1:default value="unlocked" xsi:type="ns1:stringValue"/>
+    </ns4:primaryTypeAttribute>
+    <ns4:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-system-ext" ns1:lifeCycle="CURRENT" ns1:name="full-name" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+      <ns1:desc>The full name of the user assigned to the user account.</ns1:desc>
+      <ns1:type xsi:type="ns1:stringType"/>
+    </ns4:primaryTypeAttribute>
+    <ns4:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-system-ext" ns1:lifeCycle="CURRENT" ns1:name="groups" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+      <ns1:desc>The groups of the user provided for the NACM module if /nacm/enable-external-groups is true.</ns1:desc>
+      <ns1:type xsi:type="ns1:listType">
+        <ns1:collectionUniquenessConstraint/>
+        <ns1:collectionValuesType xsi:type="ns1:stringType">
+          <ns1:stringLengthConstraint>
+            <ns1:minMaxLength max="70" min="1"/>
+          </ns1:stringLengthConstraint>
+          <ns1:stringContentsConstraint type="REGEX" value="[a-zA-Z][a-zA-Z0-9_.-]*[a-zA-Z0-9]"/>
+        </ns1:collectionValuesType>
+      </ns1:type>
+    </ns4:primaryTypeAttribute>
+    <ns4:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-system-ext" ns1:lifeCycle="CURRENT" ns1:name="password-policy" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+      <ns1:desc>The password policy. If not defined, the default-password-policy is used.</ns1:desc>
+      <ns1:type xsi:type="ns1:stringType"/>
+    </ns4:primaryTypeAttribute>
+    <ns4:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-system-ext" ns1:lifeCycle="CURRENT" ns1:name="user-label" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+      <ns1:desc>Label for free use.</ns1:desc>
+      <ns1:type xsi:type="ns1:stringType"/>
+    </ns4:primaryTypeAttribute>
+  </ns4:primaryTypeExtension>
+  <ns4:primaryTypeAttributeReplacement>
+    <ns4:primaryTypeAttribute immutable="true" key="true" mandatory="true" ns="urn:ietf:params:xml:ns:yang:ietf-system" ns1:lifeCycle="CURRENT" ns1:name="name" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+      <ns1:desc>The user name string identifying this entry.</ns1:desc>
+      <ns1:type xsi:type="ns1:stringType">
+        <ns1:notNullConstraint/>
+        <ns1:stringLengthConstraint>
+          <ns1:minMaxLength max="32" min="1"/>
+        </ns1:stringLengthConstraint>
+        <ns1:stringContentsConstraint type="REGEX" value="[a-zA-Z_][a-zA-Z0-9_.-]*"/>
+      </ns1:type>
+    </ns4:primaryTypeAttribute>
+    <ns4:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:ietf:params:xml:ns:yang:ietf-system" ns1:lifeCycle="CURRENT" ns1:name="password" readBehavior="FROM_PERSISTENCE" sensitive="true" writeBehavior="PERSIST_AND_DELEGATE">
+      <ns1:desc>The password for this entry.</ns1:desc>
+      <ns1:type xsi:type="ns1:stringType">
+        <ns1:stringContentsConstraint type="REGEX" value="$0$.*|$1$[a-zA-Z0-9./]{1,8}$[a-zA-Z0-9./]{22}|$5$(rounds=\d+$)?[a-zA-Z0-9./]{1,16}$[a-zA-Z0-9./]{43}|$6$(rounds=\d+$)?[a-zA-Z0-9./]{1,16}$[a-zA-Z0-9./]{86}"/>
+      </ns1:type>
+    </ns4:primaryTypeAttribute>
+  </ns4:primaryTypeAttributeReplacement>
+  <ns4:choiceHandling/>
+</ns4:PrimaryTypeExtensionDefinition>

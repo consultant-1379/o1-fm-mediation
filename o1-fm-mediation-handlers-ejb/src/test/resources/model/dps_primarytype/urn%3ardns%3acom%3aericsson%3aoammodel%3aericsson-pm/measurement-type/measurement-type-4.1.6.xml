@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:PrimaryTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:dps_primarytype" xmlns:ns3="urn:com:ericsson:schema:xml:oss:dps_common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" hierarchyType="HIERARCHICAL" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="measurement-type" ns1:ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:version="4.1.6" readBehavior="FROM_PERSISTENCE" writeBehavior="NOT_ALLOWED">
+  <ns1:modelCreationInfo author="YANG Transformer2">
+    <ns1:derivedModel derivedFrom="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-pm/ericsson-pm%402021-03-15"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>Defines a Measurement Type on the Managed Element to be monitored and collected. The measurement-type id is unique within the group.</ns1:desc>
+  <ns2:systemCreated/>
+  <ns2:primaryTypeAttribute immutable="true" key="true" mandatory="true" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="id" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Identity of the measurement-type instance.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="aggregation" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Describes how the PM service aggregates the measurement values for Measurement Type instances.</ns1:desc>
+    <ns1:type modelUrn="//urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-pm/measurement-type__aggregation/4.1.6" xsi:type="ns1:enumRefType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="collection-method" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Contains the form in which this measurement data is obtained.</ns1:desc>
+    <ns1:type modelUrn="//urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-pm/measurement-type__collection-method/4.1.6" xsi:type="ns1:enumRefType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="condition" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Details the condition which causes the measurement result  data to be updated.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="der-sample-rate" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Specifies the sample rate for DER counters. Defined as  according to 3GPP TS 32.401. Data related to a particular event is captured. Every nth event is registered, where n can be 1 or greater. This leaf defines n.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="65535" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns2:requires>
+      <ns3:pathExpressionCondition condition="../collection-method = 'der'"/>
+    </ns2:requires>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="description" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>A comprehensible explanation of this measurement.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="fm-alarm-type" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>fm-alarm-type associated to Threshold Monitoring of this  Measurement Type. Example: /fme:fm/fme:alarm-model[fme:id='AcmeAlarms']/ fme:alarm-type[fme:id='GenThreshAlarm'] No value means that this Measurement Type is not available for selection  for a PM Threshold Job.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="initial-value" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The initial value to which the Measurement Type is set at the beginning of a new granularity period.</ns1:desc>
+    <ns1:type xsi:type="ns1:longType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="4294967295" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns2:requires>
+      <ns3:pathExpressionCondition condition="../reset-at-gran-period = 'true'"/>
+    </ns2:requires>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="is-compressed" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Indicates if the Measurement Type result is in compressed  format. For Measurement Types with multiplicity greater than 1, the result can be compressed by only reporting the non-zero values. A detailed explanation of the format of the measurement result is given in the measurement-result leaf.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType"/>
+    <ns2:requires>
+      <ns3:pathExpressionCondition condition="../multiplicity &gt; 1"/>
+    </ns2:requires>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="DEPRECATED" ns1:lifeCycleDesc="Deprecated in 4.0.0. Considered redundant." ns1:name="measurement-name" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The full name of the Measurement Type.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="measurement-result" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Contains a description of expected result value or values.  For example, a single integer value.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="measurement-status" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The status of the measurement-type.</ns1:desc>
+    <ns1:type modelUrn="//urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-pm/measurement-type__measurement-status/4.1.6" xsi:type="ns1:enumRefType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="multiplicity" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Where a counter is an array of values, this leaf represents the size of the array. Where it produces a single value, this leaf is set to 1.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="65535" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="reset-at-gran-period" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Specifies whether the value is initialized at the beginning of each granularity period.</ns1:desc>
+    <ns1:type xsi:type="ns1:booleanType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="size" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Contains the size of the measurement in number of octets.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="65535" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="threshold-direction" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The threshold direction of a Measurement Type value which raises the Threshold Alarm severity. The leaf is set  if this Measurement Type shall only be monitored in one direction in a PM Threshold Job. If it can be monitored in either direction, then the direction will be set as part of  the threshold job creation by setting threshold-direction in  measurement-reader.</ns1:desc>
+    <ns1:type modelUrn="//urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-pm/measurement-type__threshold-direction/4.1.6" xsi:type="ns1:enumRefType"/>
+    <ns2:requires>
+      <ns3:pathExpressionCondition condition="../fm-alarm-type"/>
+    </ns2:requires>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-pm" ns1:lifeCycle="CURRENT" ns1:name="threshold-valid-range" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The valid threshold range for use in a threshold job.  Expressed as a string containing lower and upper bound, for example "0..100".</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType"/>
+    <ns2:requires>
+      <ns3:pathExpressionCondition condition="../fm-alarm-type"/>
+    </ns2:requires>
+  </ns2:primaryTypeAttribute>
+</ns2:PrimaryTypeDefinition>

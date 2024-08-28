@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:ComplexDataTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:oss_cdt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ns1:lifeCycle="CURRENT" ns1:name="TraceJob__traceTarget" ns1:ns="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:version="2023.2.14">
+  <ns1:modelCreationInfo author="YANG Transformer2">
+    <ns1:derivedModel derivedFrom="/net_yang/urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/_3gpp-common-managed-element%402023-02-14"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>Specifies the target object of the Trace and MDT. The attribute is applicable for both Trace and MDT. This attribute includes the ID type of the target as an enumeration and the ID value. 
+The traceTarget shall be public ID in case of a Management Based Activation is done to an ScscfFunction. The traceTarget shall be cell only in case of the UTRAN cell traffic trace function. 
+The traceTarget shall be E-UtranCell only in case of E-UTRAN cell traffic trace function.The traceTarget shall be either IMSI or IMEI(SV) if the Trace Session is activated to any of the following ManagedEntity(ies): - HssFunction - MscServerFunction - SgsnFunction - GgsnFunction - BmscFunction - RncFunction - MmeFunction 
+The traceTarget shall be IMSI if the Trace Session is activated to a ManagedEntity playing a role of ServinGWFunction. 
+In case of signaling based Trace/MDT, the traceTarget attribute shall be able to carry (IMSI or IMEI(SV)or SUPI), the mDTAreaScope attribute shall be able to carry a list of (cell or E-UtranCell or NRCellDU or TA/LA/RA). 
+In case of management based Immediate MDT, the traceTarget attribute shall be null value, the mDTAreaScope attribute shall carry a list of (Utrancell or E-UtranCell or NRCellDU). 
+In case of management based Logged MDT, the traceTarget attribute shall carry an eBs or a RNC or gNBs. The Logged MDT should be initiated on the specified eNB or RNC or gNB in traceTarget. The mDTAreaScope attribute shall carry a list of (Utrancell or E-UtranCell or NRCellDU or TA/LA/RA). 
+In case of RLF reporting, or RCEF reporting,  the traceTarget attribute shall be null value, the mDTAreaScope attribute shall carry one or list of eNBs/gNBs</ns1:desc>
+  <ns1:meta metaName="YANG_MULTIPLE_KEY_NAMES" metaValue="targetIdType targetIdValue"/>
+  <ns2:attribute immutable="true" key="true" mandatory="true" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="targetIdType" sensitive="false">
+    <ns1:desc>targetIdType</ns1:desc>
+    <ns1:type modelUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/TraceJob__traceTarget__targetIdType/2023.2.14" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="true" key="true" mandatory="true" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="targetIdValue" sensitive="false">
+    <ns1:desc>targetIdValue</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:attribute>
+</ns2:ComplexDataTypeDefinition>

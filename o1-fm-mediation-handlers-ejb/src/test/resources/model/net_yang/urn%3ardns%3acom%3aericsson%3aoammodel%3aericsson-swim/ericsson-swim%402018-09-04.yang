@@ -1,0 +1,155 @@
+module ericsson-swim {
+	yang-version 1.1;
+	namespace urn:rdns:com:ericsson:oammodel:ericsson-swim;
+	prefix swime;
+
+	import ericsson-yang-extensions {	prefix yexte; }
+	import ericsson-yang-types { prefix typese; }
+	import ietf-yang-types { prefix yang; }
+	import ericsson-notifications { prefix notife; }	
+
+	organization "Ericsson AB";
+	contact "Ericsson first line support via email";
+	
+	description 
+	   "Software inventory management model. 
+	    Copyright (c) 2018 Ericsson AB. All rights reserved.
+	    
+	   	Contains the software versions installed on the managed element. For 
+        each software version, the software items that constitute the software
+        version are listed.";
+
+	revision "2018-09-04" {
+	    //ethbll
+		description "Removed presence and system-created and 
+		    added notifiable-state-data true to top container.";
+		yexte:version 1;
+		yexte:release 1;
+		yexte:correction 0;
+	}
+
+	revision "2016-07-05" {
+		description "Initial version based on ECIM_SwIM 1.2.1.";
+		yexte:version 1;
+		yexte:release 0;
+		yexte:correction 0;
+	}
+
+	container swim {
+		description "Sw inventory management";
+		notife:notifiable-state-data true; 
+
+		leaf-list active {
+			type leafref {
+				path "../sw-version/sw-version-id";
+			}
+			config false;
+			min-elements 1;
+			description "A reference to the active software version of a software
+                 domain. The software of a managed element can be structured
+                 into more than one software domain. The active software
+                 versions control the behavior of the managed element.";
+		}
+
+		list sw-item {
+			key sw-item-id;
+			description "A software item holds information about an executable
+                 software product. A software item can also represent a
+                 container product that contains other software items, which
+                 represent a subordinate container and/or executable 
+                 software products.";
+			yexte:is-system-created;
+
+			leaf sw-item-id {
+				type string;
+				description "Identity of the sw-item entry.";
+			}
+
+			leaf user-label {
+				type string;
+				description "Label for free use.";
+			}
+
+			container administrative-data {
+				config false;
+				description "The software item product identification.";
+				uses typese:product-data;
+			}
+
+			leaf additional-info {
+				type string;
+				config false;
+				description "Describes any additional relevant aspects of the software
+                 item.";
+			}
+
+			leaf-list consists-of {
+                type leafref {
+                	path "../sw-item-id";
+                }
+				config false;
+				description "Describes a hierarchical relationship between software
+                 items. An empty value indicates that the current software
+                 item is not a container that includes subordinate software
+                 items.";
+			}
+		}
+
+		list sw-version {
+			key sw-version-id;
+			description 
+			    "A resource of this list entry represents the software version of a
+                 domain of the software. If there is only one software
+                 domain, the resource represents the overall version of the 
+                 managed element.";
+			yexte:is-system-created;
+
+			leaf sw-version-id {
+				type string;
+				description "Identity of the sw-version entry.";
+			}
+
+			leaf user-label {
+				type string;
+				description "Label for free use.";
+			}
+
+			container administrative-data {
+				config false;
+				description "The software version product identification.";
+				uses typese:product-data;
+			}
+
+			leaf time-of-installation {
+				type yang:date-and-time;
+				config false;
+				description "Indicates the time the software version was installed.";
+			}
+
+			leaf time-of-activation {
+				type yang:date-and-time;
+				config false;
+				description "Indicates the time when the software version was activated.
+                 If no time is shown, the current software version is not
+                 activated.";
+			}
+
+			leaf time-of-deactivation {
+				type yang:date-and-time;
+				config false;
+				description "Indicates the time when the software version was
+                 deactivated. If no time is shown, the current software
+                 version is not deactivated.";
+			}
+
+			leaf-list consists-of {
+                type leafref {
+                	path "../../sw-item/sw-item-id";
+                }
+				config false;
+				description "List of references to the software items of which the
+                 software version consists.";
+			}
+		}
+	}
+}

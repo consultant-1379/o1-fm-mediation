@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CapabilitySupportDefinition
+        xmlns="urn:com:ericsson:schema:xml:oss:oss_capabilitysupport"
+        xmlns:oc="urn:com:ericsson:schema:xml:oss:oss_common"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        oc:ns="NODE:O1Node"
+        oc:name="NetworkModelRetriever"
+        oc:version="1.0.0">
+
+    <oc:modelCreationInfo author="TeamAmerica" creationDate="2023-04-26">
+        <oc:designedModel componentId="o1node-node-model-common-jar" />
+    </oc:modelCreationInfo>
+
+    <oc:desc>Network Model Retriever Capability Support for O1Node node target type</oc:desc>
+
+    <complexCapability name="plugins">
+        <value xsi:type="oc:collectionValue">
+            <oc:values>
+                <oc:value xsi:type="oc:stringValue" value="EOI_CM_RETRIEVER" />
+                <oc:value xsi:type="oc:stringValue" value="EOI_PMEVENTM_RETRIEVER" />
+            </oc:values>
+        </value>
+    </complexCapability>
+
+    <complexCapability name="transformers">
+        <value xsi:type="oc:collectionValue">
+            <oc:values>
+                <oc:value xsi:type="oc:stringValue" value="YangTransformer2" />
+                <oc:value xsi:type="oc:stringValue" value="MibTransformer" />
+            </oc:values>
+        </value>
+    </complexCapability>
+
+    <complexCapability name="transformerProperties">
+        <value xsi:type="oc:mapValue">
+            <oc:mapEntries>
+                <oc:mapEntry>
+                    <oc:key xsi:type="oc:stringValue" value="yangTransformer.containmentParentImpliedUrn" />
+                    <oc:value xsi:type="oc:stringValue" value="//OSS_TOP/MeContext/*" />
+                </oc:mapEntry>
+                <oc:mapEntry>
+                    <oc:key xsi:type="oc:stringValue" value="yangTransformer.skipIfFeature" />
+                    <oc:value xsi:type="oc:stringValue" value="false" />
+                </oc:mapEntry>
+                <oc:mapEntry>
+                    <oc:key xsi:type="oc:stringValue" value="yangTransformer.markNPContainerAsSystemCreated" />
+                    <oc:value xsi:type="oc:stringValue" value="false" />
+                </oc:mapEntry>
+                <oc:mapEntry>
+                    <oc:key xsi:type="oc:stringValue" value="yangTransformer.apply3gppHandling" />
+                    <oc:value xsi:type="oc:stringValue" value="true" />
+                </oc:mapEntry>
+                <oc:mapEntry>
+                    <oc:key xsi:type="oc:stringValue" value="yangTransformer.applyNodeAppInstanceNameHandling" />
+                    <oc:value xsi:type="oc:stringValue" value="true" />
+                </oc:mapEntry>
+            </oc:mapEntries>
+        </value>
+    </complexCapability>
+</CapabilitySupportDefinition>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:EnumDataTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:oss_edt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ns1:lifeCycle="CURRENT" ns1:name="urn:rdns:com:ericsson:oammodel:ericsson-swm__upgrade-package$$report-progress__result" ns1:ns="NODE__O1Node__1.0" ns1:version="1.0.0">
+  <ns1:modelCreationInfo author="YANG Transformer2">
+    <ns1:derivedModel derivedFrom="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-swm/ericsson-swm%402020-10-14"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>Result state of a completed action. This field has value not-available if the action is not finished.</ns1:desc>
+  <ns2:member name="failure" ns1:lifeCycle="CURRENT" value="2">
+    <ns2:desc>The asynchronous action ended with failure.</ns2:desc>
+  </ns2:member>
+  <ns2:member name="not-available" ns1:lifeCycle="CURRENT" value="3">
+    <ns2:desc>No result is available yet.</ns2:desc>
+  </ns2:member>
+  <ns2:member name="success" ns1:lifeCycle="CURRENT" value="1">
+    <ns2:desc>The asynchronous action ended with success.</ns2:desc>
+  </ns2:member>
+</ns2:EnumDataTypeDefinition>

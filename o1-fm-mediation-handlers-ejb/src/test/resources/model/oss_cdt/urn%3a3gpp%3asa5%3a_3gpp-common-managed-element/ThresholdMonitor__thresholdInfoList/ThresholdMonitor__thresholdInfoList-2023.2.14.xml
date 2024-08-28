@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:ComplexDataTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:oss_cdt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ns1:lifeCycle="CURRENT" ns1:name="ThresholdMonitor__thresholdInfoList" ns1:ns="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:version="2023.2.14">
+  <ns1:modelCreationInfo author="YANG Transformer2">
+    <ns1:derivedModel derivedFrom="/net_yang/urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/_3gpp-common-managed-element%402023-02-14"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>List of threshold info.</ns1:desc>
+  <ns2:attribute immutable="false" key="false" mandatory="false" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="hysteresis" sensitive="false">
+    <ns1:desc>Hysteresis of a threshold. If this attribute is present the monitored performance metric is not compared against the threshold value as specified by the thresholdValue attribute but against a high and low threshold value given by 
+threshold-high = thresholdValue + hysteresis threshold-low = thresholdValue - hysteresis 
+When going up, the threshold is triggered when the performance metric reaches or crosses the high threshold value. When going down, the hreshold is triggered when the performance metric reaches or crosses the low threshold value. 
+A hysteresis may be present only when the monitored performance metric is not of type counter that can go up only. If present for a performance metric of type counter, it shall be ignored.</ns1:desc>
+    <ns1:type xsi:type="ns1:unionType">
+      <ns1:member unsigned="true" xsi:type="ns1:longType">
+        <ns1:valueRangeConstraint>
+          <ns1:minMaxRange max="-1" min="0"/>
+        </ns1:valueRangeConstraint>
+      </ns1:member>
+      <ns1:member xsi:type="ns1:doubleType">
+        <ns1:valueRangeConstraint>
+          <ns1:minMaxRange max="9.223372036854776E16" min="0.0"/>
+        </ns1:valueRangeConstraint>
+      </ns1:member>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="true" key="true" mandatory="true" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="idx" sensitive="false">
+    <ns1:desc>idx</ns1:desc>
+    <ns1:type xsi:type="ns1:longType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="4294967295" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="false" key="false" mandatory="false" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="measurementTypes" sensitive="false">
+    <ns1:desc>The Measurement type can be those specified in TS 28.552, TS 32.404 and can be those specified by other SDOs or can be vendor-specific.</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType xsi:type="ns1:stringType"/>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="false" key="false" mandatory="true" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="thresholdDirection" sensitive="false">
+    <ns1:desc>Direction of a threshold indicating the direction for which a threshold crossing triggers a threshold. 
+When the threshold direction is configured to 'UP', the associated treshold is triggered only when the performance metric value is going up upon reaching or crossing the threshold value. The treshold is not triggered, when the performance metric is going down upon reaching or crossing the threshold value. 
+Vice versa, when the threshold direction is configured to 'DOWN', the associated treshold is triggered only when the performance metric is going down upon reaching or crossing the threshold value. The treshold is not triggered, when the performance metric is going up upon reaching or crossing the threshold value. 
+When the threshold direction is set to 'UP_AND_DOWN' the treshold is active in both direcions. 
+In case a threshold with hysteresis is configured, the threshold direction attribute shall be set to 'UP_AND_DOWN'.</ns1:desc>
+    <ns1:type modelUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/ThresholdMonitor__thresholdInfoList__thresholdDirection/2023.2.14" xsi:type="ns1:enumRefType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="false" key="false" mandatory="true" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="thresholdLevel" sensitive="false">
+    <ns1:desc>Number (key) for a single threshold in the threshold list applicable to the monitored performance metric.</ns1:desc>
+    <ns1:type unsigned="true" xsi:type="ns1:longType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="-1" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+  </ns2:attribute>
+  <ns2:attribute immutable="false" key="false" mandatory="true" namespace="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="thresholdValue" sensitive="false">
+    <ns1:desc>Value against which the monitored performance metric is compared at a threshold level in case the hysteresis is zero</ns1:desc>
+    <ns1:type xsi:type="ns1:unionType">
+      <ns1:notNullConstraint/>
+      <ns1:member xsi:type="ns1:longType"/>
+      <ns1:member xsi:type="ns1:doubleType"/>
+    </ns1:type>
+  </ns2:attribute>
+</ns2:ComplexDataTypeDefinition>

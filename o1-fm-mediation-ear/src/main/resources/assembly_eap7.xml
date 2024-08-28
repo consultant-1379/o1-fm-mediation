@@ -1,0 +1,29 @@
+<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
+   <id>eap7</id>
+   <formats>
+      <format>ear</format>
+   </formats>
+   <includeBaseDirectory>false</includeBaseDirectory>
+
+   <fileSets>
+      <fileSet>
+         <directory>${basedir}/target/o1-fm-mediation-ear-${project.version}</directory>
+         <includes>
+            <include>*o1-fm-mediation-ear*</include>
+         </includes>
+         <outputDirectory>/</outputDirectory>
+      </fileSet>
+      <fileSet>
+         <directory>${basedir}/target/o1-fm-mediation-ear-${project.version}/lib</directory>
+         <includes>
+            <include>*.jar</include>
+         </includes>
+         <excludes>
+            <exclude>*service-framework-dist*.jar</exclude>
+         </excludes>
+         <outputDirectory>lib</outputDirectory>
+      </fileSet>
+   </fileSets>
+</assembly>

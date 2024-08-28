@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:EnumDataTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:oss_edt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ns1:lifeCycle="CURRENT" ns1:name="TraceJob__listOfNETypes" ns1:ns="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:version="2023.2.14">
+  <ns1:modelCreationInfo author="YANG Transformer2">
+    <ns1:derivedModel derivedFrom="/net_yang/urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/_3gpp-common-managed-element%402023-02-14"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>Specifies in which type of ManagedFunction the trace should be activated. The attribute is applicable only for Trace with Signalling Based Trace activation. In case this attribute is not used, it carries a null semantic</ns1:desc>
+  <ns2:member name="BM_SC" ns1:lifeCycle="CURRENT" value="5">
+    <ns2:desc>BM_SC</ns2:desc>
+  </ns2:member>
+  <ns2:member name="EN_GNB" ns1:lifeCycle="CURRENT" value="10">
+    <ns2:desc>EN_GNB</ns2:desc>
+  </ns2:member>
+  <ns2:member name="ENB" ns1:lifeCycle="CURRENT" value="9">
+    <ns2:desc>ENB</ns2:desc>
+  </ns2:member>
+  <ns2:member name="GGSN" ns1:lifeCycle="CURRENT" value="3">
+    <ns2:desc>GGSN</ns2:desc>
+  </ns2:member>
+  <ns2:member name="GNB_CU_CP" ns1:lifeCycle="CURRENT" value="11">
+    <ns2:desc>GNB_CU_CP</ns2:desc>
+  </ns2:member>
+  <ns2:member name="GNB_CU_UP" ns1:lifeCycle="CURRENT" value="12">
+    <ns2:desc>GNB_CU_UP</ns2:desc>
+  </ns2:member>
+  <ns2:member name="GNB_DU" ns1:lifeCycle="CURRENT" value="13">
+    <ns2:desc>GNB_DU</ns2:desc>
+  </ns2:member>
+  <ns2:member name="MGW" ns1:lifeCycle="CURRENT" value="2">
+    <ns2:desc>MGW</ns2:desc>
+  </ns2:member>
+  <ns2:member name="MME" ns1:lifeCycle="CURRENT" value="6">
+    <ns2:desc>MME</ns2:desc>
+  </ns2:member>
+  <ns2:member name="MSC_SERVER" ns1:lifeCycle="CURRENT" value="0">
+    <ns2:desc>MSC_SERVER</ns2:desc>
+  </ns2:member>
+  <ns2:member name="PGW" ns1:lifeCycle="CURRENT" value="8">
+    <ns2:desc>PGW</ns2:desc>
+  </ns2:member>
+  <ns2:member name="RNC" ns1:lifeCycle="CURRENT" value="4">
+    <ns2:desc>RNC</ns2:desc>
+  </ns2:member>
+  <ns2:member name="SGSN" ns1:lifeCycle="CURRENT" value="1">
+    <ns2:desc>SGSN</ns2:desc>
+  </ns2:member>
+  <ns2:member name="SGW" ns1:lifeCycle="CURRENT" value="7">
+    <ns2:desc>SGW</ns2:desc>
+  </ns2:member>
+</ns2:EnumDataTypeDefinition>

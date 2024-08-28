@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:EnumDataTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:oss_edt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ns1:lifeCycle="CURRENT" ns1:name="TraceJob__listOfInterfaces__SGSNInterfaces" ns1:ns="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:version="2023.2.14">
+  <ns1:modelCreationInfo author="YANG Transformer2">
+    <ns1:derivedModel derivedFrom="/net_yang/urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/_3gpp-common-managed-element%402023-02-14"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>Enumeration for attribute 'SGSNInterfaces'.</ns1:desc>
+  <ns2:member name="Gb" ns1:lifeCycle="CURRENT" value="0">
+    <ns2:desc>Gb</ns2:desc>
+  </ns2:member>
+  <ns2:member name="Ge" ns1:lifeCycle="CURRENT" value="6">
+    <ns2:desc>Ge</ns2:desc>
+  </ns2:member>
+  <ns2:member name="Gn" ns1:lifeCycle="CURRENT" value="2">
+    <ns2:desc>Gn</ns2:desc>
+  </ns2:member>
+  <ns2:member name="Gs" ns1:lifeCycle="CURRENT" value="7">
+    <ns2:desc>Gs</ns2:desc>
+  </ns2:member>
+  <ns2:member name="Iu-PS" ns1:lifeCycle="CURRENT" value="1">
+    <ns2:desc>Iu-PS</ns2:desc>
+  </ns2:member>
+  <ns2:member name="MAP-Gd" ns1:lifeCycle="CURRENT" value="4">
+    <ns2:desc>MAP-Gd</ns2:desc>
+  </ns2:member>
+  <ns2:member name="MAP-Gf" ns1:lifeCycle="CURRENT" value="5">
+    <ns2:desc>MAP-Gf</ns2:desc>
+  </ns2:member>
+  <ns2:member name="MAP-Gr" ns1:lifeCycle="CURRENT" value="3">
+    <ns2:desc>MAP-Gr</ns2:desc>
+  </ns2:member>
+  <ns2:member name="S13" ns1:lifeCycle="CURRENT" value="11">
+    <ns2:desc>S13</ns2:desc>
+  </ns2:member>
+  <ns2:member name="S3" ns1:lifeCycle="CURRENT" value="10">
+    <ns2:desc>S3</ns2:desc>
+  </ns2:member>
+  <ns2:member name="S4" ns1:lifeCycle="CURRENT" value="9">
+    <ns2:desc>S4</ns2:desc>
+  </ns2:member>
+  <ns2:member name="S6d" ns1:lifeCycle="CURRENT" value="8">
+    <ns2:desc>S6d</ns2:desc>
+  </ns2:member>
+</ns2:EnumDataTypeDefinition>

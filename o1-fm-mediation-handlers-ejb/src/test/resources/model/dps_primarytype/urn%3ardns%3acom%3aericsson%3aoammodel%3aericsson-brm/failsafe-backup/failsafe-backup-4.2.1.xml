@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:PrimaryTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:dps_primarytype" xmlns:ns3="urn:com:ericsson:schema:xml:oss:dps_common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" hierarchyType="HIERARCHICAL" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="failsafe-backup" ns1:ns="urn:rdns:com:ericsson:oammodel:ericsson-brm" ns1:version="4.2.1" readBehavior="FROM_PERSISTENCE" writeBehavior="PERSIST_AND_DELEGATE">
+  <ns1:modelCreationInfo author="YANG Transformer2">
+    <ns1:derivedModel derivedFrom="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-brm/ericsson-brm%402021-06-08"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>Failsafe backups can be used when making changes to sensitive parts of the model, in which an error in configuration can lead to lost OAM connectivity or other failures from which the system can recover by a restore from a backup. When activated the failsafe backup function will automatically restore the system from a backup if the configuration as not been confirmed within a defined time period.</ns1:desc>
+  <ns1:meta metaName="YANG_PRESENCE_CONTAINER"/>
+  <ns2:primaryTypeAttribute immutable="true" key="true" mandatory="true" ns1:definedBy="OSS" ns1:name="failsafe-backup-key" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Key attribute</ns1:desc>
+    <ns1:meta metaName="YANG_ARTIFIAL_KEY"/>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="1" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-brm" ns1:lifeCycle="CURRENT" ns1:name="backup-name" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Name of the backup that will be restored in case the failsafe function is activated.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-brm" ns1:lifeCycle="CURRENT" ns1:name="time-remaining" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>The number of seconds that remains before the system is restored from the selected backup.</ns1:desc>
+    <ns1:type unsigned="true" xsi:type="ns1:longType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="-1" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:unit>second</ns1:unit>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-brm" ns1:lifeCycle="CURRENT" ns1:name="timeout-length" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The number of seconds the system waits before activating the failsafe function. If the value is set while the function is active the time-remaining will be changed to that time instead.</ns1:desc>
+    <ns1:type unsigned="true" xsi:type="ns1:longType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="86400" min="1"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="1200" xsi:type="ns1:longValue"/>
+    <ns1:unit>second</ns1:unit>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:rdns:com:ericsson:oammodel:ericsson-brm" ns1:lifeCycle="CURRENT" ns1:name="usage-state" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Shows if the failsafe function is activated or not. Multiple failsafe points is not possible, therefore this state is either idle or busy</ns1:desc>
+    <ns1:type modelUrn="//urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-brm/failsafe-backup__usage-state/4.2.1" xsi:type="ns1:enumRefType"/>
+  </ns2:primaryTypeAttribute>
+</ns2:PrimaryTypeDefinition>

@@ -1,0 +1,1204 @@
+module ericsson-pm {
+  yang-version 1.1;
+  namespace urn:rdns:com:ericsson:oammodel:ericsson-pm;
+  prefix pme;
+  
+  import ericsson-yang-extensions { prefix yexte; }
+  import ericsson-notifications { prefix notife; }
+  import ericsson-yang-types { prefix typese; }
+  import ericsson-fm { prefix fme; }
+  import ietf-netconf-acm { prefix nacm; }  
+
+  organization "Ericsson AB";
+  contact "Ericsson AB first line support by email";
+  description "Performance Management model
+    Copyright (c) 2019 Ericsson AB. All rights reserved.";
+
+  revision "2021-03-15" {
+    // ethbll
+    description "Error correction: greater than comparision on reporting and 
+      granularity periods.";
+    yexte:version 4;
+    yexte:release 1;
+    yexte:correction 6;
+  }
+  
+  revision "2020-01-17" {
+    // ethbll
+    description "Error correction: did not compile if no features supported. 
+      Added the none job-type.";
+    yexte:version 4;
+    yexte:release 1;
+    yexte:correction 5;
+  }
+  
+  revision "2019-11-28" {
+    // ethbll
+    description "Added some if-feature threshold-jobs";
+    yexte:version 4;
+    yexte:release 1;
+    yexte:correction 4;
+  }
+  
+  revision "2019-09-25" {
+    // ethbll
+    description "Corrected errors in container xxx-job-checks ";
+    yexte:version 4;
+    yexte:release 1;
+    yexte:correction 3;
+  }
+  
+  revision "2019-09-09" {
+    // ethbll
+    description "Updated because some checks caused problems if 
+      specific features are not supported.";
+    yexte:version 4;
+    yexte:release 1;
+    yexte:correction 2;
+  }
+  
+  revision "2019-05-02" {
+    // xbeekum
+    description "Added 5GS to generation and updated the description
+      of granularity-period and reporting-period" ;
+    reference "CR:  #1718116, #1638528";
+    yexte:version 4;
+    yexte:release 1;
+    yexte:correction 0;
+  }
+
+  revision "2018-07-11" {
+    // ethbll
+    description "Added if-feature to threshold-direction and 
+      threshold-valid-range" ;
+    reference "TR:  #1575323, #1600524";
+    yexte:version 4;
+    yexte:release 0;
+    yexte:correction 2;
+  }
+  
+  revision "2018-05-28" {
+    //xkakshw, ethbll
+    description "Version based on ECIM_PM 3.0 changes. 
+      1) The description of measurement-status type is updated. 
+      2) The leaf measurement-name is set to deprecated and optional
+      3) removed default from leaf job-type and made mandatory";
+    reference "CR: #1531118";
+    yexte:version 4;
+    yexte:release 0;
+    yexte:correction 0;
+  }
+  
+  revision "2018-03-07" {
+    // ethbll 
+    description "corrected import prefix acm->nacm";
+    yexte:version 3;
+    yexte:release 0;
+    yexte:correction 1;
+  }
+  
+  revision "2017-10-31" {
+    // eeiemy 
+    description "Created a feature for each job type in EOI.
+      Each feature is optional.
+      Removed multiple-target feature";
+    yexte:version 3;
+    yexte:release 0;
+    yexte:correction 0;
+  }
+  
+  revision "2017-05-15" {
+    description "
+      changed yexte:not-notifable to notife:notifiable-state-data false
+      added notfiable-state-data true to the pm container";
+    yexte:version 2;
+    yexte:release 1;
+    yexte:correction 0;
+  }
+  
+  feature measurement-jobs {
+    description "Indicates support for Measurement Jobs." ;
+  }
+  
+  feature threshold-jobs {
+    description "Indicates support for Threshold Jobs." ;
+  }
+  
+  feature realtime-jobs {
+    description "Indicates support for Real-time Jobs." ;
+  }
+
+  typedef aggregation {
+    type enumeration {
+      enum sum {
+        value 2;
+        description "Aggregation method = sum.";
+      }
+
+      enum avg {
+        value 3;
+        description "Aggregation method = avg.";
+      }
+
+      enum min {
+        value 4;
+        description "Aggregation method = min.";
+      }
+
+      enum max {
+        value 5;
+        description "Aggregation method = max.";
+      }
+
+      enum last-update {
+        value 6;
+        description "Aggregation method = last-update.";
+      }
+    }
+
+    description "Aggregation method for a Measurement Type.";
+  }
+
+  typedef job-start-stop-support {
+    type enumeration {
+      enum none {
+        value 0;
+        description "none - a job is started when it is created and will 
+          run until it is deleted.";
+      }
+
+      enum basic {
+        value 1;
+        description "basic - simple start/stop supported.";
+      }
+    }
+
+    description "Specifies if Performance Management jobs can be started
+       and stopped.";
+  }
+
+  typedef collection-method {
+    type enumeration {
+      enum cc {
+        value 1;
+        description "The collection method is Cumulative Counter.";
+      }
+
+      enum gauge {
+        value 2;
+        description "The collection method is Gauge - based on a dynamic
+          variable. This method is used when data being measured can
+          vary up or down during the period of measurement.";
+      }
+
+      enum der {
+        value 3;
+        description "The collection method is Discrete Event 
+          Registration (DER). When data related to a particular event 
+          are captured, every nth event is registered, where n can be 1 
+          or greater.";
+      }
+
+      enum si {
+        value 4;
+        description "The collection method is Status Inspection. This is
+          a mechanism for high frequency sampling of internal counters at
+          pre-defined rates";
+      }
+    }
+
+    description "The form in which measurement data for a Measurement Type 
+      is obtained.";
+  }
+
+  typedef measurement-status {
+    type enumeration {
+      enum used {
+        value 1;
+        description "The Measurement is available and working.";
+      }
+
+      enum deprecated {
+        value 2;
+        description "Still available and working, but not recommended 
+          for use. Planned for removal. ";
+      }
+
+      enum obsolete {
+        value 3;
+        description "Not available / not working.";
+      }
+
+      enum preliminary {
+        value 4;
+        description "The Measurement is part of an early design effort. 
+          It is available and working, but may be changed or removed 
+          in the future ignoring backward compatibility rules.
+          Faults and problems may not always be handled during 
+          normal maintenance.";
+      }
+    }
+
+    description "The Measurement status of a Measurement Type.";
+  }
+
+  typedef threshold-direction {
+  
+    type enumeration {
+      enum increasing {
+        value 1;
+        description "Threshold direction = increasing.";
+      }
+
+      enum decreasing {
+        value 2;
+        description "Threshold direction = decreasing.";
+      }
+    }
+
+    description "The threshold direction of a Measurement Type value which
+      raises the Performance Alarm severity.";
+  }
+
+  typedef job-state {
+    type enumeration {
+      enum active {
+        value 1;
+        description "Job State = active.";
+      }
+
+      enum stopped {
+        value 2;
+        description "Job State = stopped.";
+      }
+    }
+
+    description "PM job states.";
+  }
+
+  typedef job-type {
+    type enumeration {
+      enum none {
+        value -1;
+        description "MUST not be used. The job-type 'none' is present 
+          only for internal reasons.";
+        // needed to allow the module to compile with no features supported.
+      }
+
+      enum measurement-job {
+        if-feature measurement-jobs;
+        value 1;
+        description "Measurement Job. This job monitors a number of 
+          Measurement Types and the resulting data will be presented in 
+          an XML file. This file will then be available for collection.";
+      }
+
+      enum threshold-job {
+        if-feature threshold-jobs;
+        value 2;
+        description "Threshold Job. This job monitors one or more 
+          Measurement Types against assigned thresholds. If a threshold 
+          is exceeded an alarm will be issued.";
+      }
+
+      enum realtime-job {
+        if-feature realtime-jobs;
+        value 3;
+        description "Real-time Job. This job monitors one or more 
+          Measurement Types and makes the current value available in the 
+          model to be fetched by the MS.";
+      }
+    }
+
+    description "PM job types.";
+  }
+
+  typedef job-priority {
+    type enumeration {
+      enum low {
+        value 1;
+        description "Priority = low.";
+      }
+
+      enum medium {
+        value 2;
+        description "Priority = medium.";
+      }
+
+      enum high {
+        value 3;
+        description "Priority = high.";
+      }
+    }
+
+    description "Job Priority.";
+  }
+
+  typedef job-control {
+    type enumeration {
+      enum full {
+        value 0;
+        description "The user has Full control of the PM Job and can 
+          create, delete, start and stop a job.";
+      }
+
+      enum start-stop {
+        value 1;
+        description "The user has Restricted control of the PM Job and 
+         can stop and start a job, but cannot delete or create it.";
+      }
+
+      enum view-only {
+        value 2;
+        description "The user can only view the PM job.";
+      }
+    }
+
+    description "The level of user control of the PM job.";
+  }
+
+  typedef per-time-interval {
+    type enumeration {
+      enum per-second {
+        value 0;
+        description "Rate of variation per second of the 
+          Measurement Type value shall be monitored. What shall be 
+          compared against the threshold is the rate of variation per 
+          second of the Measurement Type over the monitor granularity 
+          period.";
+      }
+
+      enum per-gp {
+        value 1;
+        description "Absolute value of the Measurement Type shall be 
+          monitored. What shall be compared against the threshold is the 
+          absolute value of the measurement type at the end of the
+          monitor granularity period.";
+      }
+
+    }
+
+    description "Time interval used to monitor a Measurement Type value 
+      against a threshold. Specifies, for Threshold Monitoring of
+      a Cumulative Counter, what to compare against the 
+      threshold.";
+  }
+
+  typedef rop-filename-timestamp {
+    type enumeration {
+      enum local-with-utc-offset {
+        value 0;
+        description "Filename timestamp expressed as ME local time with 
+          UTC offset. The Starttime and Endtime fields in the filename 
+          are expressed according to 3GPP TS 32.432, as ME local time
+          with UTC offset. This is the recommended setting.";
+      }
+
+      enum utc-no-offset {
+        value 1;
+        description "Filename timestamp expressed as UTC time with no 
+          offset. The Starttime and Endtime fields in the filename are
+          expressed as UTC time with no offset.";
+      }
+
+    }
+
+    description "Supported Result Output Period (ROP) filename timestamp
+      format.";
+  }
+
+  container pm {
+    description "Performance Management model";
+    notife:notifiable-state-data true;
+
+    container measurement-capabilities {
+      presence "Exposes the PM capabilities.";
+      // needed to make the container optional
+      description "Exposes the PM capabilities.";
+      yexte:static-data true;
+
+      leaf max-no-of-jobs {
+        type uint16;
+        config false;
+        mandatory true;
+        description "Specifies the maximum number of jobs that can be 
+          defined. A value of 0 means there is no limit to the number of
+          jobs. If the specified limit is exceeded, when a performance
+          monitoring is created or started, the create job or start
+          job operation is rejected. This is an upper system limit,
+          and support for it cannot be guaranteed in high-load
+          conditions.";
+      }
+
+      leaf job-start-stop-support {
+        type job-start-stop-support;
+        mandatory true;
+        description "Specifies whether or not Performance Management 
+          jobs can be started and stopped.";
+      }
+      
+      container measurement-jobs {
+          if-feature measurement-jobs;
+
+        leaf max-no-of-measurement-jobs {
+          type uint16;
+          default 0;
+          config false;
+          description "Specifies the maximum number of measurement jobs 
+            that can be defined. A value of 0 means there is no limit to 
+            the number of jobs. If the specified limit is exceeded, when a
+            performance monitoring is created or started, the create job or
+            start job operation is rejected. This is an upper system limit,
+            and support for it cannot be guaranteed in high-load 
+            conditions.";
+        }
+
+        leaf final-rop {
+          type boolean;
+          config false;
+          mandatory true;
+          description "Indicates if measurement file for the last Result 
+            Output Period (ROP) is expected. When a measurement job is 
+            stopped, this leaf specifies whether a result file for the 
+            last ROP is expected (true), or not expected (false).";
+        }
+
+        leaf job-prioritization-support {
+          type boolean;
+          mandatory true;
+          description "Defines whether or not measurement jobs can be 
+            stopped by the system. Based on the priority of the Measurement
+            jobs, they can either be stopped (true) or not (false) by the
+            system.";
+        }
+
+        leaf max-no-of-measurements {
+          type uint64;
+          config false;
+          mandatory true;
+          description "The maximum number of measurement instances, that 
+            is, active measurements, that can be reported in one ROP. This 
+            is used by an MS to determine the max PM data file size. This 
+            is an upper-system limit, and support for it cannot be 
+            guaranteed in high-load conditions. 
+            A value of 0 means there is no limit.";
+        }
+
+        leaf max-no-of-pm-files {
+          type uint16;
+          config false;
+          mandatory true;
+          description "Specifies the maximum number of Result Output 
+            Period (ROP) files that are maintained. If a new file is
+            created and the limit is exceeded, the oldest file is
+            deleted. This is an upper-system limit, and support for it
+            cannot be guaranteed in high-load conditions.";
+        }
+
+        leaf aligned-reporting-period {
+          type boolean;
+          config false;
+          mandatory true;
+          description "Defines whether or not the Managed Element aligns 
+            its reporting periods to the hour.";
+        }
+
+        leaf file-location {
+          type string;
+          config false;
+          mandatory true;
+          description "Contains the path to the virtual file system on 
+            the node from which to fetch the measurement files.";
+        }
+
+        leaf file-rp-supported {
+          type boolean;
+          mandatory true;
+          description "Specifies if a file Reporting Period different
+            to Granularity Period, where RP > GP, is supported.";
+        }
+
+        leaf-list supported-reporting-periods {
+          type typese:time-period;
+          min-elements 1;
+          max-elements 9;
+          description "Indicates the Reporting Period or ROPs 
+            supported by the ME.";
+        }
+
+        leaf-list supported-meas-job-gps {
+          type typese:time-period;
+          min-elements 1;
+          max-elements 9;
+          description "Indicates which granularity periods are supported
+            for Measurement jobs.";
+        }                           
+
+        leaf-list supported-compression-types {
+          type identityref {
+            base typese:compression-types;
+          }
+          max-elements 2;
+          description "Indicates which compression types are supported
+            for report files. No value means that compression of report
+            files is not supported.";
+        }
+
+        leaf job-grouping-support {
+          type boolean;
+          mandatory true;
+          description "Indicates if grouping of selected measurement job 
+            results in a report file is supported. If set to true,
+            the selected measurement job results are grouped into one 
+            file per reporting period based on the job leaf 
+            group. If set to false, the default behaviour is to
+            generate a single PM report file per reporting period for
+            all jobs.";
+        }
+
+        leaf rop-filename-timestamp {
+          type rop-filename-timestamp;
+          config false;
+          mandatory true;
+          description "Indicates what timestamp format is used in the 
+            Result Output Period (ROP) filename.";
+        }
+      }
+      
+      container realtime-jobs {
+          if-feature realtime-jobs;
+
+        leaf max-no-of-realtime-jobs {
+          type uint16;
+          default 0;
+          config false;
+          description "Specifies the maximum number of realtime jobs that 
+            can be defined. A value of 0 means there is no limit to the 
+            number of jobs. If the specified limit is exceeded, when a 
+            performance monitoring is created or started, the create job or 
+            start job operation is rejected. This is an upper system limit,
+            and support for it cannot be guaranteed in high-load 
+            conditions.";
+        }
+
+        leaf-list supported-rt-job-gps {
+          type typese:time-period;
+          min-elements 1;
+          max-elements 9;
+          description "Indicates which granularity periods are supported
+            for realtime jobs.";
+        }
+      }
+        
+      container threshold-jobs {
+          if-feature threshold-jobs;
+
+        leaf max-no-of-threshold-jobs {
+          type uint16;
+          default 0;
+          config false;
+          description "Specifies the maximum number of threshold jobs that 
+            can be defined. A value of 0 means there is no limit to the 
+            number of jobs. If the specified limit is exceeded, when a 
+            performance monitoring is created or started, the create job or
+            start job operation is rejected. This is an upper system limit,
+            and support for it cannot be guaranteed in high-load
+            conditions.";
+        }
+      
+        leaf-list supported-thresh-job-gps {
+          type typese:time-period;
+          min-elements 1;
+          max-elements 9;
+          description "Indicates which granularity periods are supported
+            for Threshold jobs.";
+        }
+      }
+    }
+    
+    list group {
+      key name;
+      description "Represents a group of Measurement Types.";
+      yexte:static-data true;
+      
+      leaf name {
+        type string;
+        description "Name of the PM Group.";
+      }
+
+      leaf generation {
+        type string;
+        config false;
+        description "Determines if group concerns, for example, GSM, 
+          UMTS, EPS, combined(GSM+UMTS+EPS), IMS or 5GS measurements.";
+        reference "3GPP TS 32.404";
+        notife:notifiable-state-data false;
+      }
+
+      leaf switching-technology {
+        type string;
+        config false;
+        description "The Switching domain or domains to which this 
+          measurement is applicable.";
+        reference "3GPP TS 32.404";
+        notife:notifiable-state-data false;
+      }
+
+      leaf validity {
+        type boolean;
+        config false;
+        description "States if the group is valid. A group might not be
+          valid if, for example, the feature that this group is used for
+          is not available to the customer.";
+        notife:notifiable-state-data false;
+      }
+
+            leaf measured-object {
+                type typese:schema-node-identifier;
+        config false;
+          description "The container/list that the measurement-types in
+            this group refers to. No value means this group is not 
+            associated with any specific container/list.";
+        notife:notifiable-state-data false;
+            }
+
+      leaf description {
+        type string;
+        config false;
+        description "Description of the PM Group.";
+        notife:notifiable-state-data false;
+      }
+
+      leaf version {
+        type string;
+        config false;
+        mandatory true;
+        description "group version identifier. Unique version identifier
+          associated with a change to the contents of the PM Group,
+          where new Measurement Types have been added.";
+        notife:notifiable-state-data false;
+      }
+
+      list measurement-type {
+        key id;
+        min-elements 1;
+        description "Defines a Measurement Type on the Managed Element 
+          to be monitored and collected. The measurement-type id is 
+          unique within the group.";
+        yexte:is-system-created;
+        
+        leaf id {
+          type string;
+          description "Identity of the measurement-type instance.";
+        }
+
+        leaf measurement-name {
+          type string;
+          config false;
+          status deprecated {
+            yexte:status-information "Deprecated in 4.0.0. 
+              Considered redundant.";
+          }
+          description "The full name of the Measurement Type.";
+          notife:notifiable-state-data false;
+        }
+
+        leaf size {
+          type uint16;
+          config false;
+          mandatory true;
+          description "Contains the size of the measurement in number
+            of octets.";
+          notife:notifiable-state-data false;
+        }
+
+        leaf collection-method {
+          type collection-method;
+          config false;
+          mandatory true;
+          description "Contains the form in which this measurement 
+            data is obtained.";
+          notife:notifiable-state-data false;
+        }
+
+        leaf description {
+          type string;
+          config false;
+          mandatory true;
+          description "A comprehensible explanation of this 
+            measurement.";
+          notife:notifiable-state-data false;
+        }
+
+        leaf condition {
+          type string;
+          config false;
+          mandatory true;
+          description "Details the condition which causes the 
+            measurement result  data to be updated.";
+          notife:notifiable-state-data false;
+        }
+
+        leaf aggregation {
+          type aggregation;
+          config false;
+          mandatory true;
+          description "Describes how the PM service aggregates the 
+            measurement values for Measurement Type instances.";
+          notife:notifiable-state-data false;
+        }
+
+        leaf measurement-status {
+          type measurement-status;
+          config false;
+          mandatory true;
+          description "The status of the measurement-type."; 
+          notife:notifiable-state-data false;
+        }
+
+        leaf measurement-result {
+          type string;
+          config false;
+          description "Contains a description of expected result value
+            or values.  For example, a single integer value.";
+          reference "3GPP TS 32.404";
+          notife:notifiable-state-data false;
+        }
+
+        leaf multiplicity {
+          type uint16;
+          config false;
+          mandatory true;
+          description "Where a counter is an array of values, this 
+            leaf represents the size of the array. Where it produces a 
+            single value, this leaf is set to 1.";
+          notife:notifiable-state-data false;
+        }
+
+        leaf initial-value {
+          when "../reset-at-gran-period = 'true'";
+          type uint32;
+          config false;
+          mandatory true;
+          description "The initial value to which the Measurement Type
+            is set at the beginning of a new granularity period.";
+          notife:notifiable-state-data false;
+        }
+
+        leaf reset-at-gran-period {
+          type boolean;
+          config false;
+          mandatory true;
+          description "Specifies whether the value is initialized at 
+            the beginning of each granularity period."; 
+          notife:notifiable-state-data false;
+        }
+
+        leaf der-sample-rate {
+          when "../collection-method = 'der'";
+          type uint16;
+          config false;
+          mandatory true;
+          description "Specifies the sample rate for DER counters. 
+            Defined as  according to 3GPP TS 32.401. Data related to a 
+            particular event is captured. Every nth event is 
+            registered, where n can be 1 or greater. 
+            This leaf defines n.";
+          reference "3GPP TS 32.401";
+          notife:notifiable-state-data false;
+        }
+
+        leaf fm-alarm-type {
+          if-feature threshold-jobs;    
+          type instance-identifier;
+          config false;
+          description "fm-alarm-type associated to Threshold 
+            Monitoring of this  Measurement Type. 
+            Example: 
+            /fme:fm/fme:alarm-model[fme:id='AcmeAlarms']/
+            fme:alarm-type[fme:id='GenThreshAlarm']
+            No value means that this Measurement Type is not available 
+            for selection  for a PM Threshold Job.";
+          notife:notifiable-state-data false;
+        }
+
+        leaf threshold-direction {
+            if-feature threshold-jobs;    
+          when "../fm-alarm-type";    
+          type threshold-direction;
+          config false;
+          description "The threshold direction of a Measurement Type 
+            value which raises the Threshold Alarm severity. The leaf 
+            is set  if this Measurement Type shall only be monitored in 
+            one direction in a PM Threshold Job. If it can be monitored 
+            in either direction, then the direction will be set as part
+            of  the threshold job creation by setting 
+            threshold-direction in  measurement-reader.";
+          notife:notifiable-state-data false;
+        }
+
+        leaf threshold-valid-range {
+            if-feature threshold-jobs;    
+          when "../fm-alarm-type";    
+          type string;
+          config false;
+          description "The valid threshold range for use in a 
+            threshold job.  Expressed as a string containing lower 
+            and upper bound, for example \"0..100\".";
+          notife:notifiable-state-data false;
+        }
+
+        leaf is-compressed {
+          when "../multiplicity > 1";
+          type boolean;
+          config false;
+          mandatory true;
+          description "Indicates if the Measurement Type result is in 
+            compressed  format. For Measurement Types with multiplicity 
+            greater than 1, the result can be compressed by only 
+            reporting the non-zero values. A detailed explanation of 
+            the format of the measurement result is given in the 
+            measurement-result leaf.";
+           notife:notifiable-state-data false;
+        }
+      }
+    }
+
+    list job {
+      key name;
+      description "Describes a user-defined PM job on the Managed Element. 
+        A PM Job defines the configuration required per job and also
+        defines the measurements to be included in the job. An
+        instance of the measurement-reader list is created for
+        every group or measurement-type instance being measured.";
+      
+      leaf name {
+        type string;
+        description "Holds the name used when identifying the job.";
+      }
+
+      leaf requested-job-state {
+        when "../../measurement-capabilities/job-start-stop-support != 'none'";
+        type job-state;
+        default active;
+        description "Contains the requested state of the PM job. It 
+          represents the state that the job has been ordered to reach.";
+      }
+
+      leaf reporting-period {
+        if-feature measurement-jobs;
+        when "../type = 'measurement-job'";
+        type leafref {
+          path "../../measurement-capabilities/measurement-jobs/supported-reporting-periods";
+        }
+        must "enum-value(.) >= enum-value(../granularity-period) and 
+          ( ../../measurement-capabilities/measurement-jobs/file-rp-supported = 'true' 
+            or . = ../granularity-period )" {
+          error-message "The value of reporting-period must be equal 
+           to the value of granularity-period if file-rp-supported in
+           measurement-capabilities is 'false', or may be equal to a
+           multiple of the value of granularity-period if
+           file-rp-supported is set to 'true'.";
+        }
+        default fifteen-min;
+        description "Contains the reporting period of the result file.
+          This is directly related to the granularity period as the
+          granularity period can not be longer than the reporting period. 
+          Reporting period must be one of the supported values for that job type as listed in 
+          /pm/measurement-capabilities/measurement-jobs/supported-reporting-periods";
+      }
+
+      leaf type { 
+        type job-type;
+        must '. != "none"' ;
+        mandatory true;
+        description "Type of PM job.";
+      }
+
+      leaf priority {
+        if-feature measurement-jobs;
+        when "../../measurement-capabilities/measurement-jobs/" 
+            + "job-prioritization-support = 'true'";
+        type job-priority;
+        default medium;
+        description "Contains the priority of the job.";
+      }
+
+      container measurement-job-checks {
+        if-feature measurement-jobs  ;
+        when "../type = 'measurement-job'" ;
+        description "The container implements checks for the measurement-jobs 
+          and SHALL NOT be used for configuration.";
+        must "(../granularity-period = 
+          /pm/measurement-capabilities/measurement-jobs/supported-meas-job-gps/.)" {
+          error-message
+            "granularity-period must be set to one of the supported values for 
+              measurement-jobs";
+        }
+      }
+      
+      container threshold-job-checks {
+        if-feature threshold-jobs  ;
+        when "../type = 'threshold-job'" ;
+        description "The container implements checks for the threshold-jobs 
+          and SHALL NOT be used for configuration.";
+        must "(../granularity-period = 
+          /pm/measurement-capabilities/threshold-jobs/supported-thresh-job-gps/.)" {
+          error-message
+            "granularity-period must be set to one of the supported values for 
+              threshold-jobs";
+        }
+      }
+      
+      container realtime-job-checks {
+        if-feature realtime-jobs  ;
+        when "../type = 'realtime-job'" ;
+        description "The container implements checks for the realtime-jobs 
+          and SHALL NOT be used for configuration.";
+        must "(../granularity-period = 
+          /pm/measurement-capabilities/realtime-jobs/supported-rt-job-gps/.)" {
+          error-message
+            "granularity-period must be set to one of the supported values for 
+              real-time-jobs";
+        }
+      }
+      
+      leaf granularity-period {
+        type typese:time-period;
+        default fifteen-min;
+        description "Contains the granularity period of the job. The 
+          granularity period is the time between the initiation of two
+          successive gatherings of measurement data. This is directly 
+          related to the reporting-period as the granularity period can 
+          not be longer than the reporting period.
+          Granularity period must be one of the supported values for that 
+          job type as listed in /pm/measurement-capabilities/XXX/supported-XXX-job-gps 
+          where XXX defines the type of the job";
+      }
+
+      leaf current-job-state {
+        type job-state;
+        config false;
+        mandatory true;
+        description "Describes the current state of the PM job.";
+      }
+
+      leaf control {
+        type job-control;
+        default full;
+        config false;
+        description "Describes the level of user control of the 
+          PM job.";
+      }
+
+      leaf compression-type {
+        if-feature measurement-jobs ;
+        when "../type = 'measurement-job'";
+        type leafref {
+          path "../../measurement-capabilities/measurement-jobs/supported-compression-types";
+        }      
+        description "Indicates file compression type to be applied to 
+          the report file. If no value is set, then no compression is to
+          be applied to the report file for this job. Must have the same
+          value for all PM jobs with the same group tag and
+          reporting-period assigned. Must have the same value for all
+          PM jobs for which no group tag is assigned (the default
+          group), but the same reporting-period assigned.";
+      }
+
+      leaf group {
+        if-feature measurement-jobs;
+        when " ../../measurement-capabilities/measurement-jobs/job-grouping-support = 'true' 
+          and ../type = 'measurement-job'";
+        type string;
+        description "Tag for grouping PM measurement job results. 
+          Represents a grouping of separate PM Jobs for which the 
+          measurement results must be collected together in a single 
+          report file for that group only. If this leaf is not set, then
+          for each reporting period, the measurement results for this job
+          are written to the same report file as other jobs that have
+          no job group assigned.";
+      }
+
+      list measurement-reader {
+        key name;
+        min-elements 1;
+        description "Represents the capability to read the value of the
+          Measurement Type or group of Measurement Types. There can be
+          many measurement-reader instances for each job (one for 
+          each measurement-type or group). For a Threshold Job or
+          Real-time Job, only a measurement-type instance can be 
+          referenced by the Measurement Reader.";
+                 
+        leaf name {
+          type string;
+          description "Identity of the measurement-reader instance.";
+        }
+
+        leaf group-ref {
+          type leafref {
+            path "../../../group/name";
+          }
+          mandatory true;
+          description "Reference to a group";
+        }
+        
+        must "./measurement-type-ref or (../type = 'measurement-job')" {
+          description "Threshold and Real-time jobs MUST specify a 
+            single measurement-type";
+          error-message "Threshold and Real-time jobs MUST specify a 
+            single measurement-type";
+        }
+
+        leaf measurement-type-ref { 
+          
+          type leafref {
+            path "../../../group[name = current()/../group-ref]"
+              + "/measurement-type/id";
+          }
+            
+          description "Reference to a specific-type.
+            If measurement-type-ref is not specified, then all 
+            measurement-types in the referenced group are included.
+            Threshold and Real-time jobs MUST specify a single 
+            measurement-type";
+        }
+
+        leaf threshold-rate-of-variation {
+          if-feature threshold-jobs ;
+          when "../../type = 'threshold-job'";
+          type per-time-interval;
+          default per-second;
+            description "Time interval used for monitoring the 
+             Measurement Type against a threshold. Specifies, for 
+             Threshold Monitoring of a Cumulative Counter Measurement 
+             Type, how to calculate the value of the Measurement Type 
+             used to compare against the threshold.";
+        }
+
+        leaf threshold-direction {
+          if-feature threshold-jobs ;
+          when "../../type = 'threshold-job'";
+            type threshold-direction;
+          default increasing;
+            description "Specifies the threshold direction. Used when 
+              the threshold-direction in the measurement-type instance 
+              is not set. If neither is set, the default value is used.";
+        }
+                    
+        list threshold-monitoring {
+          if-feature threshold-jobs ;
+          when "../../type = 'threshold-job'";
+            key name;
+            max-elements 4;
+            description "Contains configuration of each threshold for 
+              Threshold jobs. To be able to monitor the overall health of 
+              the network, thresholds are used for generating Performance
+              Alarms. Performance alarms cannot be cleared manually.
+              Performance alarms must be cleared when the threshold is
+              (a) crossed, or (b) reached, in the opposite direction to
+              the one that triggers the alarm.";                        
+          
+          leaf name {
+            type string;
+            description "Holds the name used when identifying 
+              the threshold monitor.";
+          }
+
+          leaf threshold-high {
+            type int64;
+            mandatory true;
+            description "Defines the high-threshold level for this 
+              alarm severity. For each pair of high-threshold and 
+              low-threshold levels, one of them must generate an 
+              alarm notification, or  increase the severity of an 
+              existing alarm. The other one must generate an alarm 
+              clear notification, or decrease the severity of an 
+              existing alarm. 
+              If the direction of the threshold monitor is 
+              increasing, a new alarm (or severity increase of an 
+              existing alarm) is not generated before the measurement
+              value has (a) crossed or (b) reached the high-level 
+              threshold value. Furthermore, an existing alarm is not 
+              cleared (or its severity decreased) before the 
+              measurement value has reached or crossed the 
+              low-level threshold value. 
+              If the direction of the threshold monitor is defined as
+              decreasing, this means that the counter behaviour 
+              approaches  an alarm situation as its value decreases.
+              For this scenario, the threshold-low leaf holds the 
+              alarming level, and if hysteresis is applied, the 
+              threshold-high leaf holds the value at which the alarm
+              will clear (or decrease in severity) as the value of 
+              the counter increases to this level.
+              The value of threshold-low shall never be higher than
+              the value of threshold-high.
+              It is not mandatory to apply hysteresis to the 
+              threshold monitor. If hysteresis is not required, the
+              same threshold value shall be assigned to both 
+              threshold-high and threshold-low. The hysteresis 
+              mechanism can be used for both Gauges and Cumulative 
+              Counters thresholds.";
+            }
+    
+          leaf threshold-low {
+            type int64;
+              mandatory true;
+              description "Defines the low-threshold level for this 
+                alarm severity. For each pair of high-threshold and 
+                low-threshold levels, one of them must generate an 
+                alarm notification, or  increase the severity of an 
+                existing alarm. The other one must generate an alarm 
+                clear notification, or decrease the severity of an 
+                existing alarm. 
+                If the direction of the threshold monitor is 
+                increasing, a new alarm (or severity increase of an 
+                existing alarm) is not generated before the measurement
+                value has (a) crossed or (b) reached the high-level 
+                threshold value. Furthermore, an existing alarm is not 
+                cleared (or its severity decreased) before the 
+                measurement value has reached or crossed the 
+                low-level threshold value. 
+                If the direction of the threshold monitor is defined as
+                decreasing, this means that the counter behaviour 
+                approaches  an alarm situation as its value decreases.
+                For this scenario, the threshold-low leaf holds the 
+                alarming level, and if hysteresis is applied, the 
+                threshold-high leaf holds the value at which the alarm
+                will clear (or decrease in severity) as the value of 
+                the counter increases to this level.
+                The value of threshold-low shall never be higher than
+                the value of threshold-high.
+                It is not mandatory to apply hysteresis to the 
+                threshold monitor. If hysteresis is not required, the
+                same threshold value shall be assigned to both 
+                threshold-high and threshold-low. The hysteresis 
+                mechanism can be used for both Gauges and Cumulative 
+                Counters thresholds.";
+          }
+
+          leaf threshold-severity {
+            type fme:severity-level;
+            default minor;
+            description "Threshold severity. One of the following 
+              Severity Levels must be assigned per threshold, in 
+              order to raise a threshold alarm of this severity, or 
+              change an existing  alarm to this severity, if that 
+              threshold is reached or crossed: 
+              'critical', 'major', 'minor' or 'warning'. 
+              Severity level 'cleared' is not a valid severity level
+              and cannot be assigned to this leaf.";
+          }
+        }
+        
+        leaf-list target {
+          type nacm:node-instance-identifier;
+          description "Selects one or more resource instance(s) as 
+             the target of the measurement. If not set, the 
+             job is applied to all resource instances relevant
+             to the selected group or measurement-type.";          
+        }
+      }
+    }
+  }
+}

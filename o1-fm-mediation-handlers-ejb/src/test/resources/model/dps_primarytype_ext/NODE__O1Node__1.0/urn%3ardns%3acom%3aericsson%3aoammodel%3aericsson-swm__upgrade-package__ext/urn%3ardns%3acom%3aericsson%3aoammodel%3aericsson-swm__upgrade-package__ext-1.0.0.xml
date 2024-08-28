@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns4:PrimaryTypeExtensionDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:dps_primarytype" xmlns:ns3="urn:com:ericsson:schema:xml:oss:dps_common" xmlns:ns4="urn:com:ericsson:schema:xml:oss:dps_primarytype_ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ns1:name="urn:rdns:com:ericsson:oammodel:ericsson-swm__upgrade-package__ext" ns1:ns="NODE__O1Node__1.0" ns1:version="1.0.0">
+  <ns1:modelCreationInfo author="YANG Transformer2">
+    <ns1:derivedModel derivedFrom="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-swm/ericsson-swm%402020-10-14"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>Extension for /urn:rdns:com:ericsson:oammodel:ericsson-swm/upgrade-package/3.1.0 to handle augmentations/deviations</ns1:desc>
+  <ns1:extendedModelElement urn="//urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-swm/upgrade-package/3.1.0"/>
+  <ns1:requiresTargetType category="NODE" type="O1Node" version="1.0"/>
+  <ns4:primaryTypeExtension>
+    <ns4:primaryTypeAction ns="urn:rdns:com:ericsson:oammodel:ericsson-swm" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="activate">
+      <ns1:desc>Current upgrade package is taken into operation fully or partially. Partial activation occurs if the UCF defines activation steps and leaf ignoreBreakPoints is false. The ME upgrade engine notifies the operator that the activation step is completed. The next activation step starts when the operator invokes an activate action. Each upgrade-package must have at least 1 activation step. When leaf ignore-break-points=true, all activation steps are executed in sequence. When an activation step is complete, the ME executes the next activation step. That means there is no operator invocation when an activation step is complete. The time for observation of correct operation of the ME, after each completed step, is always monitored by a supervision timer. The invocation of activate() can be monitored by a supervision timer. If the supervision timer expires before invocation of activate() or confirm(), the activation fails and the ME falls back to state prepare-completed. The action returns immediately after invocation. The progress of the action can be tracked by leaf progress-report. The action returns false if the action could not start for any reason, for example, another parallel action is in progress. In all other cases, it returns true. This action can be invoked when the state is prepare-completed or activation-step-completed. If the action is invoked in a state where the action has no meaning, ME is expected to return an error message.</ns1:desc>
+      <ns2:returnType xsi:type="ns1:booleanType"/>
+    </ns4:primaryTypeAction>
+    <ns4:primaryTypeAction ns="urn:rdns:com:ericsson:oammodel:ericsson-swm" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="cancel">
+      <ns1:desc>Cancel can be invoked during any long-lasting operation. Stops the operation and restores the consistent state that existed before the long-lasting operation started. Furthermore, cancel() can also be invoked when the upgrade-package is in state waiting-for-commit or activation-step-completed without having a long-lasting operation in progress. Calling cancel() in this state orders the ME to restore the state that existed before the activation procedure started. The action returns immediately after invocation. The consequences of the action can be tracked by leaf progress-report. The action returns false if the action is refused by the ME. If the action is invoked in a state where the action has no meaning, the ME is expected to return false. In all other cases, it returns true. This action can be invoked when the upgrade-package state is prepare-in-progress, verification-in-progress, activation-in-progress, activation-step-completed, or waiting-for-commit.</ns1:desc>
+      <ns2:returnType xsi:type="ns1:booleanType"/>
+    </ns4:primaryTypeAction>
+    <ns4:primaryTypeAction ns="urn:rdns:com:ericsson:oammodel:ericsson-swm" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="confirm">
+      <ns1:desc>Stops the activation fallback timer and confirms the upgrade. The action returns when the synchronous action is completed. This action can be invoked when the state is waiting-for-commit. The action returns true on success, false on failure.</ns1:desc>
+      <ns2:returnType xsi:type="ns1:booleanType"/>
+    </ns4:primaryTypeAction>
+    <ns4:primaryTypeAction ns="urn:rdns:com:ericsson:oammodel:ericsson-swm" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="prepare">
+      <ns1:desc>Prepares the Managed Element for activation of the current upgrade package. Executing prepare() does not have any negative impact on the in-service performance of the Managed Element. The action returns immediately after invocation. The progress of the action can be tracked by leaf progress-report. The action returns false if the action could not start for any reason, for example, another parallel action is in progress. In all other cases, it returns true.</ns1:desc>
+      <ns2:returnType xsi:type="ns1:booleanType"/>
+    </ns4:primaryTypeAction>
+    <ns4:primaryTypeAction ns="urn:rdns:com:ericsson:oammodel:ericsson-swm" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="verify">
+      <ns1:desc>Verifies the ability to activate the current upgrade package. The action returns immediately after invocation. The progress of the action can be tracked by leaf progress-report. The action returns false if the action could not start for any reason, for example, another parallel action is in progress. In all other cases, it returns true. This action can be invoked when the state is prepare-completed. If the action is invoked in a state where the action has no meaning, the ME is expected to return an error message.This action can be called as an option in the whole upgrade procedure. The action can be called more than once if required.</ns1:desc>
+      <ns2:returnType xsi:type="ns1:booleanType"/>
+    </ns4:primaryTypeAction>
+  </ns4:primaryTypeExtension>
+  <ns4:choiceHandling/>
+</ns4:PrimaryTypeExtensionDefinition>

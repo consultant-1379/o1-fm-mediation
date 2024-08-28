@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:EnumDataTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:oss_edt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ns1:lifeCycle="CURRENT" ns1:name="PerfMetricJob__administrativeState" ns1:ns="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:version="2023.2.14">
+  <ns1:modelCreationInfo author="YANG Transformer2">
+    <ns1:derivedModel derivedFrom="/net_yang/urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/_3gpp-common-managed-element%402023-02-14"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>Enable or disables production of the metrics</ns1:desc>
+  <ns2:member name="LOCKED" ns1:lifeCycle="CURRENT" value="0">
+    <ns2:desc>The resource is administratively prohibited from performing services for its users.</ns2:desc>
+  </ns2:member>
+  <ns2:member name="SHUTTINGDOWN" ns1:lifeCycle="CURRENT" value="2">
+    <ns2:desc>Use of the resource is administratively permitted to existing instances of use only. While the system remains in the shutting down state the manager or the managed element may at any time cause the resource to transition to the locked state.</ns2:desc>
+  </ns2:member>
+  <ns2:member name="UNLOCKED" ns1:lifeCycle="CURRENT" value="1">
+    <ns2:desc>The resource is administratively permitted to perform services for its users. This is independent of its inherent operability.</ns2:desc>
+  </ns2:member>
+</ns2:EnumDataTypeDefinition>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:PrimaryTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:dps_primarytype" xmlns:ns3="urn:com:ericsson:schema:xml:oss:dps_common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" hierarchyType="HIERARCHICAL" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="ThresholdMonitor" ns1:ns="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:version="2023.2.14" readBehavior="FROM_PERSISTENCE" writeBehavior="PERSIST_AND_DELEGATE">
+  <ns1:modelCreationInfo author="YANG Transformer2">
+    <ns1:derivedModel derivedFrom="/net_yang/urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/_3gpp-common-managed-element%402023-02-14"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>Represents a threshold monitor for performance metrics. It can be contained by SubNetwork, ManagedElement, or ManagedFunction. A threshold monitor checks for threshold crossings of performance metric values and generates a notification when that happens. 
+The ThresholdMonitor shall be used only when NRM based threshold monitoring is supported. 
+To activate threshold monitoring, a MnS consumer needs to create a ThresholdMonitor instance on the MnS producer. For ultimate deactivation of threshold monitoring, the MnS consumer should delete the monitor to free up resources on the MnS producer. 
+For temporary suspension of threshold monitoring, the MnS consumer can manipulate the value of the administrative state attribute. The MnS producer may disable threshold monitoring as well, for example in overload situations. This situation is indicated by the MnS producer with setting the operational state attribute to disabled. When monitoring is resumed the operational state is set again to enabled. 
+All object instances below and including the instance containing the ThresholdMonitor (base object instance) are scoped for performance metric production. Performance metrics are monitored only on those object instances whose object class matches the object class associated to the performance metrics to be monitored. 
+The optional attributes objectInstances and rootObjectInstances allow to restrict the scope. When the attribute objectInstances is present, only the object instances identified by this attribute are scoped. When the attribute rootObjectInstances is present, then the subtrees whose root objects are identified by this attribute are scoped. Both attributes may be present at the same time meaning the total scope is equal to the sum of both scopes. Object instances may be scoped by both the objectInstances and rootObjectInstances attributes. This shall not be considered as an error by the MnS producer. 
+Multiple thresholds can be defined for multiple performance metric sets in a single monitor using thresholdInfoList. The attribute monitorGranularityPeriod defines the granularity period to be applied. The value is a supported GP for the measurements being monitored. Threshold crossing behaviour is as defined in [54], Annex F. 
+Each threshold is identified with a number (key) called thresholdLevel. A threshold is defined using the attributes thresholdValue , thresholdDirection and hysteresis. 
+When hysteresis is absent or carries no information, a threshold is triggered when the thresholdValue is reached or crossed. When hysteresis is present, two threshold values are specified for the threshold as follows: A high treshold value equal to the threshold value plus the hysteresis value, and a low threshold value equal to the threshold value minus the hysteresis value. When the monitored performance metric increases, the threshold is triggered when the high threshold value is reached or crossed. When the monitored performance metric decreases, the threshold is triggered when the low threshold value is reached or crossed. The hsyteresis ensures that the performance metric value can oscillate around a comparison value without triggering each time the threshold when the threshold value is crossed. 
+Using the thresholdDirection attribute a threshold can be configured in such a manner that it is triggered only when the monitored performance metric is going up or down upon reaching or crossing the threshold. 
+A ThresholdMonitor creation request shall be rejected, if the performance metrics requested to be monitored, the requested granularity period, or the requested combination thereof is not supported by the MnS producer. A creation request may fail, when the performance metrics requested to be monitored are not produced by a PerfMetricJob. 
+Creation and deletion of ThresholdMonitor instances by MnS consumers is optional; when not supported, ThresholdMonitor instances may be created and deleted by the system or be pre-installed.</ns1:desc>
+  <ns1:meta metaName="YANG_3GPP_REAGGREGATED_IOC"/>
+  <ns2:primaryTypeAttribute immutable="true" key="true" mandatory="true" ns="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="id" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Key leaf (namingAttribute) for a class/list. Should be used as a key leaf for lists representing stage 2 classes.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="administrativeState" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Enables or disables the ThresholdMonitor.</ns1:desc>
+    <ns1:type modelUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/ThresholdMonitor__administrativeState/2023.2.14" xsi:type="ns1:enumRefType"/>
+    <ns1:default value="UNLOCKED" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="true" ns="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="monitorGranularityPeriod" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Granularity period used to monitor measurements for threshold crossings.</ns1:desc>
+    <ns1:type xsi:type="ns1:longType">
+      <ns1:notNullConstraint/>
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="4294967295" min="1"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:unit>second</ns1:unit>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="objectInstances" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>objectInstances</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType xsi:type="ns1:stringType">
+        <ns1:stringContentsConstraint type="REGEX" value="([a-zA-Z][a-zA-Z0-9-]*=(\\( |#|\\|&gt;|&lt;|;|&quot;|\+|,|[a-fA-F0-9]{2})|[^\\&gt;&lt;;&quot;+,# ])((\\( |#|\\|&gt;|&lt;|;|&quot;|\+|,|[a-fA-F0-9]{2})|[^\\&gt;&lt;;&quot;+,])*(\\( |#|\\|&gt;|&lt;|;|&quot;|\+|,|[a-fA-F0-9]{2})|[^\\&gt;&lt;;&quot;+, ]))?[,\+])*[a-zA-Z][a-zA-Z0-9-]*=(\\( |#|\\|&gt;|&lt;|;|&quot;|\+|,|[a-fA-F0-9]{2})|[^\\&gt;&lt;;&quot;+,# ])((\\( |#|\\|&gt;|&lt;|;|&quot;|\+|,|[a-fA-F0-9]{2})|[^\\&gt;&lt;;&quot;+,])*(\\( |#|\\|&gt;|&lt;|;|&quot;|\+|,|[a-fA-F0-9]{2})|[^\\&gt;&lt;;&quot;+, ]))?"/>
+      </ns1:collectionValuesType>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="operationalState" readBehavior="FROM_DELEGATE" sensitive="false" writeBehavior="NOT_ALLOWED">
+    <ns1:desc>Indicates whether the ThresholdMonitor is working.</ns1:desc>
+    <ns1:type modelUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/ThresholdMonitor__operationalState/2023.2.14" xsi:type="ns1:enumRefType"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="rootObjectInstances" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Each object instance designates the root of a subtree that contains the root object and all descendant objects.</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType xsi:type="ns1:stringType">
+        <ns1:stringContentsConstraint type="REGEX" value="([a-zA-Z][a-zA-Z0-9-]*=(\\( |#|\\|&gt;|&lt;|;|&quot;|\+|,|[a-fA-F0-9]{2})|[^\\&gt;&lt;;&quot;+,# ])((\\( |#|\\|&gt;|&lt;|;|&quot;|\+|,|[a-fA-F0-9]{2})|[^\\&gt;&lt;;&quot;+,])*(\\( |#|\\|&gt;|&lt;|;|&quot;|\+|,|[a-fA-F0-9]{2})|[^\\&gt;&lt;;&quot;+, ]))?[,\+])*[a-zA-Z][a-zA-Z0-9-]*=(\\( |#|\\|&gt;|&lt;|;|&quot;|\+|,|[a-fA-F0-9]{2})|[^\\&gt;&lt;;&quot;+,# ])((\\( |#|\\|&gt;|&lt;|;|&quot;|\+|,|[a-fA-F0-9]{2})|[^\\&gt;&lt;;&quot;+,])*(\\( |#|\\|&gt;|&lt;|;|&quot;|\+|,|[a-fA-F0-9]{2})|[^\\&gt;&lt;;&quot;+, ]))?"/>
+      </ns1:collectionValuesType>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="true" ns="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:lifeCycle="CURRENT" ns1:name="thresholdInfoList" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>List of threshold info.</ns1:desc>
+    <ns1:type xsi:type="ns1:listType">
+      <ns1:notNullConstraint/>
+      <ns1:collectionSizeConstraint>
+        <ns1:minSize value="1"/>
+      </ns1:collectionSizeConstraint>
+      <ns1:collectionUniquenessConstraint/>
+      <ns1:collectionValuesType modelUrn="//urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/ThresholdMonitor__thresholdInfoList/2023.2.14" xsi:type="ns1:complexRefType"/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+</ns2:PrimaryTypeDefinition>

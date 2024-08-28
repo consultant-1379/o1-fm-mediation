@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:EnumDataTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:oss_edt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ns1:lifeCycle="CURRENT" ns1:name="TraceJob__jobType" ns1:ns="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:version="2023.2.14">
+  <ns1:modelCreationInfo author="YANG Transformer2">
+    <ns1:derivedModel derivedFrom="/net_yang/urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/_3gpp-common-managed-element%402023-02-14"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>Specifies the MDT mode and it specifies also whether the TraceJob represents only MDT, Logged MBSFN MDT, Trace or a combined Trace and MDT job. The attribute is applicable for Trace, MDT, RCEF and RLF reporting.</ns1:desc>
+  <ns2:member name="IMMEDIATE_MDT_AND_TRACE" ns1:lifeCycle="CURRENT" value="3">
+    <ns2:desc>IMMEDIATE_MDT_AND_TRACE</ns2:desc>
+  </ns2:member>
+  <ns2:member name="IMMEDIATE_MDT_ONLY" ns1:lifeCycle="CURRENT" value="0">
+    <ns2:desc>IMMEDIATE_MDT_ONLY</ns2:desc>
+  </ns2:member>
+  <ns2:member name="LOGGED_MBSFN_MDT" ns1:lifeCycle="CURRENT" value="6">
+    <ns2:desc>LOGGED_MBSFN_MDT</ns2:desc>
+  </ns2:member>
+  <ns2:member name="LOGGED_MDT_ONLY" ns1:lifeCycle="CURRENT" value="1">
+    <ns2:desc>LOGGED_MDT_ONLY</ns2:desc>
+  </ns2:member>
+  <ns2:member name="RCEF_REPORT_ONLY" ns1:lifeCycle="CURRENT" value="5">
+    <ns2:desc>RCEF_REPORT_ONLY</ns2:desc>
+  </ns2:member>
+  <ns2:member name="RLF_REPORT_ONLY" ns1:lifeCycle="CURRENT" value="4">
+    <ns2:desc>RLF_REPORT_ONLY</ns2:desc>
+  </ns2:member>
+  <ns2:member name="TRACE_ONLY" ns1:lifeCycle="CURRENT" value="2">
+    <ns2:desc>TRACE_ONLY</ns2:desc>
+  </ns2:member>
+</ns2:EnumDataTypeDefinition>

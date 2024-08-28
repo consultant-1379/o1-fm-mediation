@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:EnumDataTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:oss_edt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ns1:lifeCycle="CURRENT" ns1:name="upgrade-package__state" ns1:ns="urn:rdns:com:ericsson:oammodel:ericsson-swm" ns1:version="3.1.0">
+  <ns1:modelCreationInfo author="YANG Transformer2">
+    <ns1:derivedModel derivedFrom="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-swm/ericsson-swm%402020-10-14"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>Current state of upgrade-package.</ns1:desc>
+  <ns2:member name="activation-in-progress" ns1:lifeCycle="CURRENT" value="4">
+    <ns2:desc>Activation is in progress. In this state, only the cancel() action can be called. If the cancel() action is called, the upgrade-package moves to state deactivation-in-progress. If the activation step completes successfully, the upgrade-package moves to state activation-step-completed .</ns2:desc>
+  </ns2:member>
+  <ns2:member name="activation-step-completed" ns1:lifeCycle="CURRENT" value="5">
+    <ns2:desc>The previous activation step completed successfully. There are still more activation steps left. In this state, only the activate() or the cancel() action can be called. If the cancel() action is called, the upgrade-package moves to state deactivation-in-progress . If the activate() action is called, the ME starts the activation of the next activation step and the upgrade-package moves to state activation-in-progress. If the fallback timer expires in this state, the upgrade-package moves to state deactivation-in-progress .</ns2:desc>
+  </ns2:member>
+  <ns2:member name="commit-completed" ns1:lifeCycle="CURRENT" value="7">
+    <ns2:desc>The upgrade is confirmed.The whole upgrade procedure has completed.</ns2:desc>
+  </ns2:member>
+  <ns2:member name="deactivation-in-progress" ns1:lifeCycle="CURRENT" value="8">
+    <ns2:desc>Deactivation of the upgrade-package is in progress. This can be the result of a cancel() action, or the fallback timer has expired. In this state, no action can be called. At the end of fallback operation, the upgrade-package moves back to state prepare-completed.</ns2:desc>
+  </ns2:member>
+  <ns2:member name="initialized" ns1:lifeCycle="CURRENT" value="1">
+    <ns2:desc>The upgrade-package is initialized. The administrative data and activation steps of the upgrade-package can be read.In this state, only the prepare() action can be called.</ns2:desc>
+  </ns2:member>
+  <ns2:member name="prepare-completed" ns1:lifeCycle="CURRENT" value="3">
+    <ns2:desc>Prepare action has finished successfully. In this state, only the verify() or the activate() action can be called. If the activate() action is called, the upgrade-package moves to state activation-in-progress .</ns2:desc>
+  </ns2:member>
+  <ns2:member name="prepare-in-progress" ns1:lifeCycle="CURRENT" value="2">
+    <ns2:desc>Prepare action in progress. In this state, only the cancel() action can be called. If the prepare() action completes successfully, the upgrade-package moves to state prepare-completed . If the prepare() action fails, or cancel() is called, the upgrade-package moves back to state initialized.</ns2:desc>
+  </ns2:member>
+  <ns2:member name="waiting-for-commit" ns1:lifeCycle="CURRENT" value="6">
+    <ns2:desc>The last activation step completed successfully. The operator must confirm the upgrade. In this state, only the confirm() or the cancel() action can be called. If the cancel() action is called, the upgrade-package moves to state deactivation-in-progress. If the confirm() action is called, the upgrade-package moves to state commit-completed .</ns2:desc>
+  </ns2:member>
+</ns2:EnumDataTypeDefinition>

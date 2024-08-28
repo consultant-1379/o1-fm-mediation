@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:PrimaryTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:dps_primarytype" xmlns:ns3="urn:com:ericsson:schema:xml:oss:dps_common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" hierarchyType="HIERARCHICAL" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="radius$$server$$udp" ns1:ns="urn:ietf:params:xml:ns:yang:ietf-system" ns1:version="2014.8.6" readBehavior="FROM_PERSISTENCE" writeBehavior="PERSIST_AND_DELEGATE">
+  <ns1:modelCreationInfo author="YANG Transformer2">
+    <ns1:derivedModel derivedFrom="/net_yang/urn%3aietf%3aparams%3axml%3ans%3ayang%3aietf-system/ietf-system%402014-08-06"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>Contains UDP-specific configuration parameters for RADIUS.</ns1:desc>
+  <ns1:meta metaName="YANG_NON_PRESENCE_CONTAINER"/>
+  <ns1:meta metaName="YANG_ORIGINAL_NAME" metaValue="udp"/>
+  <ns2:primaryTypeAttribute immutable="true" key="true" mandatory="true" ns1:definedBy="OSS" ns1:name="udp-key" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Key attribute</ns1:desc>
+    <ns1:meta metaName="YANG_ARTIFIAL_KEY"/>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="1" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="true" ns="urn:ietf:params:xml:ns:yang:ietf-system" ns1:lifeCycle="CURRENT" ns1:name="address" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The address of the RADIUS server.</ns1:desc>
+    <ns1:type xsi:type="ns1:unionType">
+      <ns1:notNullConstraint/>
+      <ns1:member xsi:type="ns1:stringType">
+        <ns1:stringContentsConstraint type="REGEX" value="(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(%[\p{N}\p{L}]+)?"/>
+      </ns1:member>
+      <ns1:member xsi:type="ns1:stringType"/>
+      <ns1:member xsi:type="ns1:stringType">
+        <ns1:stringLengthConstraint>
+          <ns1:minMaxLength max="253" min="1"/>
+        </ns1:stringLengthConstraint>
+        <ns1:stringContentsConstraint type="REGEX" value="((([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA-Z0-9]\.)*([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA-Z0-9]\.?)|\."/>
+      </ns1:member>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="false" ns="urn:ietf:params:xml:ns:yang:ietf-system" ns1:lifeCycle="CURRENT" ns1:name="authentication-port" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The port number of the RADIUS server.</ns1:desc>
+    <ns1:type xsi:type="ns1:integerType">
+      <ns1:valueRangeConstraint>
+        <ns1:minMaxRange max="65535" min="0"/>
+      </ns1:valueRangeConstraint>
+    </ns1:type>
+    <ns1:default value="1812" xsi:type="ns1:integerValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="true" ns="urn:ietf:params:xml:ns:yang:ietf-system" ns1:lifeCycle="CURRENT" ns1:name="shared-secret" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The shared secret, which is known to both the RADIUS client and server.</ns1:desc>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:requires>
+    <ns3:activeChoiceCase case="udp" choice="transport" primaryTypeUrn="//urn%3aietf%3aparams%3axml%3ans%3ayang%3aietf-system/radius%24%24server/2014.8.6"/>
+  </ns2:requires>
+</ns2:PrimaryTypeDefinition>

@@ -1,0 +1,723 @@
+module ericsson-swm {
+  yang-version 1.1;
+  namespace urn:rdns:com:ericsson:oammodel:ericsson-swm;
+  prefix swme;
+  
+  import ericsson-yang-extensions { prefix yexte; }
+  import ericsson-yang-types { prefix typese; }  
+  import ericsson-swim { prefix swime; }  
+  import ietf-yang-types { prefix yang; }  
+  import ericsson-notifications { prefix notife; }
+  import ietf-inet-types { prefix inet; }
+  import ietf-netconf-acm { prefix nacm; }
+
+  organization "Ericsson AB";
+  contact "Ericsson first line support via email";
+  description "Software management model.
+    Copyright (c) 2020 Ericsson AB. All rights reserved.";
+
+  revision "2020-10-14" {
+    // ethbll
+    description "Added keys to keyless lists";
+    yexte:version 3;
+    yexte:release 1;
+    yexte:correction 0;
+  }
+  
+  revision "2017-11-27" {
+    // ethbll
+    description "Added missing yexte:is-passphrase";
+    yexte:version 3;
+    yexte:release 0;
+    yexte:correction 1;
+  }
+  
+  revision "2017-10-18" {
+    // ethbll
+    description "Created feature timed-fallback, not mandatory in EOI  
+      Removed some unnecessary  yexte:is-system-created";
+    yexte:version 3;
+    yexte:release 0;
+    yexte:correction 0;
+  }
+  
+  revision "2017-05-15" {
+    description "changed yexte:not-notifable to notife:notifiable-state-data 
+      false added notfiable-state-data true to the swm container";
+    yexte:version 1;
+    yexte:release 1;
+    yexte:correction 0;
+  }
+  
+  revision "2016-07-05" {
+    description "Initial version based on ECIM_SwM 4.1.0.";
+    yexte:version 1;
+    yexte:release 0;
+    yexte:correction 0;
+  }
+  
+  feature timed-fallback {
+    description "Indicates that fallback is supported.";
+  }
+
+  container swm {
+    description "Sw management";
+    notife:notifiable-state-data true;
+
+    list report-progress {
+      key action-id;
+      config false;
+      max-elements 1;
+      description 
+        "Represents the progress report, including the result, of 
+         the ongoing action. This resource supports only one action
+         execution at a time.";
+      uses typese:async-action-progress;
+    }
+
+    leaf fallback-timer {
+      if-feature timed-fallback ;
+      type int16 {
+        range "-1..max";
+      }
+      units seconds;
+      default 1200;
+      description 
+        "Maximum interval in seconds within which the next action
+         must be invoked to avoid fallback. The maximum number of
+         seconds allowed to elapse between the finish of an
+         activation step and the start of the next new activate()
+         action or new confirm() action. This leaf holds the
+         value to which leaf time-remaining-before-fallback is set
+         after the action activate() is successfully completed. -1
+         means infinity. In this case, the start value of
+         time-remaining-before-fallback must also be set to -1 when the
+         timer starts, even though no countdown ever starts (it
+         remains always -1).";
+    }
+
+    leaf time-remaining-before-fallback {
+      if-feature timed-fallback ;
+      type int16;
+      units seconds;
+      default -1;
+      config false;
+      description 
+         "Remaining number of seconds before performing fallback.
+          Value -1 indicates an infinite number of seconds. Fallback
+          means that the system returns to state prepare-completed .";
+      notife:notifiable-state-data false;
+    }
+
+    leaf local-file-store-path {
+      type string;
+      config false;
+      description 
+        "URI of the directory where the upgrade-packages are stored on the ME.";
+    }
+
+    leaf user-label {
+      type string;
+      description "Label for free use.";
+    }
+
+    leaf action-capable {
+      type action-capability-state;
+      default capable;
+      config false;
+      description 
+         "Shows whether the Software Management function is in a 
+          state of readiness to execute actions. The Managed Element
+          sets it to wait during any operations and maintenance
+          activity that causes one or more of the Software Management
+          function related actions to become unavailable. The
+          Management System should wait until the state returns to
+          capable before invoking any Software Management action.";
+    }
+
+    leaf action-capable-info {
+      type string;
+      config false;
+      description 
+         "Additional information relating to actionCapable. Provides
+          free-text information if available about the managed 
+          element operation or maintenance activity causing
+          actionCapable to be at state wait.";
+    }
+
+    action cancel {
+      description 
+         "Cancel can be invoked during any long-lasting operation. It
+          stops the operation and restores the consistent state that
+          existed before the long-lasting operation started. The
+          action returns immediately after invocation. The
+          consequences of the action can be tracked by leaf
+          progress-report.";
+ 
+      output {
+        leaf return-value {
+          type boolean;
+          mandatory true;
+          description 
+             "The (asynchronous) action returns immediately after
+          invocation. The action returns false if the action could 
+          not start for any reason, otherwise returns true.";
+        }
+      }
+    }
+
+    action remove-upgrade-package {
+      description 
+         "Removes an upgrade-package. This action removes the
+          upgrade-package resource specified as action parameter. It also
+          removes all files temporarily stored in the ME and
+          associated with the upgrade-package. The action returns immediately 
+          after invocation. The progress of the action can be tracked
+          by leaf progress-report. This action can be invoked 
+          when there is no other action in progress on this resource. The
+          action returns false if the action could not start for any
+          reason, for example, another parallel action is in 
+          progress. In all other cases, it returns true.";
+
+      input {
+        leaf upgrade-package {
+        type leafref {
+          path "../../upgrade-package/upgrade-package-id";
+        }
+          mandatory true;
+          description "An upgrade-package resource to be removed.";
+        }
+      }
+
+      output {
+        leaf return-value {
+          type boolean;
+          mandatory true;
+          description 
+            "This action returns true if the remove operation has been
+             started. If the remove operation cannot be started, the
+             action returns false.";
+        }
+      }
+    }
+
+    action create-upgrade-package {
+      description 
+        "Creates a new upgrade-package (UP) resource that represents a 
+         UP specified by a URI. This action includes all activities to
+         initialize the upgrade-package resource. After the UP resource
+         is created, all descriptive information is available, for example,
+         administrative-data, number or names of activation step 
+         data. This action can be invoked when there is no other
+         action in progress on this resource. The action returns
+         immediately after invocation. The progress of the action 
+         can be tracked by leaf progress-report.";
+
+      input {
+        leaf uri {
+          type inet:uri;
+          mandatory true;
+          description 
+            "Contains a URI that points to a directory that contains the
+             upgrade-package content. The generic URI syntax is defined 
+             by RFC 2396.
+             The URI must not contain any password. The password must be
+             provided in the second parameter of this action. The URI 
+             can be local absolute, for example, 
+             file:///data/dir/subdir. It can also be remote, for 
+             example, sftp://hostname/dir/subdir.";
+        }
+
+        leaf password {
+          type string;  
+          yexte:is-passphrase;
+          description 
+            "A password to the server that provides the upgrade-package. 
+             If authentication is not password-based, this parameter is
+             ignored.";
+        }
+      }
+
+      output {
+        leaf return-value {
+          type uint16;
+          mandatory true;
+          description 
+             "The action returns 0 if the action cannot start for 
+              any reason, for example, another parallel action is 
+              in progress. The action also returns 0 if the ME 
+              cannot handle the URI, for example, it does not support
+              the protocol specified in the URI. In all other cases, 
+              it returns the id of the action. The action id is 
+              different and unique for every invocation of the action.";
+        }
+      }
+    }
+
+    action remove-software-version {
+      description 
+        "Removes a SW version as much as possible. It does not
+         disturb node functionality. Files shared with other SW
+         versions are not deleted. The active SW version cannot be
+         removed. This action can only be invoked when there is no
+         other action in progress on this resource.";
+
+      input {
+        leaf sw-version {
+          type leafref {
+            path "/swime:swim/swime:sw-version/swime:sw-version-id";
+          }
+          mandatory true;
+          description 
+            "The identity value of the sw-version resource in
+             ericsson-swim to be removed.";
+        }
+      }
+
+      output {
+        leaf return-value {
+          type boolean;
+          mandatory true;
+          description 
+            "The action returns immediately after invocation. The
+             progress of the action can be tracked via the 
+             progress-report leaf. The action returns false if the
+             action could not start for any reason (e.g., another
+             parallel action is in progress), otherwise returns true.";
+        }
+      }
+    }
+
+    list upgrade-package {
+      key upgrade-package-id;
+      description 
+        "Controls the change process of the software configuration 
+         of a ME. An instance of upgrade-package (upgrade-package) represents a
+         specific change of software configuration from the existing
+         one to the new one identified by the leaf
+         administrativeData. The execution of the change process
+         described by upgrade-package class is the normal way to change the
+         content of the SW inventory. An upgrade-package can be seen as a
+         modification agent. It can add new, remove, or modify
+         functionality. The sequence in which a Software upgrade
+         executes is as follows: 
+           1. Prepare 
+           2. Verify, which is optional 
+           3. Activate 
+           4. Confirm 
+         When the upgrade package resource is created the upgrade 
+         control file is downloaded to specify the administrative data 
+         and the activation steps for this upgrade.";
+      yexte:is-system-created;
+
+      leaf state {
+        type upgrade-package-state;
+        config false;
+        mandatory true;
+        description "Current state of upgrade-package.";
+      }
+
+      list report-progress {
+        key action-id;
+        config false;
+        max-elements 1;
+        description 
+          "Represents the progress report, including the result, of 
+           the ongoing action. This resource supports only one action
+           execution at a time.";
+            
+        uses async-action-progress-with-steps;
+      }
+
+      leaf upgrade-package-id {
+        type string;
+        description "Holds the identity used when identifying the resource.";
+      }
+
+      leaf ignore-break-points {
+        type boolean;
+        default true;
+        description 
+          "Influences the behavior of the activate() action. False
+           means there is a breakpoint between each activation step.
+           Activation process stops at each breakpoint. True means
+           execution ignores breakpoints between activation steps and
+           instead executes the end-to-end activation process. This
+           invokes all activation steps in sequence, assuming no 
+           errors occur.";
+      }
+
+      leaf user-label {
+        type string;
+        description "Used for free-text description.";
+      }
+
+      list administrative-data {
+        key "product-number product-revision";  //  ???
+        config false;
+        min-elements 1;
+        description 
+          "The product identification of the software versions that 
+           are activated when an upgrade is completed. If the 
+           resulting software version after activation is unknown or
+           uncertain, the administrativeData can be empty.";
+        uses typese:product-data;
+      }
+
+      list activation-step {
+        key "name serial-number"; 
+        config false;
+        min-elements 1;
+        description 
+          "List of activation steps in the activation procedure. It is
+           possible to stop after each step, perform supervision, and
+           continue with the procedure.The upgrade procedure consists
+           of at least one activation step.";
+            
+        leaf serial-number {
+          type uint16;
+          mandatory true;
+          description 
+            "Activation step number. The position of the activation step
+             in the activation procedure. Starts at 1.";
+        }
+        
+        leaf name {
+          type string;
+          mandatory true;
+          description "Activation step name.";
+        }
+
+        leaf description {
+          type string;
+          mandatory true;
+          description 
+            "Textual description of the activation step. It can describe
+             the role, meaning, or interpretation of the activation 
+             step, or any information which is useful to the operator.";
+        }
+      }
+
+      leaf created {
+        type yang:date-and-time;
+        config false;
+        mandatory true;
+        description 
+          "Date and time this upgrade-package instance is created.";
+      }
+
+      leaf uri {
+        type inet:uri;
+        description 
+          "A URI that points to the directory where the upgrade-package can be
+           found. The URI can be local, for example,
+           file://data/dir/subdir. It can also be remote, for example,
+           ftp://hostname/dir/subdir.";
+      }
+
+      leaf creator-action-id {
+        type uint16;
+        default 0;
+        config false;
+        description 
+          "The Id of the action that created this upgrade-package resource.
+           Default value 0 shows that the ME does not record this
+           information.";
+        notife:notifiable-state-data false;
+      }
+
+      leaf password {  
+        yexte:is-passphrase;
+        nacm:default-deny-all;
+        type string; 
+        description 
+          "Password to the server that provides the upgrade-package.";
+      }
+
+      action activate {
+        description 
+          "Current upgrade package is taken into operation fully or
+           partially. Partial activation occurs if the UCF defines
+           activation steps and leaf ignoreBreakPoints is false.
+           The ME upgrade engine notifies the operator that the
+           activation step is completed. The next activation step
+           starts when the operator invokes an activate action. Each 
+           upgrade-package must have at least 1 activation step. When leaf
+           ignore-break-points=true, all activation steps are executed 
+           in sequence. When an activation step is complete, the ME
+           executes the next activation step. That means there is no
+           operator invocation when an activation step is complete. 
+           The time for observation of correct operation of the ME,
+           after each completed step, is always monitored by a
+           supervision timer. The invocation of activate() can be
+           monitored by a supervision timer. If the supervision timer
+           expires before invocation of activate() or confirm(), the
+           activation fails and the ME falls back to state
+           prepare-completed. The action returns immediately after
+           invocation. The progress of the action can be tracked by
+           leaf progress-report. The action returns false if the
+           action could not start for any reason, for example, another
+           parallel action is in progress. In all other cases, it
+           returns true. This action can be invoked when the state is
+           prepare-completed or activation-step-completed. If the
+           action is invoked in a state where the action has no
+           meaning, ME is expected to return an error message.";
+
+        output {
+          leaf return-value {
+            type boolean;
+            mandatory true;
+            description 
+              "The action returns false if the action could not start for
+               any reason (e.g., another parallel action is in progress),
+               otherwise it returns true.";
+          }
+        }
+      }
+
+      action cancel {
+        description 
+          "Cancel can be invoked during any long-lasting operation.
+           Stops the operation and restores the consistent state that
+           existed before the long-lasting operation started.
+           Furthermore, cancel() can also be invoked when the upgrade-package 
+           is in state waiting-for-commit or activation-step-completed
+           without having a long-lasting operation in progress. 
+           Calling cancel() in this state orders the ME to restore the
+           state that existed before the activation procedure started.
+           The action returns immediately after invocation. The
+           consequences of the action can be tracked by leaf
+           progress-report. The action returns false if the action is
+           refused by the ME. If the action is invoked in a state 
+           where the action has no meaning, the ME is expected to
+           return false. In all other cases, it returns true. This
+           action can be invoked when the upgrade-package state is
+           prepare-in-progress, verification-in-progress,
+           activation-in-progress, activation-step-completed, or
+           waiting-for-commit.";
+  
+        output {
+          leaf return-value {
+            type boolean;
+            mandatory true;
+            description 
+              "The action returns false if the action is refused by the 
+               ME, returns true otherwise.";
+          }
+        }
+      }
+
+      action verify {
+        description 
+          "Verifies the ability to activate the current upgrade
+           package. The action returns immediately after invocation.
+           The progress of the action can be tracked by leaf
+           progress-report. The action returns false if the action 
+           could not start for any reason, for example, another
+           parallel action is in progress. In all other cases, it
+           returns true. This action can be invoked when the state is
+           prepare-completed. If the action is invoked in a state 
+           where the action has no meaning, the ME is expected to
+           return an error message.This action can be called as an
+           option in the whole upgrade procedure. The action can be
+           called more than once if required.";
+  
+        output {
+          leaf return-value {
+            type boolean;
+            mandatory true;
+            description 
+              "The action returns false if the action could not start for
+               any reason (e.g., another parallel action is in progress),
+               otherwise returns true.";
+          }
+        }
+      }
+
+      action prepare {
+        description 
+          "Prepares the Managed Element for activation of the current
+           upgrade package. Executing prepare() does not have any
+           negative impact on the in-service performance of the 
+           Managed Element. The action returns immediately after
+           invocation. The progress of the action can be tracked by
+           leaf progress-report. The action returns false if the
+           action could not start for any reason, for example, another
+           parallel action is in progress. In all other cases, it
+           returns true.";
+
+        output {
+          leaf return-value {
+            type boolean;
+            mandatory true;
+            description 
+              "The action returns false if the action could not start for
+              any reason (e.g., another parallel action is in progress),
+              otherwise returns true.";
+          }
+        }
+      }
+
+      action confirm {
+        description 
+          "Stops the activation fallback timer and confirms the
+           upgrade. The action returns when the synchronous action is
+           completed. This action can be invoked when the state is
+           waiting-for-commit. The action returns true on success,
+           false on failure.";
+   
+        output {
+          leaf return-value {
+            type boolean;
+            mandatory true;
+            description "The action returns true on success, false on failure.";
+          }
+        }
+      }
+    }
+  }
+
+  typedef upgrade-package-state {
+    type enumeration {
+      enum initialized {
+        value 1;
+        description 
+         "The upgrade-package is initialized. The administrative data
+          and activation steps of the upgrade-package can be read.In this state,
+          only the prepare() action can be called.";
+      }
+
+      enum prepare-in-progress {
+        value 2;
+        description 
+          "Prepare action in progress. In this state, only the 
+           cancel() action can be called. If the prepare() action
+           completes successfully, the upgrade-package moves to state
+           prepare-completed . If the prepare() action fails, or
+           cancel() is called, the upgrade-package moves back to state 
+           initialized.";
+      }
+
+      enum prepare-completed {
+        value 3;
+        description "Prepare action has finished successfully. In this state,
+          only the verify() or the activate() action can be called. 
+          If the activate() action is called, the upgrade-package moves to state
+          activation-in-progress .";
+      }
+
+      enum activation-in-progress {
+        value 4;
+        description 
+          "Activation is in progress. In this state, only the cancel()
+           action can be called. If the cancel() action is called, the
+           upgrade-package moves to state deactivation-in-progress. If the
+           activation step completes successfully, the upgrade-package moves to
+           state activation-step-completed .";
+      }
+
+      enum activation-step-completed {
+        value 5;
+        description 
+          "The previous activation step completed successfully. There
+           are still more activation steps left. In this state, only
+           the activate() or the cancel() action can be called. If the
+           cancel() action is called, the upgrade-package moves to state
+           deactivation-in-progress . If the activate() action is
+           called, the ME starts the activation of the next activation
+           step and the upgrade-package moves to state activation-in-progress. 
+           If the fallback timer expires in this state, the upgrade-package 
+           moves to state deactivation-in-progress .";
+      }
+
+      enum waiting-for-commit {
+        value 6;
+        description 
+          "The last activation step completed successfully. The
+           operator must confirm the upgrade. In this state, only the
+           confirm() or the cancel() action can be called. If the
+           cancel() action is called, the upgrade-package moves to state
+           deactivation-in-progress. If the confirm() action is 
+           called, the upgrade-package moves to state commit-completed .";
+      }
+
+      enum commit-completed {
+        value 7;
+        description 
+          "The upgrade is confirmed.The whole upgrade procedure has
+           completed.";
+      }
+
+      enum deactivation-in-progress {
+        value 8;
+        description 
+          "Deactivation of the upgrade-package is in progress. This can be the
+           result of a cancel() action, or the fallback timer has
+           expired. In this state, no action can be called. At the end
+           of fallback operation, the upgrade-package moves back to state
+           prepare-completed.";
+      }
+    }
+
+    description "Lists possible states of the upgrade-package.";
+  }
+
+  typedef action-capability-state {
+    type enumeration {
+      enum capable {
+        value 1;
+        description 
+          "The Software Management function is in a state where it is
+           capable to execute all actions.";
+      }
+
+      enum wait {
+        value 2;
+        description 
+          "The Software Management function is in a state where some
+           actions are unavailable.";
+      }
+    }
+
+    description 
+      "Indicates the readiness of Software Management function for
+       executing actions.";
+  }
+
+  grouping async-action-progress-with-steps {
+    description 
+      "The progress of an ongoing action. Some actions can have 1
+       or more breakpoints. Breakpoints allow an action to be
+       divided into defined steps. A breakpoint is an intentional
+       stop of an executing action, for example, the activate
+       action in the ericsson-swm module. The activate action puts an
+       upgrade package into operation. A breakpoint represents a
+       part of the upgrade, after which the functionality of the ME
+       can be observed manually. In other words, the breakpoints
+       give the operator an option to verify manually that the
+       upgrade step has been executed correctly. The 
+       progress-report resource models a standard action. This resource 
+       has the same leafs as the progress-report resource,
+       plus two extra leafs, step and
+       step-progress-percentage. step stores the current execution
+       action step. step-progress-percentage stores the progress
+       percentage of the currently executing action step.";
+         
+    uses typese:async-action-progress; 
+    
+    leaf step {
+      type uint16;
+      mandatory true;
+      description "Current execution action step number.";
+    }
+
+    leaf step-progress-percentage {
+      type typese:percent;
+      mandatory true;
+      description 
+        "This represents the progress percentage of the currently
+         executing step. It goes from 0 to 100 percentage for each
+         and every step.";
+    }
+  }
+}

@@ -1,0 +1,1047 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:EnumDataTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:oss_edt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ns1:lifeCycle="CURRENT" ns1:name="alert__probable-cause" ns1:ns="urn:rdns:com:ericsson:oammodel:ericsson-fm" ns1:version="3.1.1">
+  <ns1:modelCreationInfo author="YANG Transformer2">
+    <ns1:derivedModel derivedFrom="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-fm/ericsson-fm%402020-09-17"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>Qualifies and provides further information on the reason for the event. A standard set of probable-cause values is provided in the ERICSSON-ALARM-PC-MIB / ericsson-alarm-pc-types</ns1:desc>
+  <ns2:member name="adapter-error" ns1:lifeCycle="CURRENT" value="100500">
+    <ns2:desc>adapter-error</ns2:desc>
+  </ns2:member>
+  <ns2:member name="antenna-failure" ns1:lifeCycle="CURRENT" value="71">
+    <ns2:desc>antenna-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="application-subsystem-failture" ns1:lifeCycle="CURRENT" value="100501">
+    <ns2:desc>application-subsystem-failture</ns2:desc>
+  </ns2:member>
+  <ns2:member name="application-subsystem-failure" ns1:lifeCycle="CURRENT" value="158">
+    <ns2:desc>application-subsystem-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="aps-byte-failure" ns1:lifeCycle="CURRENT" value="1003">
+    <ns2:desc>aps-byte-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="aps-channel-match-failure" ns1:lifeCycle="CURRENT" value="1004">
+    <ns2:desc>aps-channel-match-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="aps-channel-processing-failure" ns1:lifeCycle="CURRENT" value="1002">
+    <ns2:desc>aps-channel-processing-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="aps-mode-mismatch" ns1:lifeCycle="CURRENT" value="1005">
+    <ns2:desc>aps-mode-mismatch</ns2:desc>
+  </ns2:member>
+  <ns2:member name="authentication-failure" ns1:lifeCycle="CURRENT" value="1600">
+    <ns2:desc>authentication-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="bandwidth-reduced" ns1:lifeCycle="CURRENT" value="201">
+    <ns2:desc>bandwidth-reduced</ns2:desc>
+  </ns2:member>
+  <ns2:member name="bandwidth-reduced-x733" ns1:lifeCycle="CURRENT" value="100502">
+    <ns2:desc>bandwidth-reduced-x733</ns2:desc>
+  </ns2:member>
+  <ns2:member name="battery-charging-failure" ns1:lifeCycle="CURRENT" value="72">
+    <ns2:desc>battery-charging-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="blsr-default-kbytes" ns1:lifeCycle="CURRENT" value="1011">
+    <ns2:desc>blsr-default-kbytes</ns2:desc>
+  </ns2:member>
+  <ns2:member name="blsr-improper-aps-codes" ns1:lifeCycle="CURRENT" value="1014">
+    <ns2:desc>blsr-improper-aps-codes</ns2:desc>
+  </ns2:member>
+  <ns2:member name="blsr-incomplete-et-config" ns1:lifeCycle="CURRENT" value="1020">
+    <ns2:desc>blsr-incomplete-et-config</ns2:desc>
+  </ns2:member>
+  <ns2:member name="blsr-incomplete-ring-config" ns1:lifeCycle="CURRENT" value="1019">
+    <ns2:desc>blsr-incomplete-ring-config</ns2:desc>
+  </ns2:member>
+  <ns2:member name="blsr-inconsistent-aps-codes" ns1:lifeCycle="CURRENT" value="1012">
+    <ns2:desc>blsr-inconsistent-aps-codes</ns2:desc>
+  </ns2:member>
+  <ns2:member name="blsr-invalid-neighbour" ns1:lifeCycle="CURRENT" value="1016">
+    <ns2:desc>blsr-invalid-neighbour</ns2:desc>
+  </ns2:member>
+  <ns2:member name="blsr-invalid-ring-id" ns1:lifeCycle="CURRENT" value="1018">
+    <ns2:desc>blsr-invalid-ring-id</ns2:desc>
+  </ns2:member>
+  <ns2:member name="blsr-invalid-ring-map" ns1:lifeCycle="CURRENT" value="1017">
+    <ns2:desc>blsr-invalid-ring-map</ns2:desc>
+  </ns2:member>
+  <ns2:member name="blsr-node-id-mismatch" ns1:lifeCycle="CURRENT" value="1013">
+    <ns2:desc>blsr-node-id-mismatch</ns2:desc>
+  </ns2:member>
+  <ns2:member name="blsr-node-incorrect-orientation" ns1:lifeCycle="CURRENT" value="1021">
+    <ns2:desc>blsr-node-incorrect-orientation</ns2:desc>
+  </ns2:member>
+  <ns2:member name="blsr-squelching" ns1:lifeCycle="CURRENT" value="1015">
+    <ns2:desc>blsr-squelching</ns2:desc>
+  </ns2:member>
+  <ns2:member name="breach-of-confidentiality" ns1:lifeCycle="CURRENT" value="1601">
+    <ns2:desc>breach-of-confidentiality</ns2:desc>
+  </ns2:member>
+  <ns2:member name="broadcast-channel-failure" ns1:lifeCycle="CURRENT" value="21">
+    <ns2:desc>broadcast-channel-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="cable-tamper" ns1:lifeCycle="CURRENT" value="1602">
+    <ns2:desc>cable-tamper</ns2:desc>
+  </ns2:member>
+  <ns2:member name="call-establishment-error" ns1:lifeCycle="CURRENT" value="100503">
+    <ns2:desc>call-establishment-error</ns2:desc>
+  </ns2:member>
+  <ns2:member name="communications-protocol-error" ns1:lifeCycle="CURRENT" value="100504">
+    <ns2:desc>communications-protocol-error</ns2:desc>
+  </ns2:member>
+  <ns2:member name="communications-subsystem-failure" ns1:lifeCycle="CURRENT" value="100505">
+    <ns2:desc>communications-subsystem-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="configuration-or-customisation-error" ns1:lifeCycle="CURRENT" value="159">
+    <ns2:desc>configuration-or-customisation-error</ns2:desc>
+  </ns2:member>
+  <ns2:member name="configuration-or-customization-error" ns1:lifeCycle="CURRENT" value="100506">
+    <ns2:desc>configuration-or-customization-error</ns2:desc>
+  </ns2:member>
+  <ns2:member name="congestion" ns1:lifeCycle="CURRENT" value="202">
+    <ns2:desc>congestion</ns2:desc>
+  </ns2:member>
+  <ns2:member name="congestion-x733" ns1:lifeCycle="CURRENT" value="100507">
+    <ns2:desc>congestion-x733</ns2:desc>
+  </ns2:member>
+  <ns2:member name="connection-establishment-error" ns1:lifeCycle="CURRENT" value="22">
+    <ns2:desc>connection-establishment-error</ns2:desc>
+  </ns2:member>
+  <ns2:member name="corupt-data" ns1:lifeCycle="CURRENT" value="100508">
+    <ns2:desc>corupt-data</ns2:desc>
+  </ns2:member>
+  <ns2:member name="cpu-cycles-limit-exceeded" ns1:lifeCycle="CURRENT" value="100509">
+    <ns2:desc>cpu-cycles-limit-exceeded</ns2:desc>
+  </ns2:member>
+  <ns2:member name="data-set-or-modem-error" ns1:lifeCycle="CURRENT" value="100510">
+    <ns2:desc>data-set-or-modem-error</ns2:desc>
+  </ns2:member>
+  <ns2:member name="database-inconsistency" ns1:lifeCycle="CURRENT" value="160">
+    <ns2:desc>database-inconsistency</ns2:desc>
+  </ns2:member>
+  <ns2:member name="degraded-signal-x733" ns1:lifeCycle="CURRENT" value="100511">
+    <ns2:desc>degraded-signal-x733</ns2:desc>
+  </ns2:member>
+  <ns2:member name="delayed-information" ns1:lifeCycle="CURRENT" value="1603">
+    <ns2:desc>delayed-information</ns2:desc>
+  </ns2:member>
+  <ns2:member name="demodulation-failure" ns1:lifeCycle="CURRENT" value="20">
+    <ns2:desc>demodulation-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="denial-of-service" ns1:lifeCycle="CURRENT" value="1604">
+    <ns2:desc>denial-of-service</ns2:desc>
+  </ns2:member>
+  <ns2:member name="disk-failure" ns1:lifeCycle="CURRENT" value="73">
+    <ns2:desc>disk-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="dte-dce-interface-error" ns1:lifeCycle="CURRENT" value="100512">
+    <ns2:desc>dte-dce-interface-error</ns2:desc>
+  </ns2:member>
+  <ns2:member name="duplicate-information" ns1:lifeCycle="CURRENT" value="1605">
+    <ns2:desc>duplicate-information</ns2:desc>
+  </ns2:member>
+  <ns2:member name="enclosure-door-open-x733" ns1:lifeCycle="CURRENT" value="100513">
+    <ns2:desc>enclosure-door-open-x733</ns2:desc>
+  </ns2:member>
+  <ns2:member name="equipment-malfunction" ns1:lifeCycle="CURRENT" value="100514">
+    <ns2:desc>equipment-malfunction</ns2:desc>
+  </ns2:member>
+  <ns2:member name="er-configuration-or-customization-error" ns1:lifeCycle="CURRENT" value="1026">
+    <ns2:desc>er-configuration-or-customization-error</ns2:desc>
+  </ns2:member>
+  <ns2:member name="excessive-error-rate" ns1:lifeCycle="CURRENT" value="203">
+    <ns2:desc>excessive-error-rate</ns2:desc>
+  </ns2:member>
+  <ns2:member name="excessive-response-time" ns1:lifeCycle="CURRENT" value="204">
+    <ns2:desc>excessive-response-time</ns2:desc>
+  </ns2:member>
+  <ns2:member name="excessive-retransmission-rate" ns1:lifeCycle="CURRENT" value="205">
+    <ns2:desc>excessive-retransmission-rate</ns2:desc>
+  </ns2:member>
+  <ns2:member name="excessive-vibration" ns1:lifeCycle="CURRENT" value="100515">
+    <ns2:desc>excessive-vibration</ns2:desc>
+  </ns2:member>
+  <ns2:member name="file-error" ns1:lifeCycle="CURRENT" value="161">
+    <ns2:desc>file-error</ns2:desc>
+  </ns2:member>
+  <ns2:member name="file-error-x733" ns1:lifeCycle="CURRENT" value="100516">
+    <ns2:desc>file-error-x733</ns2:desc>
+  </ns2:member>
+  <ns2:member name="fire-detected" ns1:lifeCycle="CURRENT" value="100517">
+    <ns2:desc>fire-detected</ns2:desc>
+  </ns2:member>
+  <ns2:member name="framing-error-x733" ns1:lifeCycle="CURRENT" value="100518">
+    <ns2:desc>framing-error-x733</ns2:desc>
+  </ns2:member>
+  <ns2:member name="frequency-hopping-failure" ns1:lifeCycle="CURRENT" value="74">
+    <ns2:desc>frequency-hopping-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-abis-to-bts-interface-failure" ns1:lifeCycle="CURRENT" value="501">
+    <ns2:desc>gsm1211-abis-to-bts-interface-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-abis-to-trx-interface-failure" ns1:lifeCycle="CURRENT" value="502">
+    <ns2:desc>gsm1211-abis-to-trx-interface-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-antenna-problem" ns1:lifeCycle="CURRENT" value="503">
+    <ns2:desc>gsm1211-antenna-problem</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-battery-breakdown" ns1:lifeCycle="CURRENT" value="504">
+    <ns2:desc>gsm1211-battery-breakdown</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-battery-charging-fault" ns1:lifeCycle="CURRENT" value="505">
+    <ns2:desc>gsm1211-battery-charging-fault</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-broadcast-channel-failure" ns1:lifeCycle="CURRENT" value="565">
+    <ns2:desc>gsm1211-broadcast-channel-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-clock-synchronisation-problem" ns1:lifeCycle="CURRENT" value="506">
+    <ns2:desc>gsm1211-clock-synchronisation-problem</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-combiner-problem" ns1:lifeCycle="CURRENT" value="507">
+    <ns2:desc>gsm1211-combiner-problem</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-connection-establishment-error" ns1:lifeCycle="CURRENT" value="566">
+    <ns2:desc>gsm1211-connection-establishment-error</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-cooling-system-failure" ns1:lifeCycle="CURRENT" value="549">
+    <ns2:desc>gsm1211-cooling-system-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-database-inconsistency" ns1:lifeCycle="CURRENT" value="537">
+    <ns2:desc>gsm1211-database-inconsistency</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-disk-problem" ns1:lifeCycle="CURRENT" value="508">
+    <ns2:desc>gsm1211-disk-problem</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-excessive-receiver-temperature" ns1:lifeCycle="CURRENT" value="510">
+    <ns2:desc>gsm1211-excessive-receiver-temperature</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-excessive-transmitter-output-power" ns1:lifeCycle="CURRENT" value="511">
+    <ns2:desc>gsm1211-excessive-transmitter-output-power</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-excessive-transmitter-temperature" ns1:lifeCycle="CURRENT" value="512">
+    <ns2:desc>gsm1211-excessive-transmitter-temperature</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-external-equipment-failure" ns1:lifeCycle="CURRENT" value="550">
+    <ns2:desc>gsm1211-external-equipment-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-external-power-supply-failure" ns1:lifeCycle="CURRENT" value="551">
+    <ns2:desc>gsm1211-external-power-supply-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-external-transmission-device-failure" ns1:lifeCycle="CURRENT" value="552">
+    <ns2:desc>gsm1211-external-transmission-device-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-file-system-call-unsuccessful" ns1:lifeCycle="CURRENT" value="538">
+    <ns2:desc>gsm1211-file-system-call-unsuccessful</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-frequency-hopping-degraded" ns1:lifeCycle="CURRENT" value="513">
+    <ns2:desc>gsm1211-frequency-hopping-degraded</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-frequency-hopping-failure" ns1:lifeCycle="CURRENT" value="514">
+    <ns2:desc>gsm1211-frequency-hopping-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-frequency-redefinition-failed" ns1:lifeCycle="CURRENT" value="515">
+    <ns2:desc>gsm1211-frequency-redefinition-failed</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-input-parameter-out-of-range" ns1:lifeCycle="CURRENT" value="539">
+    <ns2:desc>gsm1211-input-parameter-out-of-range</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-invalid-message-received" ns1:lifeCycle="CURRENT" value="567">
+    <ns2:desc>gsm1211-invalid-message-received</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-invalid-msu-received" ns1:lifeCycle="CURRENT" value="568">
+    <ns2:desc>gsm1211-invalid-msu-received</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-invalid-parameter" ns1:lifeCycle="CURRENT" value="540">
+    <ns2:desc>gsm1211-invalid-parameter</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-invalid-pointer" ns1:lifeCycle="CURRENT" value="541">
+    <ns2:desc>gsm1211-invalid-pointer</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-lapd-link-protocol-failure" ns1:lifeCycle="CURRENT" value="569">
+    <ns2:desc>gsm1211-lapd-link-protocol-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-line-interface-failure" ns1:lifeCycle="CURRENT" value="516">
+    <ns2:desc>gsm1211-line-interface-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-link-failure" ns1:lifeCycle="CURRENT" value="517">
+    <ns2:desc>gsm1211-link-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-local-alarm-indication" ns1:lifeCycle="CURRENT" value="570">
+    <ns2:desc>gsm1211-local-alarm-indication</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-loss-of-synchronisation" ns1:lifeCycle="CURRENT" value="518">
+    <ns2:desc>gsm1211-loss-of-synchronisation</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-lost-redundancy" ns1:lifeCycle="CURRENT" value="519">
+    <ns2:desc>gsm1211-lost-redundancy</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-mains-breakdown-with-battery-back-up" ns1:lifeCycle="CURRENT" value="520">
+    <ns2:desc>gsm1211-mains-breakdown-with-battery-back-up</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-mains-breakdown-without-battery-back-up" ns1:lifeCycle="CURRENT" value="521">
+    <ns2:desc>gsm1211-mains-breakdown-without-battery-back-up</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-message-not-expected" ns1:lifeCycle="CURRENT" value="542">
+    <ns2:desc>gsm1211-message-not-expected</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-message-not-initialised" ns1:lifeCycle="CURRENT" value="543">
+    <ns2:desc>gsm1211-message-not-initialised</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-message-out-of-sequence" ns1:lifeCycle="CURRENT" value="544">
+    <ns2:desc>gsm1211-message-out-of-sequence</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-power-supply-failure" ns1:lifeCycle="CURRENT" value="522">
+    <ns2:desc>gsm1211-power-supply-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-receiver-antenna-fault" ns1:lifeCycle="CURRENT" value="523">
+    <ns2:desc>gsm1211-receiver-antenna-fault</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-receiver-multicoupler-failure" ns1:lifeCycle="CURRENT" value="525">
+    <ns2:desc>gsm1211-receiver-multicoupler-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-reduced-alarm-reporting" ns1:lifeCycle="CURRENT" value="561">
+    <ns2:desc>gsm1211-reduced-alarm-reporting</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-reduced-event-reporting" ns1:lifeCycle="CURRENT" value="562">
+    <ns2:desc>gsm1211-reduced-event-reporting</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-reduced-logging-capability" ns1:lifeCycle="CURRENT" value="563">
+    <ns2:desc>gsm1211-reduced-logging-capability</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-reduced-transmitter-output-power" ns1:lifeCycle="CURRENT" value="526">
+    <ns2:desc>gsm1211-reduced-transmitter-output-power</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-remote-alarm-indication" ns1:lifeCycle="CURRENT" value="571">
+    <ns2:desc>gsm1211-remote-alarm-indication</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-routing-failure" ns1:lifeCycle="CURRENT" value="572">
+    <ns2:desc>gsm1211-routing-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-signal-quality-evaluation-fault" ns1:lifeCycle="CURRENT" value="527">
+    <ns2:desc>gsm1211-signal-quality-evaluation-fault</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-ss7-protocol-failure" ns1:lifeCycle="CURRENT" value="573">
+    <ns2:desc>gsm1211-ss7-protocol-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-system-call-unsuccessful" ns1:lifeCycle="CURRENT" value="545">
+    <ns2:desc>gsm1211-system-call-unsuccessful</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-system-resources-overload" ns1:lifeCycle="CURRENT" value="564">
+    <ns2:desc>gsm1211-system-resources-overload</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-timeout-expired" ns1:lifeCycle="CURRENT" value="546">
+    <ns2:desc>gsm1211-timeout-expired</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-timeslot-hardware-failure" ns1:lifeCycle="CURRENT" value="528">
+    <ns2:desc>gsm1211-timeslot-hardware-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-transceiver-problem" ns1:lifeCycle="CURRENT" value="529">
+    <ns2:desc>gsm1211-transceiver-problem</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-transcoder-or-rate-adapter-problem" ns1:lifeCycle="CURRENT" value="531">
+    <ns2:desc>gsm1211-transcoder-or-rate-adapter-problem</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-transcoder-problem" ns1:lifeCycle="CURRENT" value="530">
+    <ns2:desc>gsm1211-transcoder-problem</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-transmission-error" ns1:lifeCycle="CURRENT" value="574">
+    <ns2:desc>gsm1211-transmission-error</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-transmitter-antenna-failure" ns1:lifeCycle="CURRENT" value="532">
+    <ns2:desc>gsm1211-transmitter-antenna-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-transmitter-antenna-not-adjusted" ns1:lifeCycle="CURRENT" value="533">
+    <ns2:desc>gsm1211-transmitter-antenna-not-adjusted</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-transmitter-low-voltage-or-current" ns1:lifeCycle="CURRENT" value="535">
+    <ns2:desc>gsm1211-transmitter-low-voltage-or-current</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-transmitter-off-frequency" ns1:lifeCycle="CURRENT" value="536">
+    <ns2:desc>gsm1211-transmitter-off-frequency</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-variable-out-of-range" ns1:lifeCycle="CURRENT" value="547">
+    <ns2:desc>gsm1211-variable-out-of-range</ns2:desc>
+  </ns2:member>
+  <ns2:member name="gsm1211-watch-dog-timer-expired" ns1:lifeCycle="CURRENT" value="548">
+    <ns2:desc>gsm1211-watch-dog-timer-expired</ns2:desc>
+  </ns2:member>
+  <ns2:member name="heating-vent-cooling-system-problem" ns1:lifeCycle="CURRENT" value="100519">
+    <ns2:desc>heating-vent-cooling-system-problem</ns2:desc>
+  </ns2:member>
+  <ns2:member name="humidity-unacceptable" ns1:lifeCycle="CURRENT" value="100520">
+    <ns2:desc>humidity-unacceptable</ns2:desc>
+  </ns2:member>
+  <ns2:member name="hw-resource-exhausted" ns1:lifeCycle="CURRENT" value="1022">
+    <ns2:desc>hw-resource-exhausted</ns2:desc>
+  </ns2:member>
+  <ns2:member name="hw-resource-threshold" ns1:lifeCycle="CURRENT" value="1023">
+    <ns2:desc>hw-resource-threshold</ns2:desc>
+  </ns2:member>
+  <ns2:member name="i610-ais-end-to-end" ns1:lifeCycle="CURRENT" value="601">
+    <ns2:desc>i610-ais-end-to-end</ns2:desc>
+  </ns2:member>
+  <ns2:member name="i610-ais-segment-core-side" ns1:lifeCycle="CURRENT" value="606">
+    <ns2:desc>i610-ais-segment-core-side</ns2:desc>
+  </ns2:member>
+  <ns2:member name="i610-ais-segment-link-side" ns1:lifeCycle="CURRENT" value="605">
+    <ns2:desc>i610-ais-segment-link-side</ns2:desc>
+  </ns2:member>
+  <ns2:member name="i610-loc-end-to-end" ns1:lifeCycle="CURRENT" value="600">
+    <ns2:desc>i610-loc-end-to-end</ns2:desc>
+  </ns2:member>
+  <ns2:member name="i610-loc-segment-core-side" ns1:lifeCycle="CURRENT" value="604">
+    <ns2:desc>i610-loc-segment-core-side</ns2:desc>
+  </ns2:member>
+  <ns2:member name="i610-loc-segment-link-side" ns1:lifeCycle="CURRENT" value="603">
+    <ns2:desc>i610-loc-segment-link-side</ns2:desc>
+  </ns2:member>
+  <ns2:member name="i610-rdi-end-to-end" ns1:lifeCycle="CURRENT" value="602">
+    <ns2:desc>i610-rdi-end-to-end</ns2:desc>
+  </ns2:member>
+  <ns2:member name="i610-rdi-segment-core-side" ns1:lifeCycle="CURRENT" value="608">
+    <ns2:desc>i610-rdi-segment-core-side</ns2:desc>
+  </ns2:member>
+  <ns2:member name="i610-rdi-segment-link-side" ns1:lifeCycle="CURRENT" value="607">
+    <ns2:desc>i610-rdi-segment-link-side</ns2:desc>
+  </ns2:member>
+  <ns2:member name="information-missing" ns1:lifeCycle="CURRENT" value="1606">
+    <ns2:desc>information-missing</ns2:desc>
+  </ns2:member>
+  <ns2:member name="information-modification-detected" ns1:lifeCycle="CURRENT" value="1607">
+    <ns2:desc>information-modification-detected</ns2:desc>
+  </ns2:member>
+  <ns2:member name="information-out-of-sequence" ns1:lifeCycle="CURRENT" value="1608">
+    <ns2:desc>information-out-of-sequence</ns2:desc>
+  </ns2:member>
+  <ns2:member name="input-device-error" ns1:lifeCycle="CURRENT" value="100522">
+    <ns2:desc>input-device-error</ns2:desc>
+  </ns2:member>
+  <ns2:member name="input-output-device-error" ns1:lifeCycle="CURRENT" value="100521">
+    <ns2:desc>input-output-device-error</ns2:desc>
+  </ns2:member>
+  <ns2:member name="invalid-message-received" ns1:lifeCycle="CURRENT" value="23">
+    <ns2:desc>invalid-message-received</ns2:desc>
+  </ns2:member>
+  <ns2:member name="io-device-error" ns1:lifeCycle="CURRENT" value="75">
+    <ns2:desc>io-device-error</ns2:desc>
+  </ns2:member>
+  <ns2:member name="key-expired" ns1:lifeCycle="CURRENT" value="1609">
+    <ns2:desc>key-expired</ns2:desc>
+  </ns2:member>
+  <ns2:member name="lan-error" ns1:lifeCycle="CURRENT" value="100523">
+    <ns2:desc>lan-error</ns2:desc>
+  </ns2:member>
+  <ns2:member name="leak-detected" ns1:lifeCycle="CURRENT" value="100524">
+    <ns2:desc>leak-detected</ns2:desc>
+  </ns2:member>
+  <ns2:member name="local-node-transmission-error" ns1:lifeCycle="CURRENT" value="24">
+    <ns2:desc>local-node-transmission-error</ns2:desc>
+  </ns2:member>
+  <ns2:member name="local-node-transmission-error-x733" ns1:lifeCycle="CURRENT" value="100525">
+    <ns2:desc>local-node-transmission-error-x733</ns2:desc>
+  </ns2:member>
+  <ns2:member name="loss-of-frame-x733" ns1:lifeCycle="CURRENT" value="100526">
+    <ns2:desc>loss-of-frame-x733</ns2:desc>
+  </ns2:member>
+  <ns2:member name="loss-of-redundancy" ns1:lifeCycle="CURRENT" value="77">
+    <ns2:desc>loss-of-redundancy</ns2:desc>
+  </ns2:member>
+  <ns2:member name="loss-of-signal-x733" ns1:lifeCycle="CURRENT" value="100527">
+    <ns2:desc>loss-of-signal-x733</ns2:desc>
+  </ns2:member>
+  <ns2:member name="loss-of-synchronisation" ns1:lifeCycle="CURRENT" value="76">
+    <ns2:desc>loss-of-synchronisation</ns2:desc>
+  </ns2:member>
+  <ns2:member name="loss-of-timing-source" ns1:lifeCycle="CURRENT" value="1001">
+    <ns2:desc>loss-of-timing-source</ns2:desc>
+  </ns2:member>
+  <ns2:member name="loss-of-tu-multiframe-indicator" ns1:lifeCycle="CURRENT" value="1007">
+    <ns2:desc>loss-of-tu-multiframe-indicator</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-air-compressor-failure" ns1:lifeCycle="CURRENT" value="101">
+    <ns2:desc>m3100-air-compressor-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-air-conditioning-failure" ns1:lifeCycle="CURRENT" value="102">
+    <ns2:desc>m3100-air-conditioning-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-air-dryer-failure" ns1:lifeCycle="CURRENT" value="103">
+    <ns2:desc>m3100-air-dryer-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-alarm-indication-signal" ns1:lifeCycle="CURRENT" value="1">
+    <ns2:desc>m3100-alarm-indication-signal</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-back-plane-failure" ns1:lifeCycle="CURRENT" value="51">
+    <ns2:desc>m3100-back-plane-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-battery-discharging" ns1:lifeCycle="CURRENT" value="104">
+    <ns2:desc>m3100-battery-discharging</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-battery-failure" ns1:lifeCycle="CURRENT" value="105">
+    <ns2:desc>m3100-battery-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-call-setup-failure" ns1:lifeCycle="CURRENT" value="2">
+    <ns2:desc>m3100-call-setup-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-commercial-power-failure" ns1:lifeCycle="CURRENT" value="106">
+    <ns2:desc>m3100-commercial-power-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-cooling-fan-failure" ns1:lifeCycle="CURRENT" value="107">
+    <ns2:desc>m3100-cooling-fan-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-cooling-system-failure" ns1:lifeCycle="CURRENT" value="134">
+    <ns2:desc>m3100-cooling-system-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-corrupt-data" ns1:lifeCycle="CURRENT" value="153">
+    <ns2:desc>m3100-corrupt-data</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-data-set-problem" ns1:lifeCycle="CURRENT" value="52">
+    <ns2:desc>m3100-data-set-problem</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-degraded-signal" ns1:lifeCycle="CURRENT" value="3">
+    <ns2:desc>m3100-degraded-signal</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-enclosure-door-open" ns1:lifeCycle="CURRENT" value="118">
+    <ns2:desc>m3100-enclosure-door-open</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-engine-failure" ns1:lifeCycle="CURRENT" value="108">
+    <ns2:desc>m3100-engine-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-equipment-identifier-duplication" ns1:lifeCycle="CURRENT" value="53">
+    <ns2:desc>m3100-equipment-identifier-duplication</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-excessive-bit-error-rate" ns1:lifeCycle="CURRENT" value="12">
+    <ns2:desc>m3100-excessive-bit-error-rate</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-explosive-gas" ns1:lifeCycle="CURRENT" value="119">
+    <ns2:desc>m3100-explosive-gas</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-external-equipment-failure" ns1:lifeCycle="CURRENT" value="135">
+    <ns2:desc>m3100-external-equipment-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-external-if-device-problem" ns1:lifeCycle="CURRENT" value="54">
+    <ns2:desc>m3100-external-if-device-problem</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-external-point-failure" ns1:lifeCycle="CURRENT" value="136">
+    <ns2:desc>m3100-external-point-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-far-end-receiver-failure" ns1:lifeCycle="CURRENT" value="4">
+    <ns2:desc>m3100-far-end-receiver-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-fire" ns1:lifeCycle="CURRENT" value="120">
+    <ns2:desc>m3100-fire</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-fire-detector-failure" ns1:lifeCycle="CURRENT" value="109">
+    <ns2:desc>m3100-fire-detector-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-flood" ns1:lifeCycle="CURRENT" value="121">
+    <ns2:desc>m3100-flood</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-framing-error" ns1:lifeCycle="CURRENT" value="5">
+    <ns2:desc>m3100-framing-error</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-fuse-failure" ns1:lifeCycle="CURRENT" value="110">
+    <ns2:desc>m3100-fuse-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-generator-failure" ns1:lifeCycle="CURRENT" value="111">
+    <ns2:desc>m3100-generator-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-high-humidity" ns1:lifeCycle="CURRENT" value="122">
+    <ns2:desc>m3100-high-humidity</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-high-temperature" ns1:lifeCycle="CURRENT" value="123">
+    <ns2:desc>m3100-high-temperature</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-high-wind" ns1:lifeCycle="CURRENT" value="124">
+    <ns2:desc>m3100-high-wind</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-ice-build-up" ns1:lifeCycle="CURRENT" value="125">
+    <ns2:desc>m3100-ice-build-up</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-indeterminate" ns1:lifeCycle="CURRENT" value="0">
+    <ns2:desc>m3100-indeterminate</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-line-card-problem" ns1:lifeCycle="CURRENT" value="55">
+    <ns2:desc>m3100-line-card-problem</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-loss-of-frame" ns1:lifeCycle="CURRENT" value="6">
+    <ns2:desc>m3100-loss-of-frame</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-loss-of-multi-frame" ns1:lifeCycle="CURRENT" value="16">
+    <ns2:desc>m3100-loss-of-multi-frame</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-loss-of-pointer" ns1:lifeCycle="CURRENT" value="7">
+    <ns2:desc>m3100-loss-of-pointer</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-loss-of-real-timel" ns1:lifeCycle="CURRENT" value="157">
+    <ns2:desc>m3100-loss-of-real-timel</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-loss-of-signal" ns1:lifeCycle="CURRENT" value="8">
+    <ns2:desc>m3100-loss-of-signal</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-low-battery-threshold" ns1:lifeCycle="CURRENT" value="112">
+    <ns2:desc>m3100-low-battery-threshold</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-low-cable-pressure" ns1:lifeCycle="CURRENT" value="129">
+    <ns2:desc>m3100-low-cable-pressure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-low-fuel" ns1:lifeCycle="CURRENT" value="127">
+    <ns2:desc>m3100-low-fuel</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-low-humidity" ns1:lifeCycle="CURRENT" value="128">
+    <ns2:desc>m3100-low-humidity</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-low-temperature" ns1:lifeCycle="CURRENT" value="130">
+    <ns2:desc>m3100-low-temperature</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-low-water" ns1:lifeCycle="CURRENT" value="131">
+    <ns2:desc>m3100-low-water</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-memory-mismatch" ns1:lifeCycle="CURRENT" value="152">
+    <ns2:desc>m3100-memory-mismatch</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-multiplexer-problem" ns1:lifeCycle="CURRENT" value="56">
+    <ns2:desc>m3100-multiplexer-problem</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-ne-identifier-duplication" ns1:lifeCycle="CURRENT" value="57">
+    <ns2:desc>m3100-ne-identifier-duplication</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-out-of-cpu-cycles" ns1:lifeCycle="CURRENT" value="154">
+    <ns2:desc>m3100-out-of-cpu-cycles</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-path-trace-mismatch" ns1:lifeCycle="CURRENT" value="13">
+    <ns2:desc>m3100-path-trace-mismatch</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-payload-type-mismatch" ns1:lifeCycle="CURRENT" value="9">
+    <ns2:desc>m3100-payload-type-mismatch</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-power-problem" ns1:lifeCycle="CURRENT" value="58">
+    <ns2:desc>m3100-power-problem</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-processor-problem" ns1:lifeCycle="CURRENT" value="59">
+    <ns2:desc>m3100-processor-problem</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-protection-path-failure" ns1:lifeCycle="CURRENT" value="60">
+    <ns2:desc>m3100-protection-path-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-pump-failure" ns1:lifeCycle="CURRENT" value="113">
+    <ns2:desc>m3100-pump-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-receiver-failure" ns1:lifeCycle="CURRENT" value="61">
+    <ns2:desc>m3100-receiver-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-rectifier-failure" ns1:lifeCycle="CURRENT" value="114">
+    <ns2:desc>m3100-rectifier-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-rectifier-high-voltage" ns1:lifeCycle="CURRENT" value="115">
+    <ns2:desc>m3100-rectifier-high-voltage</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-rectifier-low-voltage" ns1:lifeCycle="CURRENT" value="116">
+    <ns2:desc>m3100-rectifier-low-voltage</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-remote-alarm-interface" ns1:lifeCycle="CURRENT" value="11">
+    <ns2:desc>m3100-remote-alarm-interface</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-replaceable-unit-missing" ns1:lifeCycle="CURRENT" value="62">
+    <ns2:desc>m3100-replaceable-unit-missing</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-replaceable-unit-problem" ns1:lifeCycle="CURRENT" value="69">
+    <ns2:desc>m3100-replaceable-unit-problem</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-replaceable-unit-type-mismatch" ns1:lifeCycle="CURRENT" value="63">
+    <ns2:desc>m3100-replaceable-unit-type-mismatch</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-signal-label-mismatch" ns1:lifeCycle="CURRENT" value="15">
+    <ns2:desc>m3100-signal-label-mismatch</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-smoke" ns1:lifeCycle="CURRENT" value="132">
+    <ns2:desc>m3100-smoke</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-software-download-failure" ns1:lifeCycle="CURRENT" value="156">
+    <ns2:desc>m3100-software-download-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-software-environment-problem" ns1:lifeCycle="CURRENT" value="155">
+    <ns2:desc>m3100-software-environment-problem</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-storage-capacity-problem" ns1:lifeCycle="CURRENT" value="151">
+    <ns2:desc>m3100-storage-capacity-problem</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-synchronisation-source-mismatch" ns1:lifeCycle="CURRENT" value="64">
+    <ns2:desc>m3100-synchronisation-source-mismatch</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-terminal-problem" ns1:lifeCycle="CURRENT" value="65">
+    <ns2:desc>m3100-terminal-problem</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-timing-problem" ns1:lifeCycle="CURRENT" value="66">
+    <ns2:desc>m3100-timing-problem</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-toxic-gas" ns1:lifeCycle="CURRENT" value="133">
+    <ns2:desc>m3100-toxic-gas</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-transmission-error" ns1:lifeCycle="CURRENT" value="10">
+    <ns2:desc>m3100-transmission-error</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-transmitter-failure" ns1:lifeCycle="CURRENT" value="67">
+    <ns2:desc>m3100-transmitter-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-trunk-card-problem" ns1:lifeCycle="CURRENT" value="68">
+    <ns2:desc>m3100-trunk-card-problem</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-unavailable" ns1:lifeCycle="CURRENT" value="14">
+    <ns2:desc>m3100-unavailable</ns2:desc>
+  </ns2:member>
+  <ns2:member name="m3100-ventilation-system-failure" ns1:lifeCycle="CURRENT" value="117">
+    <ns2:desc>m3100-ventilation-system-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="material-supply-exhausted" ns1:lifeCycle="CURRENT" value="100528">
+    <ns2:desc>material-supply-exhausted</ns2:desc>
+  </ns2:member>
+  <ns2:member name="modulation-failure" ns1:lifeCycle="CURRENT" value="19">
+    <ns2:desc>modulation-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="multiplexer-problem-x733" ns1:lifeCycle="CURRENT" value="100529">
+    <ns2:desc>multiplexer-problem-x733</ns2:desc>
+  </ns2:member>
+  <ns2:member name="non-repudiation-failure" ns1:lifeCycle="CURRENT" value="1610">
+    <ns2:desc>non-repudiation-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="other" ns1:lifeCycle="CURRENT" value="1024">
+    <ns2:desc>other</ns2:desc>
+  </ns2:member>
+  <ns2:member name="ouput-device-error" ns1:lifeCycle="CURRENT" value="100531">
+    <ns2:desc>ouput-device-error</ns2:desc>
+  </ns2:member>
+  <ns2:member name="out-of-hours-activity" ns1:lifeCycle="CURRENT" value="1611">
+    <ns2:desc>out-of-hours-activity</ns2:desc>
+  </ns2:member>
+  <ns2:member name="out-of-memory" ns1:lifeCycle="CURRENT" value="162">
+    <ns2:desc>out-of-memory</ns2:desc>
+  </ns2:member>
+  <ns2:member name="out-of-memory-x733" ns1:lifeCycle="CURRENT" value="100530">
+    <ns2:desc>out-of-memory-x733</ns2:desc>
+  </ns2:member>
+  <ns2:member name="out-of-service" ns1:lifeCycle="CURRENT" value="1612">
+    <ns2:desc>out-of-service</ns2:desc>
+  </ns2:member>
+  <ns2:member name="path-selector-failure" ns1:lifeCycle="CURRENT" value="1010">
+    <ns2:desc>path-selector-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="performance-degraded" ns1:lifeCycle="CURRENT" value="100532">
+    <ns2:desc>performance-degraded</ns2:desc>
+  </ns2:member>
+  <ns2:member name="power-problems" ns1:lifeCycle="CURRENT" value="100533">
+    <ns2:desc>power-problems</ns2:desc>
+  </ns2:member>
+  <ns2:member name="power-supply-failure" ns1:lifeCycle="CURRENT" value="78">
+    <ns2:desc>power-supply-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="pressure-unacceptable" ns1:lifeCycle="CURRENT" value="100534">
+    <ns2:desc>pressure-unacceptable</ns2:desc>
+  </ns2:member>
+  <ns2:member name="procedural-error" ns1:lifeCycle="CURRENT" value="1613">
+    <ns2:desc>procedural-error</ns2:desc>
+  </ns2:member>
+  <ns2:member name="processor-problems" ns1:lifeCycle="CURRENT" value="100535">
+    <ns2:desc>processor-problems</ns2:desc>
+  </ns2:member>
+  <ns2:member name="protecting-resource-failure" ns1:lifeCycle="CURRENT" value="82">
+    <ns2:desc>protecting-resource-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="protection-mechanism-failure" ns1:lifeCycle="CURRENT" value="81">
+    <ns2:desc>protection-mechanism-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="pump-failure-x733" ns1:lifeCycle="CURRENT" value="100536">
+    <ns2:desc>pump-failure-x733</ns2:desc>
+  </ns2:member>
+  <ns2:member name="pw-outage" ns1:lifeCycle="CURRENT" value="1025">
+    <ns2:desc>pw-outage</ns2:desc>
+  </ns2:member>
+  <ns2:member name="queue-size-exceeded" ns1:lifeCycle="CURRENT" value="100537">
+    <ns2:desc>queue-size-exceeded</ns2:desc>
+  </ns2:member>
+  <ns2:member name="real-time-clock-failure" ns1:lifeCycle="CURRENT" value="70">
+    <ns2:desc>real-time-clock-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="receive-failure" ns1:lifeCycle="CURRENT" value="17">
+    <ns2:desc>receive-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="receive-failure-x733" ns1:lifeCycle="CURRENT" value="100538">
+    <ns2:desc>receive-failure-x733</ns2:desc>
+  </ns2:member>
+  <ns2:member name="receiver-failure-x733" ns1:lifeCycle="CURRENT" value="100539">
+    <ns2:desc>receiver-failure-x733</ns2:desc>
+  </ns2:member>
+  <ns2:member name="reduced-logging-capability" ns1:lifeCycle="CURRENT" value="206">
+    <ns2:desc>reduced-logging-capability</ns2:desc>
+  </ns2:member>
+  <ns2:member name="remote-node-transmission-error" ns1:lifeCycle="CURRENT" value="25">
+    <ns2:desc>remote-node-transmission-error</ns2:desc>
+  </ns2:member>
+  <ns2:member name="remote-node-transmission-error-x733" ns1:lifeCycle="CURRENT" value="100540">
+    <ns2:desc>remote-node-transmission-error-x733</ns2:desc>
+  </ns2:member>
+  <ns2:member name="resource-at-or-nearing-capacity" ns1:lifeCycle="CURRENT" value="100541">
+    <ns2:desc>resource-at-or-nearing-capacity</ns2:desc>
+  </ns2:member>
+  <ns2:member name="response-time-execessive" ns1:lifeCycle="CURRENT" value="100542">
+    <ns2:desc>response-time-execessive</ns2:desc>
+  </ns2:member>
+  <ns2:member name="retransmission-rate-excessive" ns1:lifeCycle="CURRENT" value="100543">
+    <ns2:desc>retransmission-rate-excessive</ns2:desc>
+  </ns2:member>
+  <ns2:member name="routing-failure" ns1:lifeCycle="CURRENT" value="26">
+    <ns2:desc>routing-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="signal-quality-evaluation-failure" ns1:lifeCycle="CURRENT" value="79">
+    <ns2:desc>signal-quality-evaluation-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="software-error" ns1:lifeCycle="CURRENT" value="163">
+    <ns2:desc>software-error</ns2:desc>
+  </ns2:member>
+  <ns2:member name="software-error-x733" ns1:lifeCycle="CURRENT" value="100544">
+    <ns2:desc>software-error-x733</ns2:desc>
+  </ns2:member>
+  <ns2:member name="software-program-abnormally-terminated" ns1:lifeCycle="CURRENT" value="100545">
+    <ns2:desc>software-program-abnormally-terminated</ns2:desc>
+  </ns2:member>
+  <ns2:member name="software-program-error" ns1:lifeCycle="CURRENT" value="100546">
+    <ns2:desc>software-program-error</ns2:desc>
+  </ns2:member>
+  <ns2:member name="storage-capacity-problem-x733" ns1:lifeCycle="CURRENT" value="100547">
+    <ns2:desc>storage-capacity-problem-x733</ns2:desc>
+  </ns2:member>
+  <ns2:member name="system-resources-overload" ns1:lifeCycle="CURRENT" value="207">
+    <ns2:desc>system-resources-overload</ns2:desc>
+  </ns2:member>
+  <ns2:member name="temperature-unacceptable" ns1:lifeCycle="CURRENT" value="100548">
+    <ns2:desc>temperature-unacceptable</ns2:desc>
+  </ns2:member>
+  <ns2:member name="threshold-crossed" ns1:lifeCycle="CURRENT" value="100549">
+    <ns2:desc>threshold-crossed</ns2:desc>
+  </ns2:member>
+  <ns2:member name="timeout-expired" ns1:lifeCycle="CURRENT" value="164">
+    <ns2:desc>timeout-expired</ns2:desc>
+  </ns2:member>
+  <ns2:member name="timing-problem-x733" ns1:lifeCycle="CURRENT" value="100550">
+    <ns2:desc>timing-problem-x733</ns2:desc>
+  </ns2:member>
+  <ns2:member name="toxic-leak-detected" ns1:lifeCycle="CURRENT" value="100551">
+    <ns2:desc>toxic-leak-detected</ns2:desc>
+  </ns2:member>
+  <ns2:member name="tranceiver-failure" ns1:lifeCycle="CURRENT" value="80">
+    <ns2:desc>tranceiver-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="transmit-failure" ns1:lifeCycle="CURRENT" value="18">
+    <ns2:desc>transmit-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="transmit-failure-x733" ns1:lifeCycle="CURRENT" value="100552">
+    <ns2:desc>transmit-failure-x733</ns2:desc>
+  </ns2:member>
+  <ns2:member name="transmiter-failure" ns1:lifeCycle="CURRENT" value="100553">
+    <ns2:desc>transmiter-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="unauthorized-access-attempt" ns1:lifeCycle="CURRENT" value="1614">
+    <ns2:desc>unauthorized-access-attempt</ns2:desc>
+  </ns2:member>
+  <ns2:member name="underlaying-resource-unavailable" ns1:lifeCycle="CURRENT" value="165">
+    <ns2:desc>underlaying-resource-unavailable</ns2:desc>
+  </ns2:member>
+  <ns2:member name="underlying-resource-unavailable" ns1:lifeCycle="CURRENT" value="100554">
+    <ns2:desc>underlying-resource-unavailable</ns2:desc>
+  </ns2:member>
+  <ns2:member name="unexpected-information" ns1:lifeCycle="CURRENT" value="1615">
+    <ns2:desc>unexpected-information</ns2:desc>
+  </ns2:member>
+  <ns2:member name="version-mismatch" ns1:lifeCycle="CURRENT" value="166">
+    <ns2:desc>version-mismatch</ns2:desc>
+  </ns2:member>
+  <ns2:member name="version-mismatch-x733" ns1:lifeCycle="CURRENT" value="100555">
+    <ns2:desc>version-mismatch-x733</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x733-adapter-error" ns1:lifeCycle="CURRENT" value="301">
+    <ns2:desc>x733-adapter-error</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x733-application-subsystem-failure" ns1:lifeCycle="CURRENT" value="302">
+    <ns2:desc>x733-application-subsystem-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x733-bandwidth-reduced" ns1:lifeCycle="CURRENT" value="303">
+    <ns2:desc>x733-bandwidth-reduced</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x733-communications-protocol-error" ns1:lifeCycle="CURRENT" value="305">
+    <ns2:desc>x733-communications-protocol-error</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x733-communications-subsystem-failure" ns1:lifeCycle="CURRENT" value="306">
+    <ns2:desc>x733-communications-subsystem-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x733-configuration-or-customization-error" ns1:lifeCycle="CURRENT" value="307">
+    <ns2:desc>x733-configuration-or-customization-error</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x733-congestion" ns1:lifeCycle="CURRENT" value="308">
+    <ns2:desc>x733-congestion</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x733-cpu-cycles-limit-exceeded" ns1:lifeCycle="CURRENT" value="310">
+    <ns2:desc>x733-cpu-cycles-limit-exceeded</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x733-data-set-or-modem-error" ns1:lifeCycle="CURRENT" value="311">
+    <ns2:desc>x733-data-set-or-modem-error</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x733-dte-dce-interface-error" ns1:lifeCycle="CURRENT" value="313">
+    <ns2:desc>x733-dte-dce-interface-error</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x733-equipment-malfunction" ns1:lifeCycle="CURRENT" value="315">
+    <ns2:desc>x733-equipment-malfunction</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x733-excessive-vibration" ns1:lifeCycle="CURRENT" value="316">
+    <ns2:desc>x733-excessive-vibration</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x733-file-error" ns1:lifeCycle="CURRENT" value="317">
+    <ns2:desc>x733-file-error</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x733-heating-or-ventilation-or-cooling-system-problem" ns1:lifeCycle="CURRENT" value="321">
+    <ns2:desc>x733-heating-or-ventilation-or-cooling-system-problem</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x733-humidity-unacceptable" ns1:lifeCycle="CURRENT" value="322">
+    <ns2:desc>x733-humidity-unacceptable</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x733-input-device-error" ns1:lifeCycle="CURRENT" value="324">
+    <ns2:desc>x733-input-device-error</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x733-input-output-device-error" ns1:lifeCycle="CURRENT" value="323">
+    <ns2:desc>x733-input-output-device-error</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x733-lane-error" ns1:lifeCycle="CURRENT" value="325">
+    <ns2:desc>x733-lane-error</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x733-leak-detected" ns1:lifeCycle="CURRENT" value="326">
+    <ns2:desc>x733-leak-detected</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x733-local-node-transmission-error" ns1:lifeCycle="CURRENT" value="327">
+    <ns2:desc>x733-local-node-transmission-error</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x733-material-supply-exhausted" ns1:lifeCycle="CURRENT" value="330">
+    <ns2:desc>x733-material-supply-exhausted</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x733-ouput-device-error" ns1:lifeCycle="CURRENT" value="333">
+    <ns2:desc>x733-ouput-device-error</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x733-out-of-memory" ns1:lifeCycle="CURRENT" value="332">
+    <ns2:desc>x733-out-of-memory</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x733-performance-degraded" ns1:lifeCycle="CURRENT" value="334">
+    <ns2:desc>x733-performance-degraded</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x733-pressure-unacceptable" ns1:lifeCycle="CURRENT" value="336">
+    <ns2:desc>x733-pressure-unacceptable</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x733-queue-size-exceeded" ns1:lifeCycle="CURRENT" value="339">
+    <ns2:desc>x733-queue-size-exceeded</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x733-receive-failure" ns1:lifeCycle="CURRENT" value="340">
+    <ns2:desc>x733-receive-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x733-remote-node-transmission-error" ns1:lifeCycle="CURRENT" value="342">
+    <ns2:desc>x733-remote-node-transmission-error</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x733-resource-at-or-nearing-capacity" ns1:lifeCycle="CURRENT" value="343">
+    <ns2:desc>x733-resource-at-or-nearing-capacity</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x733-response-time-excessive" ns1:lifeCycle="CURRENT" value="344">
+    <ns2:desc>x733-response-time-excessive</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x733-retransmission-rate-excessive" ns1:lifeCycle="CURRENT" value="345">
+    <ns2:desc>x733-retransmission-rate-excessive</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x733-software-error" ns1:lifeCycle="CURRENT" value="346">
+    <ns2:desc>x733-software-error</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x733-software-program-abnormally-terminated" ns1:lifeCycle="CURRENT" value="347">
+    <ns2:desc>x733-software-program-abnormally-terminated</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x733-software-program-error" ns1:lifeCycle="CURRENT" value="348">
+    <ns2:desc>x733-software-program-error</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x733-temperature-unacceptable" ns1:lifeCycle="CURRENT" value="350">
+    <ns2:desc>x733-temperature-unacceptable</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x733-threshold-crossed" ns1:lifeCycle="CURRENT" value="351">
+    <ns2:desc>x733-threshold-crossed</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x733-toxic-leak-detected" ns1:lifeCycle="CURRENT" value="353">
+    <ns2:desc>x733-toxic-leak-detected</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x733-transmit-failure" ns1:lifeCycle="CURRENT" value="354">
+    <ns2:desc>x733-transmit-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x733-underlying-resource-unavailable" ns1:lifeCycle="CURRENT" value="356">
+    <ns2:desc>x733-underlying-resource-unavailable</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x733-version-mismatch" ns1:lifeCycle="CURRENT" value="357">
+    <ns2:desc>x733-version-mismatch</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x736-authentication-failure" ns1:lifeCycle="CURRENT" value="401">
+    <ns2:desc>x736-authentication-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x736-breach-of-confidentiality" ns1:lifeCycle="CURRENT" value="402">
+    <ns2:desc>x736-breach-of-confidentiality</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x736-cable-tamper" ns1:lifeCycle="CURRENT" value="403">
+    <ns2:desc>x736-cable-tamper</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x736-delayed-information" ns1:lifeCycle="CURRENT" value="404">
+    <ns2:desc>x736-delayed-information</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x736-denial-of-service" ns1:lifeCycle="CURRENT" value="405">
+    <ns2:desc>x736-denial-of-service</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x736-duplicate-information" ns1:lifeCycle="CURRENT" value="406">
+    <ns2:desc>x736-duplicate-information</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x736-information-missing" ns1:lifeCycle="CURRENT" value="407">
+    <ns2:desc>x736-information-missing</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x736-information-modification-detected" ns1:lifeCycle="CURRENT" value="408">
+    <ns2:desc>x736-information-modification-detected</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x736-information-out-of-sequence" ns1:lifeCycle="CURRENT" value="409">
+    <ns2:desc>x736-information-out-of-sequence</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x736-intrusion-detection" ns1:lifeCycle="CURRENT" value="410">
+    <ns2:desc>x736-intrusion-detection</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x736-key-expired" ns1:lifeCycle="CURRENT" value="411">
+    <ns2:desc>x736-key-expired</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x736-non-repudiation-failure" ns1:lifeCycle="CURRENT" value="412">
+    <ns2:desc>x736-non-repudiation-failure</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x736-out-of-hours-activity" ns1:lifeCycle="CURRENT" value="413">
+    <ns2:desc>x736-out-of-hours-activity</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x736-out-of-service" ns1:lifeCycle="CURRENT" value="414">
+    <ns2:desc>x736-out-of-service</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x736-procedural-error" ns1:lifeCycle="CURRENT" value="415">
+    <ns2:desc>x736-procedural-error</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x736-unauthorized-access-attempt" ns1:lifeCycle="CURRENT" value="416">
+    <ns2:desc>x736-unauthorized-access-attempt</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x736-unexpected-information" ns1:lifeCycle="CURRENT" value="417">
+    <ns2:desc>x736-unexpected-information</ns2:desc>
+  </ns2:member>
+  <ns2:member name="x736-unspecified-reason" ns1:lifeCycle="CURRENT" value="418">
+    <ns2:desc>x736-unspecified-reason</ns2:desc>
+  </ns2:member>
+</ns2:EnumDataTypeDefinition>

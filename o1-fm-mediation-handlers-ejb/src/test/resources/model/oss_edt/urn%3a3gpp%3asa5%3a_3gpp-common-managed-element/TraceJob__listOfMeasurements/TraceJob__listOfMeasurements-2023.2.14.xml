@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:EnumDataTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:oss_edt" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ns1:lifeCycle="CURRENT" ns1:name="TraceJob__listOfMeasurements" ns1:ns="urn:3gpp:sa5:_3gpp-common-managed-element" ns1:version="2023.2.14">
+  <ns1:modelCreationInfo author="YANG Transformer2">
+    <ns1:derivedModel derivedFrom="/net_yang/urn%3a3gpp%3asa5%3a_3gpp-common-managed-element/_3gpp-common-managed-element%402023-02-14"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>It specifies the UE measurements that shall be collected in an Immediate MDT job. The attribute is applicable only for Immediate MDT. In case this attribute is not used, it carries a null semantic.</ns1:desc>
+  <ns2:member name="M1" ns1:lifeCycle="CURRENT" value="0">
+    <ns2:desc>M1</ns2:desc>
+  </ns2:member>
+  <ns2:member name="M1_EVENT_TRIGGERED" ns1:lifeCycle="CURRENT" value="9">
+    <ns2:desc>M1_EVENT_TRIGGERED</ns2:desc>
+  </ns2:member>
+  <ns2:member name="M2" ns1:lifeCycle="CURRENT" value="1">
+    <ns2:desc>M2</ns2:desc>
+  </ns2:member>
+  <ns2:member name="M3" ns1:lifeCycle="CURRENT" value="2">
+    <ns2:desc>M3</ns2:desc>
+  </ns2:member>
+  <ns2:member name="M4" ns1:lifeCycle="CURRENT" value="3">
+    <ns2:desc>M4</ns2:desc>
+  </ns2:member>
+  <ns2:member name="M5" ns1:lifeCycle="CURRENT" value="4">
+    <ns2:desc>M5</ns2:desc>
+  </ns2:member>
+  <ns2:member name="M6" ns1:lifeCycle="CURRENT" value="10">
+    <ns2:desc>M6</ns2:desc>
+  </ns2:member>
+  <ns2:member name="M6_DL" ns1:lifeCycle="CURRENT" value="5">
+    <ns2:desc>M6_DL</ns2:desc>
+  </ns2:member>
+  <ns2:member name="M6_UL" ns1:lifeCycle="CURRENT" value="6">
+    <ns2:desc>M6_UL</ns2:desc>
+  </ns2:member>
+  <ns2:member name="M7" ns1:lifeCycle="CURRENT" value="11">
+    <ns2:desc>M7</ns2:desc>
+  </ns2:member>
+  <ns2:member name="M7_DL" ns1:lifeCycle="CURRENT" value="7">
+    <ns2:desc>M7_DL</ns2:desc>
+  </ns2:member>
+  <ns2:member name="M7_UL" ns1:lifeCycle="CURRENT" value="8">
+    <ns2:desc>M7_UL</ns2:desc>
+  </ns2:member>
+  <ns2:member name="M8" ns1:lifeCycle="CURRENT" value="12">
+    <ns2:desc>M8</ns2:desc>
+  </ns2:member>
+  <ns2:member name="M9" ns1:lifeCycle="CURRENT" value="13">
+    <ns2:desc>M9</ns2:desc>
+  </ns2:member>
+</ns2:EnumDataTypeDefinition>

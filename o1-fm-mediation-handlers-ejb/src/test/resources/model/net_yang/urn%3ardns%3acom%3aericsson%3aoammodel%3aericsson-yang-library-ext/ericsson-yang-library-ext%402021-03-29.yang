@@ -1,0 +1,118 @@
+module ericsson-yang-library-ext {
+  yang-version 1.1;
+  namespace urn:rdns:com:ericsson:oammodel:ericsson-yang-library-ext;
+  prefix yanglibxe;
+  
+  import ericsson-yang-extensions { prefix yexte; }
+  import ietf-yang-library { 
+    prefix yanglib; 
+    description "Import revision date 2019-01-04 or later.";
+  }
+
+  organization "Ericsson AB";
+  contact "Ericsson first line support via email";
+  description "The module extends ietf-yang-library adding an Ericsson style 
+    version.release.correction triplet to each Yang module.
+    
+    Copyright (c) 2016 Ericsson AB. All rights reserved.";
+
+  revision "2021-03-29" {
+    description "Added augments for new version of yanglib RFC8525";
+    yexte:version 2;
+    yexte:release 2;
+    yexte:correction 0;
+  }
+  
+  revision "2017-11-07" {
+    description "Made the augments only valid for ericsson YAMs";
+    yexte:version 2;
+    yexte:release 1;
+    yexte:correction 1;
+  }
+  
+  revision "2017-05-30" {
+    description "Removed  augment to deviations. The same info is 
+      already available in the module list.";
+    yexte:version 2;
+    yexte:release 0;
+    yexte:correction 0;
+  }
+  
+  revision "2016-07-01" {
+    description "Initial version";
+    yexte:version 1;
+    yexte:release 0;
+    yexte:correction 0;
+  }
+  
+  grouping ericsson-revision {
+    leaf version {   
+      type uint32; 
+      description "The version number of the module/submodule, 
+        will be stepped when the module/submodule is 
+        changed in a backward incompatible way.";              
+    }
+    leaf release {   
+      type uint32; 
+      description "The release number of the module/submodule, 
+        will be stepped for each backward compatible change. 
+        When the version is stepped, the release is reset to 0.";              
+     }
+    leaf correction {   
+      type uint32; 
+      description "The correction number of the module/submodule, 
+        will be stepped for each backward compatible correction, 
+        when a later release already exists. 
+        When release is stepped or reset, correction is reset to 0.";              
+    }
+         
+    description "Defines an Ericsson style version.release.correction triplet 
+      to allow a more detailed versioning of a YANG module/submodule";
+  }
+  
+  augment /yanglib:modules-state/yanglib:module {
+    when "starts-with(yanglib:name, 'ericsson-')" ;
+    uses ericsson-revision;
+    description "Extends module information with Ericsson style revision 
+      information.";
+  }
+
+  augment /yanglib:modules-state/yanglib:module/yanglib:submodule {
+    when "starts-with(yanglib:name, 'ericsson-')" ;
+    uses ericsson-revision;
+    description "Extends submodule information with Ericsson style revision 
+      information.";
+  }
+  
+
+  augment /yanglib:yang-library/yanglib:module-set/yanglib:module {
+    when "starts-with(yanglib:name, 'ericsson-')" ;
+    uses ericsson-revision;
+    description "Extends module information with Ericsson style revision 
+      information.";
+  }
+
+  augment "/yanglib:yang-library/yanglib:module-set/yanglib:module/"
+      + "yanglib:submodule" {
+    when "starts-with(yanglib:name, 'ericsson-')" ;
+    uses ericsson-revision;
+    description "Extends submodule information with Ericsson style revision 
+      information.";
+  }
+
+  
+  augment /yanglib:yang-library/yanglib:module-set/yanglib:import-only-module {
+    when "starts-with(yanglib:name, 'ericsson-')" ;
+    uses ericsson-revision;
+    description "Extends module information with Ericsson style revision 
+      information.";
+  }
+
+  augment "/yanglib:yang-library/yanglib:module-set/yanglib:import-only-module/"
+      + "yanglib:submodule" {
+    when "starts-with(yanglib:name, 'ericsson-')" ;
+    uses ericsson-revision;
+    description "Extends submodule information with Ericsson style revision 
+      information.";
+  }
+}

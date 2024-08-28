@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+*******************************************************************************
+* COPYRIGHT Ericsson LMI. All rights reserved.
+*
+* No part of this document may be reproduced in any form without the
+* written permission of the copyright owner.The contents of this document
+* are subject to revision without notice due to continued progress in
+* methodology, design and manufacturing. Ericsson shall have no liability
+* for any error or damage of any kind resulting from the use of this document.
+*
+*******************************************************************************
+
+
+--><ns2:PrimaryTypeDefinition xmlns:ns1="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:ns2="urn:com:ericsson:schema:xml:oss:dps_primarytype" xmlns:ns3="urn:com:ericsson:schema:xml:oss:dps_common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" hierarchyType="HIERARCHICAL" ns1:definedBy="NE" ns1:lifeCycle="CURRENT" ns1:name="tcp" ns1:ns="urn:rdns:com:ericsson:oammodel:ericsson-system-ext" ns1:version="5.1.1" readBehavior="FROM_PERSISTENCE" writeBehavior="PERSIST_AND_DELEGATE">
+  <ns1:modelCreationInfo author="YANG Transformer2">
+    <ns1:derivedModel derivedFrom="/net_yang/urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-system-ext/ericsson-system-ext%402021-05-24"/>
+  </ns1:modelCreationInfo>
+  <ns1:desc>Contains TCP-specific configuration parameters for LDAP.</ns1:desc>
+  <ns1:meta metaName="YANG_NON_PRESENCE_CONTAINER"/>
+  <ns2:primaryTypeAttribute immutable="true" key="true" mandatory="true" ns1:definedBy="OSS" ns1:name="tcp-key" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>Key attribute</ns1:desc>
+    <ns1:meta metaName="YANG_ARTIFIAL_KEY"/>
+    <ns1:type xsi:type="ns1:stringType">
+      <ns1:notNullConstraint/>
+    </ns1:type>
+    <ns1:default value="1" xsi:type="ns1:stringValue"/>
+  </ns2:primaryTypeAttribute>
+  <ns2:primaryTypeAttribute immutable="false" key="false" mandatory="true" ns="urn:rdns:com:ericsson:oammodel:ericsson-system-ext" ns1:lifeCycle="CURRENT" ns1:name="address" readBehavior="FROM_PERSISTENCE" sensitive="false" writeBehavior="PERSIST_AND_DELEGATE">
+    <ns1:desc>The address of the LDAP server.</ns1:desc>
+    <ns1:type xsi:type="ns1:unionType">
+      <ns1:notNullConstraint/>
+      <ns1:member xsi:type="ns1:stringType">
+        <ns1:stringContentsConstraint type="REGEX" value="(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(%[\p{N}\p{L}]+)?"/>
+      </ns1:member>
+      <ns1:member xsi:type="ns1:stringType"/>
+      <ns1:member xsi:type="ns1:stringType">
+        <ns1:stringLengthConstraint>
+          <ns1:minMaxLength max="253" min="1"/>
+        </ns1:stringLengthConstraint>
+        <ns1:stringContentsConstraint type="REGEX" value="((([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA-Z0-9]\.)*([a-zA-Z0-9_]([a-zA-Z0-9\-_]){0,61})?[a-zA-Z0-9]\.?)|\."/>
+      </ns1:member>
+    </ns1:type>
+  </ns2:primaryTypeAttribute>
+  <ns2:choice mandatory="false" name="protocol">
+    <ns2:case name="ldap">
+      <ns2:primaryType primaryTypeUrn="//urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-system-ext/tcp%24%24ldap/5.1.1"/>
+    </ns2:case>
+    <ns2:case name="ldaps">
+      <ns2:primaryType primaryTypeUrn="//urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-system-ext/ldaps/5.1.1"/>
+    </ns2:case>
+  </ns2:choice>
+  <ns2:requires>
+    <ns3:activeChoiceCase case="tcp" choice="transport" primaryTypeUrn="//urn%3ardns%3acom%3aericsson%3aoammodel%3aericsson-system-ext/server/5.1.1"/>
+  </ns2:requires>
+</ns2:PrimaryTypeDefinition>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- *******************************************************************************
+     * COPYRIGHT Ericsson 2023. All rights reserved.
+     *
+     * No part of this document may be reproduced in any form without the
+     * written permission of the copyright owner.The contents of this document
+     * are subject to revision without notice due to continued progress in
+     * methodology, design and manufacturing. Ericsson shall have no liability
+     * for any error or damage of any kind resulting from the use of this document.
+     *************************************************************************** -->
+<CapabilitySupportDefinition
+    xmlns="urn:com:ericsson:schema:xml:oss:oss_capabilitysupport"
+    xmlns:oc="urn:com:ericsson:schema:xml:oss:oss_common"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    oc:ns="NODE:O1Node"
+    oc:name="UpgradeIndependence"
+    oc:version="1.0.0">
+    <oc:modelCreationInfo author="TeamAmerica" creationDate="2023-04-26">
+        <oc:designedModel componentId="o1node-node-model-common-jar" />
+    </oc:modelCreationInfo>
+    <oc:desc>Upgrade Independence Capability Support for O1Node node target type</oc:desc>
+    <capability name="Supported" value="true" />
+</CapabilitySupportDefinition>
